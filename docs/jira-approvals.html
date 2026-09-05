@@ -1,0 +1,167 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Countersign: Approvals &amp; Sign-off for Jira — documentation</title><link rel="stylesheet" href="/style.css"></head><body><nav><a href="/">Apps</a><a href="/privacy.html">Privacy policy</a><a href="/terms.html">Terms of service</a><a href="/support.html">Support</a></nav>
+<h1>Countersign: Approvals &amp; Sign-off for Jira</h1>
+<p><strong>An approval that actually blocks the transition, in any Jira project, on any plan.</strong>
+Multi-stage and parallel approvals, quorum rules, delegation, escalation, and a
+tamper-evident audit trail you can export and check for yourself. One edition,
+everything included, US$0.65 per user per month, free for teams of ten or fewer.</p>
+<hr />
+<h2>Why this exists</h2>
+<p>Jira added a native approval step in October 2025. It is a genuine improvement and for
+some teams it is enough. Here is what it does not do, in Atlassian&rsquo;s own words and their
+own users&rsquo;:</p>
+<ul>
+<li><strong>It is Premium and Enterprise only.</strong> Atlassian&rsquo;s documentation: <em>&ldquo;The approvals
+  feature is only available on Premium editions in Jira.&rdquo;</em> On Free and Standard there is
+  nothing.</li>
+<li><strong>It bypasses your workflow validators, by design.</strong> Atlassian&rsquo;s knowledge base:
+  <em>&ldquo;Approval steps bypass workflow transitions&hellip; it won&rsquo;t be possible to enforce the
+  validator on the same transition as the approval step.&rdquo;</em> A commenter on Atlassian&rsquo;s own
+  launch post put it more plainly: <em>&ldquo;As long as approvals bypass the validators, this is
+  just another 80% solution.&rdquo;</em></li>
+<li><strong>Project roles cannot be approvers.</strong> The most-liked comment on that launch post is
+  <em>&ldquo;Why can&rsquo;t Roles be used to define approvers?&rdquo;</em></li>
+<li><strong>An approver can add themselves.</strong> Atlassian&rsquo;s troubleshooting page: <em>&ldquo;Anyone in the
+  project with Edit any work item access can manage preset approvers from the work
+  item.&rdquo;</em></li>
+<li><strong>There is nowhere to say why you rejected something</strong>, and each stage needs its own
+  custom field.</li>
+</ul>
+<p>Countersign is the version that holds. It puts a real workflow validator on the
+transition, so the gate applies from the work item view, from a bulk change and from the
+REST API alike — and it works on Standard.</p>
+<hr />
+<h2>What it does</h2>
+<h3>Approvals that are shaped like your organisation</h3>
+<ul>
+<li><strong>Stages, sequential or parallel.</strong> Stages with the same round number run at the same
+  time; rounds run in order. One mechanism, so the two cannot disagree at the edges.</li>
+<li><strong>Approvers by rule, not by list.</strong> A named person, everyone in a group, <strong>everyone in
+  a project role</strong>, whoever is in a <strong>user-picker field on the work item</strong>, the reporter,
+  the assignee, the project lead, the lead of each component, or <strong>the reporter&rsquo;s or
+  assignee&rsquo;s manager</strong>.</li>
+<li><strong>Five quorum rules.</strong> Everyone must approve; any one is enough; <strong>any N of M</strong>; a
+  percentage; or <strong>weighted</strong>, where the finance director&rsquo;s approval carries five points
+  and everybody else&rsquo;s carries one.</li>
+<li><strong>Separation of duties.</strong> Nobody approves a request they raised, unless you say
+  otherwise, and you can require a different person at every stage.</li>
+<li><strong>You choose what a rejection means.</strong> It can end the approval, send it back one stage,
+  or send it back to the beginning for rework — and a stage can either stop at the first
+  rejection or keep collecting until approval has become arithmetically impossible.</li>
+</ul>
+<h3>Enforcement, not decoration</h3>
+<p>Four workflow validators, three of which need no configuration at all:</p>
+<ul>
+<li><strong>Approval has been granted</strong> — blocks the transition until every approval on the work
+  item is in.</li>
+<li><strong>No approval is still waiting.</strong></li>
+<li><strong>An approval has been started.</strong></li>
+<li><strong>Only a current approver may make this transition.</strong></li>
+</ul>
+<p>They sit on the transition, so they apply to the issue view, a bulk transition and a REST
+call equally. And they <strong>fail closed</strong>: if the approval cannot be read, the transition is
+refused with an explanation rather than waved through. A gate that opens when it is
+confused is worse than no gate, because you believe it is there.</p>
+<p>A workflow post function starts, restarts, sends back or cancels an approval on a
+transition, and the same operations are a first-class action in the Jira Automation rule
+builder.</p>
+<h3>Delegation, cover and escalation</h3>
+<ul>
+<li>Hand a pending approval to a colleague. They take your seat rather than being added
+  beside it, so the number of approvals still needed does not move.</li>
+<li>Set out-of-office cover; it applies when a stage opens, and the trail records who
+  covered for whom. If your cover is already an approver on that stage, the seat stays
+  with you — cover must never quietly halve a vote.</li>
+<li>Remind after N hours, then every N after that. <strong>A reminder sweep that missed a week
+  sends one reminder, not seven.</strong></li>
+<li>Escalate after N hours by notifying, adding approvers, auto-approving or
+  auto-rejecting — measured in <strong>working hours</strong> if you want, so a Friday-afternoon
+  deadline does not expire on Saturday with nobody at work. A stage closed by an
+  escalation says so, and is never presented as somebody&rsquo;s signature.</li>
+</ul>
+<h3>A trail that is worth having</h3>
+<p>Every approval is an append-only log. Nothing is ever edited: changing your mind appends,
+sending an approval back appends, and the decisions from round one sit beside round two
+in the export.</p>
+<p><strong>Each entry commits to the digest of the entry before it</strong>, and the first entry commits
+to the work item and the policy it is about. Remove an entry, reorder two, edit a comment,
+or lift a whole valid trail onto a different work item, and the chain stops verifying.
+The panel re-checks it every time you open it, and the CSV export includes the digests so
+your auditor can check it outside Jira — the digest is an ordinary SHA-256 over a
+canonical JSON form, described in our documentation, not a private format.</p>
+<p>Each decision records who, when, from which stage, why, what they were asked to agree to,
+and <strong>a snapshot of the work item as it stood at that moment</strong>. If the work item changes
+afterwards, the app says so on the work item.</p>
+<h3>Sign-off</h3>
+<p>A stage can require the approver to type their own name — checked against the name on
+their Atlassian account — and to give a reason. The statement they agreed to is stored
+verbatim with the decision, inside the digest.</p>
+<p><strong>What we do not claim.</strong> We do not describe this as a legally binding electronic
+signature, and we make no claim of eIDAS, ESIGN Act or 21 CFR Part 11 compliance. A
+Forge app cannot re-authenticate you at the moment of signing — no app on Jira Cloud can
+— so we tell you exactly what is recorded and let your compliance team decide whether it
+is enough: the Atlassian-authenticated account behind the request, the account id
+Atlassian attests to, the name typed, the statement agreed to, the time, the state of the
+work item, and a hash chain over all of it.</p>
+<h3>Finding and reporting</h3>
+<ul>
+<li><strong>Ordinary JQL.</strong> <code>approvalStatus = APPROVED</code>, <code>approvalPendingWith ~ currentUser()</code>,
+  <code>approvalWaiting = 1</code>, <code>approvalApprovedBy</code>, <code>approvalStage</code>, <code>approvalRounds</code>,
+  <code>approvalStarted</code>, <code>approvalDecided</code>, <code>approvalOutstanding</code>, <code>approvalName</code>. Build your
+  own filters, boards and gadgets without us.</li>
+<li><strong>A &ldquo;My approvals&rdquo; page</strong>, two dashboard gadgets, and a reporting view with cycle time,
+  <strong>which stage holds things up</strong>, who was rostered and never answered, and the
+  <strong>first-pass rate</strong> — how often an approval got through without being sent back.</li>
+<li><strong>CSV export</strong> of the report and of the full audit trail.</li>
+</ul>
+<h3>Notifications, honestly</h3>
+<p>A Forge app cannot send email. So Countersign does not pretend to: it asks <strong>your</strong> Jira
+to send its own notification, from your address, obeying your notification scheme; it
+posts a Jira comment naming the approver, the stage and the decision, so it lands in the
+Activity stream people already read; and it keeps an in-app queue on the &ldquo;My approvals&rdquo;
+page. Nothing leaves Atlassian, and no message ever arrives from a domain your staff do
+not recognise.</p>
+<hr />
+<h2>Runs on Atlassian</h2>
+<p>Countersign declares <strong>no external network access of any kind</strong> — no fetch, no egress, no
+remote services, no servers of ours. Your approval records, audit trail, policies and
+out-of-office windows live in Forge storage inside your own site, in your own data
+residency region. There is nothing to breach at our end because there is no our end.</p>
+<p>None of the established apps in this category holds the Runs on Atlassian badge. This one
+is built to.</p>
+<hr />
+<h2>Pricing</h2>
+<p><strong>Free for up to 10 users. US$0.65 per user per month above that.</strong> One edition. Every
+feature on this page is in it — no &ldquo;advanced&rdquo; tier, no per-approval charge, no add-on for
+the audit trail.</p>
+<p>At 100 users that is US$780 a year, which is less than every comparable app we could
+find: the routing apps sit at US$940–1,200 and the signature apps at US$1,090–1,330 for
+the same seat count.</p>
+<hr />
+<h2>What it does not do</h2>
+<p>We would rather you heard this from us.</p>
+<ul>
+<li><strong>You cannot approve from email or from Slack.</strong> Both need the app to reach outside
+  Atlassian, which would forfeit Runs on Atlassian, and inbound email is not something
+  Forge offers at all. Approvers need a Jira licence and approve in Jira.</li>
+<li><strong>There is no password or biometric re-authentication at signing.</strong> No Jira Cloud app
+  has it; the platform does not expose it. See the sign-off section above for exactly
+  what is recorded instead.</li>
+<li><strong>The trail is tamper-evident, not tamper-proof.</strong> A chain proves an entry has not been
+  altered since it was written. It is not a notary and it is not a digital signature, and
+  we will not tell you it is.</li>
+<li><strong>Approval events cannot be written into Jira&rsquo;s History tab</strong>, which is Jira&rsquo;s own
+  field-change log and closed to apps. The comment stream is the nearest thing and we use
+  it.</li>
+</ul>
+<hr />
+<h2>Getting started</h2>
+<ol>
+<li>Install it. Nothing appears anywhere until a project turns it on.</li>
+<li><strong>Project settings › Approvals</strong> → turn it on, then pick one of three ready-made
+   policies: one approver, two stages, or any two of three. Change whatever you like.</li>
+<li>Type a work item key into the preview to see exactly who each stage resolves to, and
+   why, before it ever runs.</li>
+<li>Add <strong>Approval has been granted</strong> to the transition you want to gate.</li>
+</ol>
+<p>Support and issue tracker: https://ethanj2k.github.io/support.html</p>
+<footer>Published by Chloe Jane Patricia Johnson (ABN 49 732 400 198), Penrith, NSW 2750, Australia. Contact: ethanjohnson2000@gmail.com</footer></body></html>

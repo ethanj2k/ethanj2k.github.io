@@ -1,0 +1,148 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Countersign: Approvals &amp; Sign-off for Jira — privacy policy</title><link rel="stylesheet" href="/style.css"></head><body><nav><a href="/">Apps</a><a href="/privacy.html">Privacy policy</a><a href="/terms.html">Terms of service</a><a href="/support.html">Support</a></nav>
+<h1>Privacy Policy — Countersign: Approvals &amp; Sign-off for Jira</h1>
+<p><em>Effective: 6 September 2026</em></p>
+<p>Countersign (&ldquo;the app&rdquo;) is published by Chloe Jane Patricia Johnson, sole trader
+(ABN 49 732 400 198), of Penrith, NSW 2750, Australia, on the Atlassian Marketplace.
+Contact: ethanjohnson2000@gmail.com.</p>
+<p>This policy explains what the app does with data. It matters more than most, because
+this app records who agreed to what, and when.</p>
+<h2>The short version</h2>
+<p>The app runs entirely on Atlassian&rsquo;s Forge platform, inside your own Jira site. It
+declares <strong>no external network access of any kind</strong> — no outbound fetch, no egress
+allow-list, no remote services. No data it holds is transmitted to us or to any third
+party, because there is nowhere for it to be transmitted to. We have no servers, no
+database and no copy of your data.</p>
+<h2>Data the app reads from Jira</h2>
+<p>Read as <strong>you</strong>, with your own Jira permissions, on work items you can already see:</p>
+<ul>
+<li>work item id, key, summary, status, type, priority, labels, components, reporter,
+  assignee and last-updated time;</li>
+<li>the values of any user-picker field a project has named as an approver, and of any
+  field a project has asked to snapshot with a decision;</li>
+<li>project key, id, project lead and component leads;</li>
+<li>members of Jira groups and project roles that an approval policy names as approvers;</li>
+<li>the display name, account id and active/inactive state of people who appear on a
+  roster or in a decision;</li>
+<li>your own account id, display name and permissions on the project, to decide what you
+  may do.</li>
+</ul>
+<h2>Data the app writes to Jira</h2>
+<ul>
+<li><strong>A work item property</strong> (<code>countersign-approvals</code>) holding the approval status, the
+  account ids still to decide, the account ids that have approved, the current stage
+  name, the start and decision times, and counts. This is what makes approvals
+  searchable in ordinary JQL. It is written by the app and is visible to anyone who can
+  see the work item.</li>
+<li><strong>A read-only app field</strong> (&ldquo;Approval&rdquo;) holding a one-line summary, so approval state
+  can appear on a board card.</li>
+<li><strong>A comment</strong>, if the project switches it on, naming the approver, the stage and the
+  decision, so it lands in the Activity stream. The comment carries no more than the
+  panel already shows.</li>
+<li><strong>A Jira notification</strong>, if the project switches it on. It is composed by the app and
+  <strong>sent by your Jira</strong>, from your address, through your own notification scheme. The
+  app has no mail server and never sends mail itself.</li>
+</ul>
+<p>The app never transitions, deletes or reassigns a work item, and never edits a field
+other than its own read-only one.</p>
+<h2>Data the app stores in Forge app storage</h2>
+<p>All of it is held in Atlassian&rsquo;s Forge storage, inside your site&rsquo;s own installation, in
+your site&rsquo;s data residency region. It is not aggregated across customers and it is not
+readable by us.</p>
+<table>
+<thead>
+<tr>
+<th>What is stored</th>
+<th>Why</th>
+<th>Keyed by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Approval policies</strong> — stage names, approver rules (account ids, group ids, role ids, field ids), quorum rules and any per-person weights, signature settings, the statement approvers are asked to agree to, reminder and escalation settings, working-hours calendar and holiday dates</td>
+<td>So the project approves work the way it decided</td>
+<td>project</td>
+</tr>
+<tr>
+<td><strong>The approval record</strong> — an append-only log of every event: who started it, the policy as it stood at that moment, each stage opening with the account ids frozen onto its roster and why each person is on it, every decision with the account id, timestamp, comment and typed name, every delegation, reassignment, escalation, reminder, reset and cancellation</td>
+<td>This is the audit trail. It is the product</td>
+<td>work item + policy</td>
+</tr>
+<tr>
+<td><strong>A snapshot of the work item with each decision</strong> — its summary, status, type and assignee, plus any fields the project asked for, as they stood when that person decided</td>
+<td>So &ldquo;what exactly did you approve&rdquo; is answerable months later</td>
+<td>inside the record above</td>
+</tr>
+<tr>
+<td><strong>A typed signature</strong> — the name a person typed to sign off, and the statement they were shown</td>
+<td>So a sign-off records intent, not just a click</td>
+<td>inside the record above</td>
+</tr>
+<tr>
+<td><strong>A digest chain</strong> — a SHA-256 over each entry and the one before it</td>
+<td>So an entry cannot be altered, removed or reordered without it showing</td>
+<td>inside the record above</td>
+</tr>
+<tr>
+<td><strong>Out-of-office cover</strong> — an account id, the account id covering for them, and the dates</td>
+<td>So an approval does not stall while somebody is on leave</td>
+<td>account</td>
+</tr>
+<tr>
+<td><strong>In-app notices</strong> — the work item key and summary, the approval and stage name, and a short line of text</td>
+<td>Forge apps cannot send email; this is one of the three ways you are told</td>
+<td>account</td>
+</tr>
+<tr>
+<td><strong>Site settings</strong> — which field a site treats as its org chart, and whether people may set their own cover</td>
+<td>Configuration</td>
+<td>site</td>
+</tr>
+<tr>
+<td><strong>Operational bookkeeping</strong> — which work items in a project have an approval still waiting, which approvals exist on a work item, how far the hourly reminder job got, and which &ldquo;this changed after it was approved&rdquo; notices have already been sent</td>
+<td>So reminders are not missed, not repeated, and cannot be starved by anyone outside the app</td>
+<td>project / work item</td>
+</tr>
+</tbody>
+</table>
+<h3>Personal data specifically</h3>
+<p>The app stores <strong>Atlassian account ids</strong>, and, as typed by the person themselves,
+<strong>the name they type to sign off</strong>. It stores <strong>comments people write with a decision</strong>,
+which are free text and could contain anything they choose to put there. It stores
+snapshots of work item fields, which are your own Jira content.</p>
+<p>It does <strong>not</strong> store email addresses, IP addresses, browser fingerprints, usage
+analytics, or any identifier of its own. It sets no cookies beyond those Atlassian sets
+to run Jira. It does no profiling and no automated decision-making about people. The
+only automated decision it makes is the one you configured: whether an approval has met
+its quorum.</p>
+<h2>What we can see</h2>
+<p>Nothing of yours, by design. We have no access to your site&rsquo;s Forge storage and no copy
+of it.</p>
+<p>Forge writes application logs that we, as the app&rsquo;s publisher, can read. The app logs
+only its own diagnostics: the Jira REST path it called with the query string removed,
+the HTTP status, and the <em>names</em> of any fields Jira objected to. It deliberately does
+not log work item content, comment text, signatures, search queries or Jira&rsquo;s response
+bodies.</p>
+<h2>Retention and deletion</h2>
+<p>Approval records and their audit trails are retained for as long as the app is
+installed. <strong>Deleting an approval policy does not delete the approvals recorded under
+it</strong> — an audit trail that vanishes when somebody tidies a settings page is not an audit
+trail.</p>
+<p><strong>Uninstalling the app deletes everything.</strong> Atlassian removes a Forge app&rsquo;s storage
+when the app is uninstalled from a site; we hold no copy elsewhere, so nothing survives.
+The work item property and comments the app wrote to Jira remain in your Jira, because
+they are your Jira data — you can remove them like any other property or comment.</p>
+<p>If you need a record removed while the app is installed, or a copy of what is held about
+a person, email ethanjohnson2000@gmail.com. Because everything lives in your own site,
+you can also extract it yourself: the audit trail exports to CSV from the work item.</p>
+<h2>Sub-processors</h2>
+<p>None. The app uses Atlassian&rsquo;s Forge platform, which runs on Atlassian&rsquo;s infrastructure
+and is governed by Atlassian&rsquo;s own terms and privacy policy. There are no other
+processors, because the app makes no outbound connection to anywhere.</p>
+<h2>Changes</h2>
+<p>Material changes to this policy will be published here and noted in the app&rsquo;s release
+notes on the Atlassian Marketplace.</p>
+<h2>Contact</h2>
+<p>Chloe Jane Patricia Johnson, sole trader (ABN 49 732 400 198)
+Penrith, NSW 2750, Australia
+ethanjohnson2000@gmail.com</p>
+<footer>Published by Chloe Jane Patricia Johnson (ABN 49 732 400 198), Penrith, NSW 2750, Australia. Contact: ethanjohnson2000@gmail.com</footer></body></html>
