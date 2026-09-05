@@ -1,36 +1,50 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Mailpost for Jira documentation</title><link rel="stylesheet" href="/style.css"></head><body><nav><a href="/">Apps</a><a href="/privacy.html">Privacy policy</a><a href="/terms.html">Terms of service</a><a href="/support.html">Support</a></nav><h1>Mailpost for Jira — email an issue to your team, without a mail server</h1>
-<p><strong>Tagline:</strong> Send any Jira issue as a formatted email in two clicks — templates with conditionals, recipients from the issue itself, a send log on the issue, and delivery through Atlassian's own mail. Free for 10 users, then from US$0.60 per user per month.</p>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Mailpost for Jira documentation</title><link rel="stylesheet" href="/style.css"></head><body><nav><a href="/">Apps</a><a href="/privacy.html">Privacy policy</a><a href="/terms.html">Terms of service</a><a href="/support.html">Support</a></nav><h1>Mailpost for Jira — email from Jira, without running a mail server</h1>
+<p><strong>Tagline:</strong> Send, schedule and receive email from Jira. Templates with logic, per-project rules, scheduled digests, replies that land back on the issue, and an audit trail on the work item. Free for 10 users, then from US$0.60 per user per month.</p>
 <h2>Summary</h2>
-<p>Mailpost adds "Email this issue" to the issue actions menu and an "Email history" panel to the issue. Pick a template, add a note, choose who gets it — reporter, assignee, watchers, voters, named users, groups, project roles or the people sitting in any user-picker field on the issue — and send. Every send is recorded on the issue, and optionally posted back as a comment so the conversation stays where the work is.</p>
-<p>Delivery goes through Jira's own notification pipeline (<code>POST /rest/api/3/issue/{id}/notify</code>). There is no SMTP server to configure, no API key to paste, no mailbox to keep alive, and no third party in the path. Nothing about your issues ever leaves Atlassian — the app is <strong>Runs on Atlassian</strong> eligible, which the incumbent (which hosts its own mail infrastructure) is not.</p>
-<h2>Highlights</h2>
+<p>Mailpost puts "Email this issue" in the issue actions menu and an "Email history" panel on the issue. Pick a template, choose who gets it — reporter, assignee, watchers, voters, named users, groups, project roles, the people in any user-picker field, or a typed address — and send. Every send is recorded on the issue, searchable across the site, and optionally posted back as a comment.</p>
+<p>Beyond the manual send, Mailpost does the three things a team usually reaches for a second tool to get: <strong>rules</strong> that email automatically when something happens on a project, <strong>scheduled digests</strong> that mail a JQL filter's results on a cadence, and <strong>inbound mail</strong> that turns a reply into a comment on the issue it names.</p>
+<h2>The one decision to make before you install</h2>
+<p>Mailpost has two delivery paths, and you choose per site.</p>
+<p><strong>Jira's own notification mail</strong> is the default. No SMTP server, no API key, no mailbox, no third party, <strong>no egress</strong> — nothing about your issues leaves Atlassian. It reaches Jira accounts, groups and project roles.</p>
+<p><strong>A bring-your-own email provider</strong> (Postmark) is opt-in. Switch it on and Mailpost can also reach addresses with no Jira account, attach real files, place inline images, and accept inbound mail. Switching it on means data leaving Atlassian, to <code>api.postmarkapp.com</code> and nowhere else, and it means this app is no longer "Runs on Atlassian" for your site. It is off by default; a site that leaves it off makes no outbound request at all. The admin page states this where you make the decision, not in a footnote.</p>
+<h2>What it does</h2>
 <ul>
-<li><strong>Two ways in.</strong> "Email this issue" in the issue actions menu opens the compose dialog; the "Email history" panel shows every email sent from that issue and has its own Send button.</li>
-<li><strong>Recipients that come from the issue.</strong> One tick each for reporter, assignee, watchers and voters, plus a user picker, groups, project roles (resolved to their actual members server-side) and any user-picker custom field on the issue.</li>
-<li><strong>Templates with logic, not scripting.</strong> <code>{{issue.summary}}</code>, <code>{{issue.customfield_10010}}</code>, <code>{{issue.Severity}}</code> by field name, <code>{{#if issue.assignee}}…{{else}}…{{/if}}</code>, <code>{{#unless}}</code>, and <code>{{#each issue.comments}}…{{/each}}</code>. No Velocity, no arbitrary code — so a template cannot loop forever, read something it shouldn't, or become an injection vector.</li>
-<li><strong>Every email is both HTML and plain text</strong>, rendered from one source, always in agreement. Issue descriptions and comments are converted from Atlassian Document Format by our own renderer: headings, lists, tables, code blocks, panels, quotes, mentions, status lozenges and attachment markers all survive the trip.</li>
-<li><strong>Escaping is the renderer's job, not the template author's.</strong> Every value from an issue is HTML-escaped by construction, links are limited to <code>http(s)</code>, <code>mailto</code> and <code>cid</code>, and subjects are stripped of control characters so nothing can inject a second mail header. This is enforced in the engine and covered by tests, including entity-encoded and CSS-escaped bypass attempts.</li>
-<li><strong>Three built-in templates</strong> — Issue summary, Full issue with comments, Status update — plus your own, global or scoped to one project. Project templates appear first for that project's issues. Preview any draft against a real issue key before saving.</li>
-<li><strong>A send log on the issue itself</strong>, not buried in an admin screen: who sent it, when, to whom, which template, and whether a comment was posted. Site admins also get a site-wide recent-sends view. The log lives in app storage, so someone with edit-issue permission cannot rewrite it.</li>
-<li><strong>Admin controls.</strong> Restrict sending to chosen Jira groups, set a site-wide signature, pre-tick "post as comment", allow or forbid editing the body before sending, and cap how many comments templates may include.</li>
-<li><strong>Permissions are Jira's.</strong> Every call is made as the sending user, so you can only email an issue you can see and only reach people Jira would let you notify. Template and settings editing is checked on the server, never merely hidden in the UI.</li>
-<li><strong>Runs on Atlassian.</strong> No egress, no external storage, no data residency questions. Scopes: <code>read:jira-work</code>, <code>read:jira-user</code>, <code>send:notification:jira</code>, <code>write:comment:jira</code>, <code>write:comment.property:jira</code>, <code>read:comment:jira</code>, <code>read:comment.property:jira</code>, <code>read:issue:jira</code>, <code>read:user:jira</code>, <code>read:group:jira</code>, <code>read:project:jira</code>, <code>read:project-role:jira</code>, <code>read:avatar:jira</code>, <code>read:application-role:jira</code>, <code>storage:app</code>. Note there is no <code>write:jira-work</code>: the app can send a notification and add a comment, and it deliberately cannot create, edit, transition or delete anything.</li>
+<li><strong>Email an issue in two clicks</strong>, from the actions menu or the history panel.</li>
+<li><strong>Recipients that come from the issue.</strong> Reporter, assignee, watchers, voters, a user picker, groups, project roles resolved to their actual members, and any user-picker custom field on the issue — which is how JSM request participants and approvers are reached. Plus free-typed To / Cc / Bcc when the provider is on.</li>
+<li><strong>Templates with logic, not scripting.</strong> <code>{{issue.summary}}</code>, <code>{{issue.customfield_10010}}</code>, <code>{{issue.Severity}}</code> by field name, <code>{{#if issue.assignee}}…{{else}}…{{/if}}</code>, <code>{{#unless}}</code>, <code>{{#each issue.comments}}</code>. No Velocity, no arbitrary code — a template cannot loop forever, read something it should not, or become an injection vector.</li>
+<li><strong>A visual editor and an HTML editor</strong>, switching between them on the same template. Whatever the visual editor produces is rebuilt from a safe list on the server before it is stored, and anything removed is named back to you.</li>
+<li><strong>Version history on every template.</strong> Each save appends a version; restoring one appends another rather than deleting anything, so what was live while a mistake was live stays on the record.</li>
+<li><strong>Automatic emails.</strong> Per-project rules on issue created, updated, transitioned, commented, or a named field changing — with optional JQL and status/type/label conditions, and a minimum interval so a busy issue cannot become a mail storm. A rule that would fire on every edit, or that could answer its own comment, is refused when you save it rather than at 3am.</li>
+<li><strong>Scheduled digests.</strong> A JQL filter mailed hourly, daily at an hour, or weekly on a day. Consecutive runs tile exactly, so an issue is in one digest and not the next.</li>
+<li><strong>Inbound email.</strong> Point your provider's inbound webhook at Mailpost and a reply naming an issue becomes a comment on it; mail with no issue key becomes an issue in the project you nominate. Authenticated with a shared secret, refused on redelivery, and guarded against loops — the app never ingests its own notifications, an out-of-office, or a bounce.</li>
+<li><strong>Reply and forward with quoted history</strong>, from the issue's email history.</li>
+<li><strong>Per-user signatures</strong>, replacing the site signature rather than stacking on it.</li>
+<li><strong>Every email is both HTML and plain text</strong>, rendered from one source and always in agreement. Descriptions and comments are converted from Atlassian Document Format by our own renderer: headings, lists, tables, code blocks, panels, quotes, mentions, status lozenges and attachment markers all survive.</li>
+<li><strong>Escaping is the renderer's job, not the template author's.</strong> Every value from an issue is escaped by construction, links are limited to safe schemes, and subjects are stripped of control characters so nothing can inject a second mail header.</li>
+<li><strong>An audit trail that answers both questions.</strong> A send log on the issue (who, when, to whom, which template, delivered or not), a site-wide searchable history, an inbound log with the reason anything was refused, and a configuration audit log recording <em>which settings changed and by whom</em> — field names only, never their values.</li>
+<li><strong>Service Management.</strong> Email the customer and request participants; post the copy as a customer-visible reply or an internal note. Inbound comments are internal unless you opt in, because the sender of an inbound message cannot be verified. Nothing inbound needs an agent seat.</li>
 </ul>
+<h2>Permissions, plainly</h2>
+<p>Scopes: <code>read:jira-work</code>, <code>read:jira-user</code>, <code>read:issue:jira</code>, <code>read:comment:jira</code>, <code>read:comment.property:jira</code>, <code>read:issue-type:jira</code>, <code>read:user:jira</code>, <code>read:group:jira</code>, <code>read:project:jira</code>, <code>read:project-role:jira</code>, <code>read:field:jira</code>, <code>write:jira-work</code>, <code>send:notification:jira</code>, <code>write:comment:jira</code>, <code>write:comment.property:jira</code>, <code>write:issue:jira</code>, <code>storage:app</code>, and — only when you enable the provider — network access to <code>api.postmarkapp.com</code>.</p>
+<p><code>write:jira-work</code> is broader than what the app does, and it is there for a specific reason: Jira does not honour the narrower granular write scopes for an <strong>app-authored</strong> write, and inbound mail and rules have no signed-in user to write as. We verified this on a live site — with only the granular scopes, an app-authored comment answers <code>401 "scope does not match"</code>.</p>
+<p>Because the scope is broader than the behaviour, the behaviour is pinned by a test rather than by this paragraph: the codebase issues <strong>no PUT and no DELETE to Jira</strong>, never touches <code>/transitions</code> or <code>/assignee</code>, and POSTs only to <code>/notify</code>, <code>/comment</code>, <code>/issue</code> and the two search endpoints. Mailpost cannot edit, transition, reassign or delete anything.</p>
 <h2>What it does not do</h2>
-<p>Two limits are worth knowing before you install, both of which follow from using Atlassian's mail rather than our own:</p>
 <ul>
-<li><strong>Recipients must be Jira users on your site.</strong> Jira's notify API reaches accounts, groups and roles — not arbitrary external addresses. If you need to email a customer who has no Jira account, this version cannot do it (see Roadmap).</li>
-<li><strong>You will not receive a copy of your own send.</strong> Jira never emails a notification back to the person who triggered it. Mailpost tells you this in the dialog rather than letting it look like a failure.</li>
+<li><strong>You will not receive a copy of your own manual send.</strong> Jira never emails a notification back to whoever triggered it. Rules and digests are not affected, because they run as the app. Mailpost says this in the dialog rather than letting it look like a failure.</li>
+<li><strong>No minute-level scheduling.</strong> Forge has no cron. Digests are hourly, daily at an hour, or weekly on a day — all UTC.</li>
+<li><strong>A digest's search runs as the app</strong>, because Forge cannot run a scheduled search as the person who configured it. It is confined to the digest's own project, and any issue with an issue-level security level is left out and counted.</li>
+<li><strong>Inbound mail cannot transition an issue or write a field.</strong> It can add a comment or create an issue, and that is all. Inbound is authenticated by a shared secret, not by the sender, and we are not willing to let an unverified email do more than that.</li>
+<li><strong>One email provider</strong>, not a mailbox connector. If your requirement is "poll this existing Exchange mailbox", Mailpost is not that tool.</li>
+<li><strong>No AI.</strong> Deliberately.</li>
 </ul>
-<p>Attachments are included as named links, not as binary attachments, for the same reason.</p>
 <h2>Pricing</h2>
 <table>
 <thead>
 <tr>
 <th>Users</th>
 <th>Mailpost</th>
-<th>Email This Issue (META-INF)</th>
-<th>You save</th>
+<th>Email This Issue (Standard)</th>
+<th>(Advanced)</th>
 </tr>
 </thead>
 <tbody>
@@ -38,45 +52,40 @@
 <td>1–10</td>
 <td><strong>Free</strong>, every feature</td>
 <td>US$10.00 / month</td>
-<td>US$10 / month</td>
+<td>US$40.00 / month</td>
 </tr>
 <tr>
 <td>11–100</td>
 <td><strong>US$0.60</strong> / user / month</td>
-<td>US$2.00 / user / month</td>
-<td>70%</td>
+<td>US$2.00</td>
+<td>US$4.00</td>
 </tr>
 <tr>
 <td>101–250</td>
-<td><strong>US$0.45</strong> / user / month</td>
-<td>US$1.20 / user / month</td>
-<td>63%</td>
+<td><strong>US$0.45</strong></td>
+<td>US$1.20</td>
+<td>US$2.50</td>
 </tr>
 <tr>
 <td>251–1,000</td>
-<td><strong>US$0.30</strong> / user / month</td>
-<td>US$0.40 / user / month</td>
-<td>25%</td>
+<td><strong>US$0.30</strong></td>
+<td>US$0.40</td>
+<td>US$0.70</td>
 </tr>
 <tr>
 <td>1,001+</td>
-<td><strong>US$0.20</strong> / user / month</td>
+<td><strong>US$0.20</strong></td>
 <td>tapering from US$0.40</td>
-<td>see note</td>
+<td>tapering from US$0.48</td>
 </tr>
 </tbody>
 </table>
-<p>Worked examples: a 25-person team pays <strong>US$15/month</strong> instead of US$50. A 100-seat site pays <strong>US$60</strong> instead of US$200. A 500-seat site pays <strong>US$150</strong> instead of US$200.</p>
-<p>Why we can charge this: the incumbent runs its own mail infrastructure — SMTP servers, OAuth2 mailboxes, queues, deliverability, and the support load that comes with all of it — and its price has to carry that. Mailpost hands the message to Atlassian's mail pipeline and stores a few kilobytes of templates and logs in Forge storage. There is no infrastructure of ours for you to fund, so the same core job costs a fraction as much. There is also no free tier at all on the incumbent's side: a five-person team pays them US$10 a month and pays us nothing.</p>
-<p>Honest note on the top band: the incumbent's published price list tapers towards US$0.03 per user at the very largest sites. If you are buying several thousand seats, price-check both — above roughly 1,000 users their taper can land below our flat US$0.20.</p>
+<p>A 25-person team pays <strong>US$15/month</strong> instead of US$50. A 100-seat site pays <strong>US$60</strong> instead of US$190. A five-person team pays nothing at all, where the incumbent has no free tier on either edition.</p>
+<p>Why we can charge this: the incumbent runs its own mail infrastructure — servers, mailbox connectors, queues, deliverability and the support load that comes with it — and the price has to carry that. Mailpost hands the message to Atlassian's pipeline, or to a provider you already pay for, and stores a few kilobytes in Forge storage. There is no infrastructure of ours for you to fund.</p>
+<p>Two honest notes. Above roughly 1,000 seats the incumbent's taper can land below our flat US$0.20 — price-check both. And their Advanced edition exists partly to sell faster inbound processing and faster support; with Mailpost those are not something you can buy, because they are not something we throttle.</p>
 <h2>How we compare</h2>
-<p>Feature-for-feature against Email This Issue (4.4★, ~5,700 installs), Mailpost matches the day-to-day job — email button on the issue, recipients from issue roles and fields, HTML and text templates with field placeholders and conditionals, per-project templates, canned responses, signatures, send permissions, post-as-comment — and does three things better: a <strong>safe template language</strong> instead of Velocity scripting, an <strong>audit log on the issue</strong> instead of a separate admin screen, and <strong>Runs on Atlassian</strong> eligibility.</p>
-<p>They are ahead of us on external recipients, binary attachments, inline images, incoming mail handling, event-triggered and automation-driven sends, JQL issue-list emails, JSM customer notifications, and a WYSIWYG editor. The full matrix, with their live pricing, is in <code>COMPETITORS.md</code>.</p>
-<h2>Roadmap</h2>
-<ul>
-<li><strong>v1.1</strong> — bring-your-own mail provider (an API key stored with <code>storage.setSecret</code>) to unlock <strong>external recipients, real file attachments and inline images</strong>, as an opt-in that trades Runs-on-Atlassian for reach; per-project sender restrictions; a rich-text template editor.</li>
-<li><strong>v1.2</strong> — event-triggered sends and a Jira Automation action ("Send Mailpost email"); send an issue <em>list</em> from a JQL filter or board; scheduled digests.</li>
-<li><strong>v1.3</strong> — reply threading back onto the issue, per-recipient delivery status in the send log, and template import/export.</li>
-</ul>
+<p>Feature-for-feature against Email This Issue (4.4★, ~5,700 installs) Mailpost matches the day-to-day job and goes further on the things their own reviewers ask for: <strong>scheduled digests</strong> (they have none, on either platform), <strong>template version history</strong> (none), <strong>per-user signatures on Cloud</strong> (none), <strong>rate limiting to prevent mail storms</strong> (none), a <strong>configuration audit log</strong> (theirs is a paid upsell), and <strong>inbound processing that is not queued behind other customers</strong> — their documentation puts the Standard baseline at 5–7 minutes "depending on the actual load of all customers".</p>
+<p>They remain ahead on mailbox breadth (POP3/IMAP/Gmail/Microsoft 365/S/MIME), on setting fields and running transitions from inbound mail, and on ten years of maturity. The full matrix, with their live pricing and the Forge limits we cannot work around, is in <code>COMPETITORS.md</code>.</p>
+<p>One more thing worth knowing when you compare: their Cloud app is an Atlassian <strong>Connect</strong> app, and Connect reaches end of support in December 2026. Their published migration status still lists Jira event handling and their backend layer as "Planned". Mailpost is Forge-native today.</p>
 <h2>Support</h2>
-<p>Email support with a one-business-day response. The template language, the full placeholder list and the send-log data shape are documented, so you can build templates confidently and read the log from your own tooling.</p><footer>Chloe Jane Patricia Johnson, ABN 49 732 400 198, Australia. Support: ethanjohnson2000@gmail.com</footer></body></html>
+<p>Email support with a one-business-day response — the same response for everyone, not a paid tier. The template language, the full placeholder list, the send-log shape and the inbound webhook contract are documented, so you can build templates and read the logs from your own tooling.</p><footer>Chloe Jane Patricia Johnson, ABN 49 732 400 198, Australia. Support: ethanjohnson2000@gmail.com</footer></body></html>
