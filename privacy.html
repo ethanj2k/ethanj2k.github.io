@@ -1,0 +1,20 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Privacy policy</title><link rel="stylesheet" href="style.css"></head><body>
+<nav><a href="/">Apps</a><a href="/privacy.html">Privacy policy</a><a href="/terms.html">Terms of service</a><a href="/support.html">Support</a></nav>
+<h1>Privacy policy</h1>
+<p><em>Effective 6 September 2026.</em> This policy covers every app published on the Atlassian Marketplace by Chloe Jane Patricia Johnson (ABN 49 732 400 198, Australia), referred to as "we" or "us": Timesheets for Jira, Pivot Reports for Jira, Checklists for Jira, Mailpost for Jira, Agile Gadgets for Jira and Git Links for Jira.</p>
+<h2>How the apps run</h2>
+<p>All apps run on Atlassian's Forge platform, inside Atlassian's infrastructure. We operate no servers of our own and never receive a copy of your Jira data. Every call an app makes to Jira is made as the person using it, so Jira's own permissions always apply.</p>
+<h2>Data the apps access</h2>
+<p>Each app reads only what its feature needs: issues, worklogs, sprints, versions, comments, the fields you choose, and the account ID, display name and timezone of the Jira users involved. Apps that write to Jira (worklogs, comments, transitions, checklists) do so only when you ask them to, as you.</p>
+<h2>Data the apps store</h2>
+<p>Where an app keeps state, it keeps it in Forge's hosted storage for your site, which Atlassian encrypts and isolates per site. Examples: saved reports and gadget settings (Pivot Reports, Agile Gadgets), checklist templates (Checklists), email templates and a per-issue send log (Mailpost), timers, approval state and settings (Timesheets), and a cache of commit, branch and pull-request metadata plus repository connection settings (Git Links). Checklist and timesheet summaries are also stored on the issue as Jira issue properties so they can be searched with JQL. Removing an app from your site deletes its Forge storage; issue properties can be removed by a Jira administrator.</p>
+<h2>Data leaving Atlassian</h2>
+<p>Timesheets, Pivot Reports, Checklists, Mailpost and Agile Gadgets make no network calls outside Atlassian and are eligible for Atlassian's "Runs on Atlassian" designation. Git Links for Jira connects, only when a site administrator configures it, to the Git hosting provider you choose (GitHub, GitHub Enterprise, GitLab, Bitbucket Cloud or Azure DevOps) and sends that provider the issue keys, branch names and pull-request details needed to index and create branches and pull requests. Provider access tokens are stored with Forge's secret storage and are never shown, logged or sent anywhere else.</p>
+<h2>Logging</h2>
+<p>Forge keeps invocation logs for troubleshooting. They contain timestamps, error messages and HTTP status codes, not issue content, names or email addresses. Site administrators control whether log access is shared with us.</p>
+<h2>Your rights</h2>
+<p>Because we hold no copy of your data, there is nothing for us to export or delete beyond what removing the app already deletes. For any question or request, email <a href="mailto:ethanjohnson2000@gmail.com">ethanjohnson2000@gmail.com</a>.</p>
+<h2>Changes</h2>
+<p>We will update this page and the effective date if an app's data handling changes. Any new stored data or external service will be announced in that app's release notes before it ships.</p>
+<footer>Chloe Jane Patricia Johnson, ABN 49 732 400 198, Australia.</footer>
+</body></html>
