@@ -1,0 +1,132 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Stencil Issue Templates for Jira documentation</title><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/style.css"></head><body><nav><a href="/">Apps</a><a href="/privacy.html">Privacy policy</a><a href="/terms.html">Terms of service</a><a href="/support.html">Support</a></nav><h1>Stencil Issue Templates for Jira — templates that fire wherever you create work items</h1>
+<p><strong>Templates that fire where you actually create work items — not only from one special
+button.</strong> Fields, descriptions, whole epic → story → sub-task trees, placeholders and
+prompted variables. One edition, everything included, US$0.79 per user per month and free
+for teams of ten or fewer.</p>
+<hr />
+<h2 id="the-problem-every-other-template-app-has">The problem every other template app has</h2>
+<p>Read the one- and two-star reviews of any issue-template app for Jira Cloud and the same
+sentence comes back for years:</p>
+<blockquote>
+<p>"Working fine for the normal create button in the top-navigation but sadly not for the
+'create issue'-button in the backlog."</p>
+<p>"The extension does not trigger if you create a task/bug/story from within an epic.
+This is the way that 50% of all issues are created for us."</p>
+</blockquote>
+<p>They are right, and the cause is real: Jira gives an app one hook on one create screen. So
+Stencil does not rely on that hook alone.</p>
+<p><strong>On the global Create dialog</strong>, Stencil fills the fields live, as you pick the issue type —
+you see them appear and you can edit any of them before you save.</p>
+<p><strong>Everywhere else</strong>, Stencil applies the template the moment the work item is created:
+the backlog inline-create row, the board's quick-add, the "create child" control inside an
+epic, sub-tasks from the issue view, the mobile apps, Jira Service Management portal
+requests, CSV imports, the REST API, and work items created by Automation rules.</p>
+<p>The result is identical. Outside the Create dialog it arrives a few seconds after you save
+rather than while you type — <strong>we say so here, in the app, and in our documentation, because
+no Forge app can do better today and you deserve to know that before you buy.</strong></p>
+<hr />
+<h2 id="what-it-does">What it does</h2>
+<h3 id="templates-that-are-actually-structures">Templates that are actually structures</h3>
+<p>A template is a tree, not a text snippet. An <strong>epic</strong> with three <strong>stories</strong>, each with its
+own <strong>sub-tasks</strong>, created in the right order with the right parents — up to 300 work items
+and four levels deep. Any item can also be created and <strong>linked</strong> rather than nested, using
+any Jira link type you have.</p>
+<h3 id="every-field-not-five">Every field, not five</h3>
+<p>Anything Jira's create API accepts: summary, description, labels, components, priority,
+assignee, due date, versions, environment — and every custom field on your screens, addressed
+by its own id. There is no list of "supported fields" for your most important field to be
+missing from.</p>
+<h3 id="placeholders-and-prompted-variables">Placeholders and prompted variables</h3>
+<pre><code>Summary:  {{project.key}} release checklist — {{var.release}}
+Due date: {{today+5w}}
+Assignee: the parent work item's assignee
+</code></pre>
+<ul>
+<li>The work item: <code>{{summary}}</code>, <code>{{key}}</code>, <code>{{status}}</code>, <code>{{priority}}</code>, <code>{{issuetype}}</code>,
+  <code>{{reporter}}</code>, <code>{{assignee}}</code>, <code>{{labels}}</code>, <code>{{components}}</code></li>
+<li>The parent: <code>{{parent.key}}</code>, <code>{{parent.summary}}</code>, <code>{{parent.issuetype}}</code></li>
+<li>The project and the person applying: <code>{{project.name}}</code>, <code>{{user.name}}</code>, <code>{{user.email}}</code></li>
+<li>Dates: <code>{{today}}</code>, <code>{{today+7}}</code>, <code>{{today-1}}</code>, and <code>{{today+5w}}</code> for <strong>working days</strong>,
+  which skips weekends</li>
+<li><strong>Prompted variables</strong>: declare <code>{{var.customer}}</code> as text, a number, a date or a list of
+  choices and Stencil asks for it when the template is applied — and you can use it in
+  conditions, not just in field values</li>
+<li>Filters: <code>|upper</code> <code>|lower</code> <code>|title</code> <code>|trim</code> <code>|slug</code> <code>|truncate:40</code> <code>|default:None</code></li>
+</ul>
+<p>Date arithmetic is done on the calendar, so "due in seven days" is seven days across a
+daylight-saving change — not six or eight.</p>
+<h3 id="conditions-including-jql">Conditions, including JQL</h3>
+<p>Any item in the tree can carry conditions: twelve fields (summary, description, issue type,
+project, priority, labels, components, status, reporter, assignee, JSM request type, or one of
+your own variables) against seven operators including regular expressions — <strong>and</strong> a JQL
+condition, so "only create the security-review sub-task when the parent matches this filter"
+is one line. An item that is conditioned away takes its whole subtree with it, so you never
+get a child whose parent was skipped.</p>
+<p>The category leader charges extra for JQL conditions. They are on the base plan here.</p>
+<h3 id="defaults-per-issue-type-and-per-request-type">Defaults, per issue type and per request type</h3>
+<p>Set the default template for an issue type — or for a Jira Service Management <strong>request
+type</strong>, which nobody else does — at project level, at site level, or both, with a documented
+precedence. New work items of that type get the template automatically, wherever they are
+created from.</p>
+<h3 id="change-the-issue-type-and-the-content-changes-with-it">Change the issue type and the content changes with it</h3>
+<p>Start a Bug, get the bug template, realise it is a Story, switch — and Stencil re-evaluates
+instead of leaving the bug template's headings behind. It replaces <strong>only</strong> the values it
+wrote itself and which nobody has edited since; the moment you type in a field, that field
+is yours and no template will ever overwrite it.</p>
+<h3 id="it-will-not-leave-you-with-orphaned-child-tickets">It will not leave you with orphaned child tickets</h3>
+<p>Jira delivers create events at least once, which is why "our templates started creating
+orphaned child tickets" is a real review of a real competitor. Stencil records what it has
+created on the work item itself, before it creates anything, so:</p>
+<ul>
+<li>a redelivered event creates <strong>nothing</strong> extra;</li>
+<li>a run interrupted halfway <strong>resumes</strong> and creates exactly the items that are missing;</li>
+<li>if a batch fails twice you get a comment naming precisely what exists, and a one-click
+  resume — or, if your admin prefers all-or-nothing, an automatic roll back.</li>
+</ul>
+<h3 id="save-an-existing-work-item-as-a-template">Save an existing work item as a template</h3>
+<p>Point at an epic you already like and turn it — and its whole child tree — into a template in
+one step. Absolute due dates become offsets ("seven days after the template is applied"),
+because copying last March's due date is never what anybody meant.</p>
+<h3 id="global-and-per-project-libraries">Global and per-project libraries</h3>
+<p>A site-wide library plus a library per project. A project template with the same name as a
+global one <strong>shadows</strong> it, so a team can have their own version of the bug template without a
+site admin's involvement. A global template can be restricted to a named list of projects.</p>
+<h3 id="search-what-your-templates-did">Search what your templates did</h3>
+<p>The record Stencil keeps is a Jira entity property, so it is JQL-searchable:</p>
+<pre><code>stencilTemplate ~ "Security review"  AND  stencilApplied &gt;= -30d
+stencilChildren &gt; 5
+</code></pre>
+<h3 id="reporting-and-an-audit-log-free">Reporting and an audit log, free</h3>
+<p>Who applied which template, to what, when, how long it took, how many work items it created,
+and what was skipped — with a usage report over the top and CSV export. The category leader
+sells both of these only in its more expensive edition.</p>
+<h3 id="jira-automation">Jira Automation</h3>
+<p>A first-class <strong>Apply issue template</strong> action with typed outputs, so a later step in the same
+rule can branch on whether it worked and how many work items it created. Triggered by a
+transition, a schedule, a webhook — anything Automation can trigger on.</p>
+<h3 id="create-screen-field-rules">Create-screen field rules</h3>
+<p>A template can hide a field, mark it required, or replace its help text on the global Create
+dialog. (This is a guard on that dialog, not site-wide validation — REST and CSV import bypass
+it, as they bypass every app's.)</p>
+<hr />
+<h2 id="runs-on-atlassian">Runs on Atlassian</h2>
+<p>Stencil declares <strong>no external fetch permission at all</strong>. It is not technically capable of
+contacting any host outside Atlassian's own APIs. Your issue content, your templates and your
+audit log never leave your Jira site, and data residency follows it.</p>
+<hr />
+<h2 id="limits-published">Limits, published</h2>
+<p>300 work items per template · 4 levels deep · 500 templates per library · 25 prompted
+variables per template. Children are created 50 at a time with Jira's bulk endpoint, one level
+at a time, paced against Jira's own write limits, and large trees are handed to an async queue
+so nothing runs against a timeout.</p>
+<hr />
+<h2 id="pricing">Pricing</h2>
+<p><strong>Free for 10 users or fewer. US$0.79 per user per month above that</strong>, with the usual
+volume tiers.</p>
+<p><strong>One edition.</strong> Everything on this page is included. There is no Advanced tier holding
+default-template-per-issue-type, JQL conditions, usage reports or the audit log hostage —
+which is exactly how the category leader prices, and it is the main reason this app exists.</p>
+<hr />
+<h2 id="support">Support</h2>
+<p>Documentation, a support address and an issue tracker are linked from this listing. Questions
+and bug reports get a reply.</p></body></html>
