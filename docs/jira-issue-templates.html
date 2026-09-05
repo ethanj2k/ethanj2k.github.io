@@ -1,4 +1,5 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Stencil Issue Templates for Jira documentation</title><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/style.css"></head><body><nav><a href="/">Apps</a><a href="/privacy.html">Privacy policy</a><a href="/terms.html">Terms of service</a><a href="/support.html">Support</a></nav><h1>Stencil Issue Templates for Jira — templates that fire wherever you create work items</h1>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Stencil Issue Templates for Jira documentation</title><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/style.css"></head><body><nav><a href="/">Apps</a><a href="/docs/jira-issue-templates-privacy.html">Privacy policy</a><a href="/terms.html">Terms of service</a><a href="/support.html">Support</a></nav>
+<h1 id="stencil-issue-templates-for-jira">Stencil Issue Templates for Jira</h1>
 <p><strong>Templates that fire where you actually create work items — not only from one special
 button.</strong> Fields, descriptions, whole epic → story → sub-task trees, placeholders and
 prompted variables. One edition, everything included, US$0.79 per user per month and free
@@ -24,6 +25,16 @@ requests, CSV imports, the REST API, and work items created by Automation rules.
 <p>The result is identical. Outside the Create dialog it arrives a few seconds after you save
 rather than while you type — <strong>we say so here, in the app, and in our documentation, because
 no Forge app can do better today and you deserve to know that before you buy.</strong></p>
+<p>Two more things we would rather you heard from us than found out:</p>
+<ul>
+<li><strong>In the Create dialog, custom fields fill in from the second time you open it.</strong> Jira makes
+  an app name the fields it may touch <em>before</em> it is allowed to ask which template applies, so
+  the first dialog after a template changes fills in the standard fields immediately and the
+  custom ones a moment after you save. Every other surface fills in everything at once.</li>
+<li><strong>Hiding a field or marking it required on the Create dialog is a guide, not a rule.</strong> It is
+  a browser-side hint; the REST API, CSV import, email requests and Automation do not see it.
+  Conditions and required template variables <em>are</em> enforced by the app itself, everywhere.</li>
+</ul>
 <hr />
 <h2 id="what-it-does">What it does</h2>
 <h3 id="templates-that-are-actually-structures">Templates that are actually structures</h3>
@@ -104,6 +115,11 @@ sells both of these only in its more expensive edition.</p>
 <p>A first-class <strong>Apply issue template</strong> action with typed outputs, so a later step in the same
 rule can branch on whether it worked and how many work items it created. Triggered by a
 transition, a schedule, a webhook — anything Automation can trigger on.</p>
+<p>A rule runs with the app's own access rather than the rule author's, and it names the work
+item by key, so each project's administrator switches this on for their own project before
+rules can write to it. It is one toggle in the project's settings, and it is off until they
+turn it on — because "any project admin can author a rule that edits any project" is not a
+default we were willing to ship.</p>
 <h3 id="create-screen-field-rules">Create-screen field rules</h3>
 <p>A template can hide a field, mark it required, or replace its help text on the global Create
 dialog. (This is a guard on that dialog, not site-wide validation — REST and CSV import bypass
