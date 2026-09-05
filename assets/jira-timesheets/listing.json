@@ -1,0 +1,19 @@
+{
+ "name": "Timesheets for Jira",
+ "tagline": "Worklogs, timers, approvals, team view and reports, bucketed in each person's own timezone. Free for 10 users, then US$1 per user.",
+ "highlights": [
+  [
+   "Your hours, on the days you worked them",
+   "Every worklog is bucketed in its author's timezone and never re-attributed to a service account, so a manager in London sees the days a Sydney engineer actually entered."
+  ],
+  [
+   "Log, edit and approve in one grid",
+   "Enter and edit worklogs inline, run a timer from the issue, submit the sheet and route it through multi-stage approvals with self-approval blocked by rule."
+  ],
+  [
+   "Reports and exports that reconcile",
+   "Time by project, issue, epic or person over any range, with working patterns, holidays, rounding policies, billable flags and CSV export."
+  ]
+ ],
+ "docs": "https://ethanj2k.github.io/docs/jira-timesheets.html"
+}

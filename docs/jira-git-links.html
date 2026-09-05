@@ -1,0 +1,264 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Git Links for Jira documentation</title><link rel="stylesheet" href="/style.css"></head><body><nav><a href="/">Apps</a><a href="/privacy.html">Privacy policy</a><a href="/terms.html">Terms of service</a><a href="/support.html">Support</a></nav><h1>Git Links for Jira — every commit, branch and pull request on the issue, on five hosts, for a fraction of the price</h1>
+<p><strong>Tagline:</strong> Commits, branches, pull requests, builds and file browsing from GitHub, GitHub Enterprise, GitLab, Bitbucket and Azure DevOps — on the issue, searchable in JQL, with smart commits your project admin turns on. Free for 10 users, then US$0.90 per user per month.</p>
+<h2>Summary</h2>
+<p>Git Links for Jira puts the code behind a piece of work where the work is. Connect a repository once and every commit, branch and pull request that mentions the issue key shows up on the issue, with the files changed, the diff, the build status and how far the branch is ahead of main. Create a branch and open a pull request without leaving Jira. Browse any connected repository, at any branch, from a Git Viewer page inside Jira. Search all of it with JQL.</p>
+<p>Five hosts, one app: <strong>GitHub</strong>, <strong>GitHub Enterprise Server</strong>, <strong>GitLab</strong> (SaaS and self-managed), <strong>Bitbucket Cloud</strong> and <strong>Azure DevOps</strong> (Services and Server). Webhooks index a push the second it lands; an hourly sync catches anything a webhook missed.</p>
+<h2>Highlights</h2>
+<ul>
+<li><strong>The issue panel, in full.</strong> Commits with author, time, message and files changed; branches with ahead/behind against the default branch; pull requests with open / draft / merged / declined; CI builds and deployments per branch; inline diffs rendered in Jira; a one-click <code>git switch</code> command; and manual linking for the commit whose message forgot the key.</li>
+<li><strong>Create a branch, open a pull request.</strong> Both from the issue, both through the provider's API. Branch names come from a template you control (<code>{prefix}{key}-{summary}</code>, plus <code>{type}</code> and <code>{user}</code>), are always valid per <code>git check-ref-format</code>, and never collide with an existing branch.</li>
+<li><strong>Git Viewer.</strong> Browse the file tree of any connected repository at any branch and read files inside Jira, with syntax highlighting. No context switch to answer "what does that file look like on the release branch?".</li>
+<li><strong>Smart commits that are opt-in, per project, by an administrator.</strong> <code>#comment</code>, <code>#time</code>, <code>#transition</code> and <code>#label</code> are always <em>parsed and shown</em> on the issue. They are only ever <em>executed</em> if a Jira or project administrator turns execution on for that project and allow-lists each command family. Every write carries an audit line naming the commit, the repository and the author the commit claims. Replays and retries cannot double-apply anything.</li>
+<li><strong>Repository permissions.</strong> Every repository is scoped to the Jira projects that may see it — enforced on reads <em>and</em> on the way in, so a repository scoped to one project cannot index, comment on, or transition anything in another. "Every project" is a deliberate tick, not what happens if you leave the picker alone.</li>
+<li><strong>JQL, dashboards and filters.</strong> Each issue's git activity is written to an indexed issue property with twelve search fields: <code>gitCommits</code>, <code>gitBranches</code>, <code>gitPullRequests</code>, <code>gitOpenPullRequests</code>, <code>gitMergedPullRequests</code>, <code>gitDeclinedPullRequests</code>, <code>gitHasCommits</code>, <code>gitHasPullRequests</code>, <code>gitMerged</code>, <code>gitLastActivity</code>, <code>gitRepository</code>, <code>gitBranch</code>. Example: <code>project = PLAT AND status = Done AND gitHasCommits = "no"</code> finds work marked done with no code behind it.</li>
+<li><strong>A project page worth opening.</strong> Recent commits, branches and pull requests across the project, per-contributor activity, and an "attention needed" list of pull requests that have been open too long.</li>
+<li><strong>Credentials the way your organisation works.</strong> One site token, a token per user (so the provider's audit trail names the right person), or no token at all for a public repository. Administrators can require personal tokens for anyone creating branches or pull requests, and can delegate app administration to a group without handing out Jira admin.</li>
+<li><strong>Instant and reliable.</strong> Per-connection webhooks with HMAC-SHA256 (GitHub, GitHub Enterprise, Bitbucket), shared-token (GitLab) or HTTP Basic (Azure DevOps) verification, compared in constant time, with replay protection. Plus an hourly sync that works to a deadline and picks up next hour exactly where it stopped, so a repository with thousands of branches still gets indexed.</li>
+</ul>
+<h2>Supported hosts</h2>
+<table>
+<thead>
+<tr>
+<th>Host</th>
+<th>Read</th>
+<th>Create branch</th>
+<th>Create pull request</th>
+<th>Git Viewer</th>
+<th>Builds</th>
+<th>Webhook auth</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GitHub.com</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Actions + deployments</td>
+<td>HMAC-SHA256</td>
+</tr>
+<tr>
+<td>GitHub Enterprise Server</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Actions + deployments</td>
+<td>HMAC-SHA256</td>
+</tr>
+<tr>
+<td>GitLab (SaaS + self-managed)</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes (merge request)</td>
+<td>Yes</td>
+<td>Pipelines</td>
+<td>Shared token</td>
+</tr>
+<tr>
+<td>Bitbucket Cloud</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Pipelines</td>
+<td>HMAC-SHA256</td>
+</tr>
+<tr>
+<td>Azure DevOps (Services + Server)</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Azure Pipelines</td>
+<td>HTTP Basic</td>
+</tr>
+</tbody>
+</table>
+<p>Public repositories on GitHub, GitLab and Bitbucket work with no token at all — leave the token blank.</p>
+<h2>Compared with Git Integration for Jira (GitKraken)</h2>
+<p>Every row is at least as good, and the price is lower in every band.</p>
+<table>
+<thead>
+<tr>
+<th>Capability</th>
+<th>Git Integration for Jira</th>
+<th>Git Links for Jira</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Commits on the issue (author, time, message)</td>
+<td>Yes</td>
+<td><strong>Yes</strong></td>
+</tr>
+<tr>
+<td>Branches on the issue</td>
+<td>Yes</td>
+<td><strong>Yes</strong>, with ahead/behind against the default branch</td>
+</tr>
+<tr>
+<td>Pull requests with state</td>
+<td>Open / merged / declined</td>
+<td><strong>Better</strong> — draft surfaced separately</td>
+</tr>
+<tr>
+<td>Files changed per commit</td>
+<td>Yes</td>
+<td><strong>Yes</strong>, on demand</td>
+</tr>
+<tr>
+<td>Code diffs inside Jira</td>
+<td>Yes</td>
+<td><strong>Yes</strong>, rendered inline, capped so a huge patch cannot break the page</td>
+</tr>
+<tr>
+<td>Create branch from the issue</td>
+<td>Yes</td>
+<td><strong>Yes</strong>, with a configurable name template, guaranteed-valid names and collision handling</td>
+</tr>
+<tr>
+<td>Create pull request from the issue</td>
+<td>Yes</td>
+<td><strong>Yes</strong>, via the provider API, with draft support</td>
+</tr>
+<tr>
+<td>Git Viewer / repository browser</td>
+<td>Yes</td>
+<td><strong>Yes</strong> — tree, branch switching, file contents with syntax highlighting</td>
+</tr>
+<tr>
+<td>Smart commits (comment / time / transition)</td>
+<td>Yes, site-wide</td>
+<td><strong>Better</strong> — opt-in per project, per command family, with an audit line, idempotent under replay, and always shown even when not executed</td>
+</tr>
+<tr>
+<td>Project-level activity page</td>
+<td>Yes</td>
+<td><strong>Yes</strong>, plus contributors and stale-pull-request flags</td>
+</tr>
+<tr>
+<td>JQL search of git activity</td>
+<td>Development-panel fields</td>
+<td><strong>Equivalent</strong> — twelve dedicated JQL fields (see below for the one Forge-imposed difference)</td>
+</tr>
+<tr>
+<td>GitHub / GitHub Enterprise</td>
+<td>Yes</td>
+<td><strong>Yes</strong></td>
+</tr>
+<tr>
+<td>GitLab SaaS / self-managed</td>
+<td>Yes</td>
+<td><strong>Yes</strong></td>
+</tr>
+<tr>
+<td>Bitbucket Cloud</td>
+<td>Yes</td>
+<td><strong>Yes</strong></td>
+</tr>
+<tr>
+<td>Azure DevOps</td>
+<td>Yes</td>
+<td><strong>Yes</strong></td>
+</tr>
+<tr>
+<td>Repository-to-project permissions</td>
+<td>Yes</td>
+<td><strong>Better</strong> — enforced on writes and indexing as well as reads</td>
+</tr>
+<tr>
+<td>Webhooks for instant updates</td>
+<td>Yes</td>
+<td><strong>Yes</strong>, signature-verified per connection, with replay protection</td>
+</tr>
+<tr>
+<td>Scheduled / periodic reindex</td>
+<td>Yes</td>
+<td><strong>Yes</strong>, hourly, deadline-aware and fair across repositories</td>
+</tr>
+<tr>
+<td>Per-user or per-site tokens</td>
+<td>Yes</td>
+<td><strong>Yes</strong>, plus token-less public repositories</td>
+</tr>
+<tr>
+<td>Delegated (non-Jira-admin) administration</td>
+<td>Yes</td>
+<td><strong>Yes</strong>, by group or account</td>
+</tr>
+<tr>
+<td>Indexing failure alerts</td>
+<td>Email</td>
+<td><strong>Different</strong> — an https alert webhook (Slack, Teams, or anything that accepts JSON) plus in-product status. Forge apps cannot send email.</td>
+</tr>
+<tr>
+<td>Signals / Risk / Team views (Advanced edition)</td>
+<td>Advanced tier only</td>
+<td><strong>Yes, included</strong> — contributors and stale-pull-request flags on the project page, at no extra tier</td>
+</tr>
+<tr>
+<td>Free tier</td>
+<td>None</td>
+<td><strong>Free for 10 users, every feature</strong></td>
+</tr>
+</tbody>
+</table>
+<h3>What is not possible on Forge, and why</h3>
+<p>Two things the incumbent does that a Forge app cannot, stated plainly rather than promised:</p>
+<ol>
+<li><strong>Populating Jira's built-in Development panel and its <code>development[...]</code> JQL.</strong> Those are fed by the Jira Development Information API, which is available to Atlassian Connect apps that declare a <code>jiraDevelopmentTool</code> module. Forge has no equivalent module and cannot request those scopes. We ship the same capability as a first-class issue property with twelve JQL fields instead; the data lives on the issue, is readable by Automation and the REST API, and travels with the issue.</li>
+<li><strong>Connecting to a git server over SSH, or to a host with a private or self-signed TLS certificate.</strong> Forge egress is HTTPS-only to declared domains, with a fixed trust store and no raw sockets or filesystem, so there is no way to speak the git protocol or clone a repository. Every supported host is reached through its HTTPS REST API. This also rules out Gerrit-over-SSH and generic self-hosted git servers with no REST API; AWS CodeCommit is closed to new customers by AWS and is not a live gap.</li>
+</ol>
+<p>One smaller, honest note: <code>gitRepository</code> and <code>gitBranch</code> match a whole repository or branch name, not a fragment of one — <code>gitBranch ~ "release/2.0"</code>, not <code>gitBranch ~ "release"</code>. That is how Jira indexes a text entity property.</p>
+<h2>Pricing</h2>
+<table>
+<thead>
+<tr>
+<th>Users</th>
+<th>Git Links for Jira</th>
+<th>Git Integration for Jira (Standard, effective)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1–10</td>
+<td><strong>Free</strong>, every feature</td>
+<td>US$10 / month flat</td>
+</tr>
+<tr>
+<td>11–100</td>
+<td><strong>US$0.90</strong> per user / month</td>
+<td>≈US$2.18–2.61 per user / month</td>
+</tr>
+<tr>
+<td>101–250</td>
+<td><strong>US$0.70</strong> per user / month</td>
+<td>≈US$1.24–1.55 per user / month</td>
+</tr>
+<tr>
+<td>251–1,000</td>
+<td><strong>US$0.45</strong> per user / month</td>
+<td>≈US$0.53–0.98 per user / month</td>
+</tr>
+<tr>
+<td>1,001+</td>
+<td><strong>US$0.22</strong> per user / month</td>
+<td>≈US$0.26–0.48 per user / month</td>
+</tr>
+</tbody>
+</table>
+<p>Annual is ten times the monthly rate, the Marketplace convention.</p>
+<p><strong>Why we can charge this.</strong> The feature matrix above is complete: there is no capability in the incumbent's Standard edition that we ask you to pay more for, and the contributor and stale-pull-request views they reserve for their Advanced edition are included here. What we do not carry is their cost base — no repository mirroring, no external indexing infrastructure, no 30,000-repository storage tier. Git Links runs entirely on Atlassian's Forge platform: the compute and the storage are Atlassian's, and the only thing we pay for beyond that is engineering. A small team gets the whole product for nothing; a large one pays well under half.</p>
+<h2>Security and data handling</h2>
+<ul>
+<li><strong>Not "Runs on Atlassian".</strong> The app calls your git host's REST API from the Forge backend, which is inherent to the product — the incumbent is not "Runs on Atlassian" either. Nothing else leaves Atlassian. All indexed data lives in Forge storage in your installation, and the JQL summary lives on the issue itself.</li>
+<li><strong>Scopes:</strong> <code>read:jira-work</code>, <code>write:jira-work</code>, <code>read:jira-user</code>, <code>storage:app</code>. <code>write:jira-work</code> exists solely for smart-commit execution. Forge cannot request a scope conditionally, so it is always declared and every write is gated server-side on the per-project toggle, which defaults to off. With it off the app writes nothing to an issue except its own JQL summary property.</li>
+<li><strong>Egress:</strong> <code>api.github.com</code>, <code>gitlab.com</code>, <code>api.bitbucket.org</code> and <code>dev.azure.com</code> are declared explicitly. A wildcard remains for the three features whose hostname is unknowable at manifest time — GitHub Enterprise Server, self-managed GitLab and Azure DevOps Server, plus the optional alert webhook — because Forge has no runtime domain registration. It is narrowed at runtime to a public DNS name whose last label is an alphabetic TLD (which rejects every <code>inet_aton</code> spelling of an IP literal, including <code>0x7f.1</code>), never localhost or an internal suffix, https only, port 443 only, no embedded credentials, and redirects are never followed so a 30x cannot carry your token anywhere.</li>
+<li><strong>Tokens</strong> are held only in Forge secret storage. They are never returned to a browser, never written to a log, never placed in a URL and never included in an error message.</li>
+<li><strong>Webhooks</strong> are verified before the body is parsed, in constant time, against a per-connection secret, with replay protection by delivery id. A missing secret and a wrong signature are indistinguishable from the outside: both are <code>401</code>.</li>
+<li><strong>Smart-commit authorship.</strong> Writes are made by the app, not by the commit author — a git author is self-asserted (<code>git commit --author=…</code>), and the app never treats it as proof of identity. The audit line says so explicitly.</li>
+</ul>
+<h2>Support</h2>
+<p>Email support with a one-business-day response. The documentation includes the issue-property JSON schema, so you can read the same data from Automation, ScriptRunner or your own tooling.</p><footer>Chloe Jane Patricia Johnson, ABN 49 732 400 198, Australia. Support: ethanjohnson2000@gmail.com</footer></body></html>

@@ -1,0 +1,19 @@
+{
+ "name": "Git Links for Jira",
+ "tagline": "Commits, branches and pull requests on the issue for GitHub, GitLab, Bitbucket and Azure DevOps, with branch and PR creation. Free for 10 users, then US$0.90 per user.",
+ "highlights": [
+  [
+   "Code on the issue",
+   "Every commit, branch and pull request that mentions the issue key, with files changed, inline diffs, build status and how far a branch is ahead of the default."
+  ],
+  [
+   "Create branches and pull requests from Jira",
+   "Configurable branch-name templates that are always valid, PR creation on all five hosts, and a Git Viewer to browse any connected repository inside Jira."
+  ],
+  [
+   "Smart commits, only when you allow them",
+   "Smart commits are parsed and shown always, and executed only if a project admin turns them on per project and per command, with an audit line on every write."
+  ]
+ ],
+ "docs": "https://ethanj2k.github.io/docs/jira-git-links.html"
+}

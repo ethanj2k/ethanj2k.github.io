@@ -1,0 +1,44 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Checklists for Jira documentation</title><link rel="stylesheet" href="/style.css"></head><body><nav><a href="/">Apps</a><a href="/privacy.html">Privacy policy</a><a href="/terms.html">Terms of service</a><a href="/support.html">Support</a></nav><h1>Checklists for Jira — required steps, on every issue, for half the price</h1>
+<p><strong>Tagline:</strong> Definition of Done, acceptance criteria and release steps as real checklists on the issue — with required items, templates that apply themselves, board-card progress and workflow gates. Free for 10 users, then US$0.60 per user per month.</p>
+<h2>Summary</h2>
+<p>Checklists for Jira adds a Checklists panel to every issue. Add as many named checklists as you need, mark items required, assign them, give them due dates, and let project templates create them automatically by issue type. Progress shows in the panel, on board cards through the "Checklist progress" field, and in JQL. Three workflow validators stop a transition until the list — or just the required items — is done.</p>
+<p>Everything runs on Atlassian infrastructure. Checklist data is stored on the issue itself (an issue property), so it travels with the issue, is indexed for JQL, and is readable by Jira Automation and your own scripts through the standard REST API.</p>
+<h2>Highlights</h2>
+<ul>
+<li><strong>Multiple checklists per issue</strong> with headings, required items, per-item assignee and due date, overdue flags and four statuses (open, in progress, done, skipped).</li>
+<li><strong>Required means required.</strong> A required item cannot be skipped — the rule is enforced in the engine, not just the UI — and the "Required checklist items complete" validator ships on every plan.</li>
+<li><strong>Templates that apply themselves.</strong> Project admins define templates in Project settings → Checklist templates, choose the issue types, and every new issue gets its checklist. Applying is idempotent: a re-fired trigger never duplicates a list. Save any live checklist as a template in one click.</li>
+<li><strong>Clone-aware.</strong> Clone an issue and its checklists come along with statuses reset.</li>
+<li><strong>Visible where you plan.</strong> A read-only "Checklist progress" field ("3/7") for board cards and filters, plus JQL fields: <code>checklistPercent</code>, <code>checklistComplete</code>, <code>checklistTotal</code>, <code>checklistDone</code>, <code>checklistMandatoryOpen</code>, <code>checklistAssignee</code>, <code>checklistName</code>, <code>checklistUpdated</code>. Example: <code>project = PLAT AND checklistDone = "false" AND checklistMandatoryOpen &gt; 0</code>.</li>
+<li><strong>Workflow gates.</strong> Validators for "all items complete", "required items complete" and "checklist not empty".</li>
+<li><strong>Formatting without HTML.</strong> <code>**bold**</code>, <code>_italic_</code>, <code>`code`</code>, <code>~~strike~~</code>, links and issue keys (PLAT-123 becomes a link), rendered with native components.</li>
+<li><strong>Safe by construction.</strong> Every edit is validated server-side, every write is made as the user so Jira's own permissions apply, and edits carry a revision so two people editing at once never overwrite each other silently.</li>
+<li><strong>Runs on Atlassian.</strong> No egress, no external storage. Scopes: <code>read:jira-work</code>, <code>write:jira-work</code>, <code>storage:app</code>.</li>
+</ul>
+<h2>Pricing</h2>
+<table>
+<thead>
+<tr>
+<th>Users</th>
+<th>Price</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1–10</td>
+<td>Free, every feature</td>
+</tr>
+<tr>
+<td>11+</td>
+<td><strong>US$0.60 per user per month</strong> (US$6 per user per year), flat — no tiers, no item or template caps</td>
+</tr>
+</tbody>
+</table>
+<p>Why: the incumbents charge US$1.25–1.49 per user per month on their headline tiers (HeroCoders "Checklists for Jira" Pro from US$1.25; TitanApps "Smart Checklist" US$1.49) and cap their free editions at 5–6 templates and 20–100 items. We ship the same core job — lists, required items, templates, board/JQL visibility, transition gates — for under half the price with no caps, because the app stores data on the issue and runs as a Forge app with no infrastructure of our own to pay for.</p>
+<h2>Roadmap</h2>
+<ul>
+<li><strong>v1.1</strong> — workflow post-functions (complete/clear on transition), convert item to sub-task, custom item statuses, global (cross-project) templates, a dedicated Jira Automation action.</li>
+<li><strong>v1.2</strong> — audit log of checklist changes, "items assigned to me" dashboard gadget, JSM portal view, CSV import, linked templates (edit a template and live checklists update).</li>
+</ul>
+<h2>Support</h2>
+<p>Email support with a one-business-day response. Documentation includes the issue-property JSON schema so you can read and write checklists from Automation, ScriptRunner or your own tooling.</p><footer>Chloe Jane Patricia Johnson, ABN 49 732 400 198, Australia. Support: ethanjohnson2000@gmail.com</footer></body></html>

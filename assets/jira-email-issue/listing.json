@@ -1,0 +1,19 @@
+{
+ "name": "Mailpost for Jira",
+ "tagline": "Email an issue from Jira with templates, recipients from the issue and a send log, through Jira's own mail. Free for 10 users, then US$0.60 per user.",
+ "highlights": [
+  [
+   "Email this issue, from the issue",
+   "One action in the issue menu: pick a template, add a note, choose recipients from reporter, assignee, watchers, groups, roles or user fields, and send."
+  ],
+  [
+   "Templates with safe placeholders",
+   "HTML and plain-text templates with field placeholders and conditionals, per project, with canned responses and signatures. Escaping is enforced by the renderer."
+  ],
+  [
+   "Every send on the record",
+   "A send log on the issue and an optional comment show who emailed what to whom. Runs on Atlassian: no mail servers, no API keys, no data leaving Atlassian."
+  ]
+ ],
+ "docs": "https://ethanj2k.github.io/docs/jira-email-issue.html"
+}

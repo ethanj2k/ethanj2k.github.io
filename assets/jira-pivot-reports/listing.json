@@ -1,0 +1,19 @@
+{
+ "name": "Pivot Reports for Jira",
+ "tagline": "Pivot tables and charts over any JQL, with drill-down, CSV export, saved reports and dashboard gadgets. Free for 10 users, then US$1 per user.",
+ "highlights": [
+  [
+   "Rows, columns and a measure, on live JQL",
+   "Pick a source, any field for rows and columns, a measure such as count or story points, and get a pivot whose subtotals and grand total always reconcile."
+  ],
+  [
+   "Charts, drill-down and CSV",
+   "Bar, stacked, line, pie and donut charts; click any cell to see the issues behind it; export the table as CSV with formula injection blocked."
+  ],
+  [
+   "Saved reports and gadgets",
+   "Keep reports private or share them per project, and put any saved report on a dashboard as a gadget that renders the same numbers."
+  ]
+ ],
+ "docs": "https://ethanj2k.github.io/docs/jira-pivot-reports.html"
+}

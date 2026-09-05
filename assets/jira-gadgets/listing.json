@@ -1,0 +1,19 @@
+{
+ "name": "Agile Gadgets for Jira",
+ "tagline": "Burndown, velocity, cumulative flow, cycle time, pivots, release burndown, epic progress and WIP, rebuilt from issue history. Free for 10 users, then US$0.60 per user.",
+ "highlights": [
+  [
+   "Eight gadgets, one price",
+   "Sprint burndown and burnup, velocity, cumulative flow, cycle and lead time, issue statistics pivot, release burndown, epic progress and WIP by status."
+  ],
+  [
+   "Built from history, not snapshots",
+   "Charts replay status and sprint changes from the changelog, with scope-change markers that name the issues and a commitment baseline at the sprint start instant."
+  ],
+  [
+   "Numbers you can check",
+   "Velocity always reconciles committed, added and removed; CFD bands never go negative; every gadget exports its series as CSV."
+  ]
+ ],
+ "docs": "https://ethanj2k.github.io/docs/jira-gadgets.html"
+}

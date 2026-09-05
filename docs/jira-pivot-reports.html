@@ -1,0 +1,60 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Pivot Reports for Jira documentation</title><link rel="stylesheet" href="/style.css"></head><body><nav><a href="/">Apps</a><a href="/privacy.html">Privacy policy</a><a href="/terms.html">Terms of service</a><a href="/support.html">Support</a></nav><h1>Pivot Reports for Jira</h1>
+<p><strong>Tagline:</strong> Pivot tables and charts over any JQL — live, timezone-correct, and a third of the price.</p>
+<h2>Summary</h2>
+<p>Pivot Reports turns a JQL query into a pivot table and chart in three clicks: pick a
+row field, an optional column field, and a measure. Count issues, sum or average
+story points, time spent, estimates or any number field, or look at cycle time —
+broken down by status, assignee, priority, type, epic, sprint, version, component,
+label, any select/user/date custom field, or by created/resolved date per day,
+week, month, quarter or year. Every cell drills down to the issues behind it.</p>
+<p>No import step, no cube, no query language to learn. The app reads Jira live, as
+you, so what you see is exactly what your permissions allow — and nothing leaves
+Atlassian's infrastructure (Runs on Atlassian).</p>
+<h2>Highlights</h2>
+<ul>
+<li><strong>Any two fields, any measure.</strong> Rows × columns pivot with row subtotals, column
+  totals and a grand total that always reconcile. Count, sum, average, min, max.</li>
+<li><strong>Percent views.</strong> Show any report as % of total, % of row or % of column.</li>
+<li><strong>Time buckets that are actually right.</strong> Created/resolved/due/custom dates are
+  bucketed in your Jira timezone, not the server's, by day, ISO week, month,
+  quarter or year.</li>
+<li><strong>Multi-value fields handled honestly.</strong> Labels, components, versions and sprints
+  count an issue once per bucket, and the report tells you when the total exceeds
+  the distinct issue count.</li>
+<li><strong>Native charts.</strong> Bar, stacked bar, horizontal bar, line, pie and donut, rendered
+  with Atlassian's own UI Kit components so they match your Jira theme.</li>
+<li><strong>Drill-down.</strong> Click any cell, subtotal or total to list the issues in it.</li>
+<li><strong>Saved reports.</strong> Keep reports private or share them with everyone who can browse
+  the project. Ownership is enforced server-side; project admins can manage shared
+  reports.</li>
+<li><strong>Dashboard gadget.</strong> Put any saved or ad-hoc report on a Jira dashboard.</li>
+<li><strong>CSV export</strong> with RFC 4180 quoting and formula-injection protection.</li>
+<li><strong>Complete data.</strong> The JQL is paged to exhaustion (up to 5,000 issues per report,
+  with a clear warning when a query exceeds that) — never just the first page.</li>
+<li><strong>Read-only.</strong> Scopes: <code>read:jira-work</code>, <code>read:jira-user</code>, <code>storage:app</code> (saved
+  report definitions only — never issue data).</li>
+</ul>
+<h2>What it is not</h2>
+<p>Pivot Reports is the deterministic 80% of a BI tool. It does not import data into a
+cube, has no MDX or custom calculated members, does not track issue history
+(time-in-status, "as of date"), does not join other data sources, and has no
+public/external sharing links. If you need those, eazyBI is the right tool — at
+its price.</p>
+<h2>Pricing</h2>
+<p><strong>Free for up to 10 users. US$1.00 per user per month above that, flat.</strong>
+Annual billing: 10 months for 12.</p>
+<p>Why: eazyBI Reports and Charts costs US$3.00/user/month for 1–100 users (from
+December 2025), and Custom Charts for Jira costs US$3.03/user/month at 11–100
+users. Both are excellent tools that most teams use for exactly what Pivot Reports
+does: count and sum issues by a field or two, chart it, put it on a dashboard. A
+50-person site pays about $150/month for either incumbent and $50/month here; a
+10-person team pays nothing.</p>
+<h2>Roadmap</h2>
+<ul>
+<li>v1.1: PNG export of charts; multiple measures side by side; "compare to previous
+  period" column.</li>
+<li>v1.2: time-in-status measures via changelog reads (still live, still no import).</li>
+<li>v1.3: Confluence macro for embedding a saved report.</li>
+</ul>
+<h2>Support</h2>
+<p>Documentation and support: to be published with the Marketplace listing.</p><footer>Chloe Jane Patricia Johnson, ABN 49 732 400 198, Australia. Support: ethanjohnson2000@gmail.com</footer></body></html>

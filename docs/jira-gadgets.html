@@ -1,0 +1,59 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Agile Gadgets for Jira documentation</title><link rel="stylesheet" href="/style.css"></head><body><nav><a href="/">Apps</a><a href="/privacy.html">Privacy policy</a><a href="/terms.html">Terms of service</a><a href="/support.html">Support</a></nav><h1>Agile Gadgets for Jira — the eight charts your dashboard needs, at half the price</h1>
+<p><strong>Tagline:</strong> Sprint burndown, velocity, cumulative flow, cycle time, release burndown, epic progress, WIP and a pivot table — as native Jira dashboard gadgets that run entirely on Atlassian. Free for 10 users, then US$0.60 per user per month.</p>
+<h2>Summary</h2>
+<p>Agile Gadgets adds eight dashboard gadgets to Jira. Point each one at a board, a project or any JQL query, and it draws the chart a delivery team actually argues over in a stand-up: what is left in the sprint, how much the team really finishes, where work piles up, how long things take, and whether the release date is credible.</p>
+<p>Every chart is rebuilt from Jira's own issue history rather than from a snapshot, so a burndown knows what the scope was <em>on the day</em>, a velocity chart knows what was committed at the sprint's start instant, and a cumulative flow diagram knows which column each issue sat in three weeks ago. Days are bucketed in the viewer's own Jira timezone using calendar arithmetic, so a chart does not shift by a day for a colleague in another country or across a daylight-saving boundary.</p>
+<p>Everything runs on Atlassian infrastructure. There is no vendor server, no data export, and no egress: the app reads Jira as the person looking at the dashboard, so a gadget can never show anyone an issue they could not already open.</p>
+<h2>The gadgets</h2>
+<ul>
+<li><strong>Sprint burndown / burnup</strong> — remaining work falling to zero, or completed work rising to meet scope, in story points or issue count. Ideal line on calendar or working days. Scope changes are marked with the issue keys that were added, removed or re-estimated, and the baseline is taken at the sprint's start instant, so planning-day additions count as commitment rather than churn.</li>
+<li><strong>Velocity</strong> — committed versus completed for the last N closed sprints (1–24), with scope added and removed in between, per-sprint attainment, and running averages. Committed is measured at the sprint's start instant and completed at its completion instant, so <code>committed + added − removed</code> always reconciles.</li>
+<li><strong>Cumulative flow diagram</strong> — how much work sat in each workflow status at the end of each day, for a window of 2–365 days, replayed from status history. Bands never go negative and always sum to the day's total; work in a status no column claims is reported rather than dropped.</li>
+<li><strong>Cycle time / lead time</strong> — every issue that finished in the window, as a run chart against P50/P85 reference lines and a 10-issue rolling mean, or as a histogram. Percentiles are nearest-rank, so "85% of items finish within P85 days" is literally true of the listed issues. Cycle time runs from first in-progress; lead time from creation.</li>
+<li><strong>Issue statistics / pivot</strong> — count issues or sum story points by any field, in one or two dimensions, as a table, bar chart or pie chart. Row totals, column totals and the grand total always reconcile with the cells, and multi-valued fields such as labels are counted once per value with that stated in the gadget.</li>
+<li><strong>Release / version burndown</strong> — a fix version burning down (or up) towards its release date, with historical fix-version membership taken from the changelog, so issues added to the release late show as scope change rather than rewriting history.</li>
+<li><strong>Epic progress / work breakdown</strong> — done, in progress and to do per epic, computed from the epic's children. An epic's own status never inflates its own progress; orphans are grouped under "No epic".</li>
+<li><strong>WIP by status</strong> — what is in progress right now, per status, with the age of the oldest item and the average age in that status.</li>
+</ul>
+<p>Every gadget offers its underlying series as CSV. UI Kit cannot write a file, so the CSV appears as copyable text in a modal; cells are hardened against spreadsheet formula injection.</p>
+<h2>Versus Great Gadgets (StonikByte)</h2>
+<p>Great Gadgets is the incumbent: 4.4★ from 49 reviews, roughly 3,700 installs, US$1.00 per user per month annually on its Standard tier at 100 users.</p>
+<p>We match its core agile charts — sprint burndown/burnup, release burndown, velocity, CFD, cycle time trend, cycle time histogram, work breakdown, pivot table and chart — and beat it on three things: scope-change markers that name the issues, a commitment baseline taken at the sprint start instant, and "Runs on Atlassian" with no data leaving the site.</p>
+<p><strong>What they have that we do not, plainly:</strong> Time in Status, a per-item WIP aging chart, a WIP run chart, a team wallboard, a countdown gadget, a regional clock, a dashboard-wide controller gadget (Forge gadgets cannot yet message each other on a dashboard), free-form formula gauges, and the Advanced edition's worklog and timesheet reports. Our control chart is a run chart with percentile reference lines rather than a dot scatter, and CSV is copy-from-a-modal rather than a file download — both because a native Forge gadget has no scatter mark and no download, and we would rather keep "Runs on Atlassian" than ship an iframe. Epic-scoped burndown is not in v1; the engine is already generic over the membership rule, so it is a small follow-up.</p>
+<h2>Pricing</h2>
+<table>
+<thead>
+<tr>
+<th>Users</th>
+<th>Price</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1–10</td>
+<td>Free, all eight gadgets</td>
+</tr>
+<tr>
+<td>11+</td>
+<td><strong>US$0.60 per user per month</strong> monthly, or <strong>US$0.50 per user per month</strong> annually</td>
+</tr>
+</tbody>
+</table>
+<p>Why: Great Gadgets charges US$1.00 per user per month annually (US$1.20 monthly) up to 100 users — US$1,200 a year for a hundred-person team — and splits timesheets into a pricier Advanced edition. We ship one edition at half the headline price with the same free tier, because the app is a Forge app with no infrastructure of our own to pay for, and because the gadgets we skipped (a clock, a countdown, a wallboard) are not what teams pin to a delivery dashboard. At 100 users that is US$600 a year against their US$1,200.</p>
+<h2>Limits, stated up front</h2>
+<p>One gadget covers up to 1,500 issues where it has to replay issue history (burndown, velocity, flow, cycle time, WIP) and up to 3,000 where it only reads current field values (pivot, epic progress). Beyond that the gadget says so and asks you to narrow the source rather than quietly charting a subset. Boards, sprints, projects and versions are picked from lists in the gadget's own configuration form; the JQL option accepts any query you can already run.</p>
+<h2>Roadmap</h2>
+<ul>
+<li><strong>v1.1</strong> — Time in Status, per-item WIP aging chart, throughput (issues finished per period), epic-scoped burndown, countdown.</li>
+<li><strong>v1.2</strong> — WIP run chart, formula gauges (SUM/AVG/MAX over a filter), saved gadget presets, wallboard-friendly layouts.</li>
+</ul>
+<h2>Permissions</h2>
+<p>Read-only. The app never writes to Jira and stores nothing.</p>
+<ul>
+<li><code>read:jira-work</code>, <code>read:jira-user</code> — issues, changelogs, fields, statuses, projects, versions and the viewer's timezone, through the Jira platform REST API.</li>
+<li><code>read:board-scope:jira-software</code>, <code>read:board-scope.admin:jira-software</code>, <code>read:sprint:jira-software</code>, <code>read:project:jira</code> — boards and sprints, through the Jira Software agile REST API, which publishes only granular scopes. Board configuration is read for the board's saved filter and its estimation field; <code>.admin</code> is Atlassian's name for that read, not a write.</li>
+</ul>
+<h2>Runs on Atlassian</h2>
+<p>All computation happens inside Forge on Atlassian's infrastructure. The app declares no external egress, stores no issue data, and calls Jira as the viewing user so Jira's own permissions apply to every number on the chart.</p>
+<h2>Support</h2>
+<p>Email support with a one-business-day response.</p><footer>Chloe Jane Patricia Johnson, ABN 49 732 400 198, Australia. Support: ethanjohnson2000@gmail.com</footer></body></html>

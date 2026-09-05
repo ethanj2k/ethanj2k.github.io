@@ -1,0 +1,19 @@
+{
+ "name": "Checklists for Jira",
+ "tagline": "Required items, templates that apply themselves, board progress, JQL fields and workflow gates. Free for 10 users, then US$0.60 per user.",
+ "highlights": [
+  [
+   "Required means required",
+   "Multiple named checklists per issue with headings, assignees, due dates and four statuses; a required item cannot be skipped, enforced in the engine not the UI."
+  ],
+  [
+   "Templates that apply themselves",
+   "Project admins define templates by issue type and every new issue gets its checklist, idempotently. Save any live checklist as a template in one click."
+  ],
+  [
+   "Visible on boards and in JQL",
+   "A Checklist progress field for cards, eight JQL aliases such as checklistDone and checklistPercent, and three workflow validators to gate transitions."
+  ]
+ ],
+ "docs": "https://ethanj2k.github.io/docs/jira-checklists.html"
+}
