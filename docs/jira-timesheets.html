@@ -1,14 +1,119 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Timesheets for Jira documentation</title><link rel="stylesheet" href="/style.css"></head><body><nav><a href="/">Apps</a><a href="/privacy.html">Privacy policy</a><a href="/terms.html">Terms of service</a><a href="/support.html">Support</a></nav><h1>Timesheets for Jira — honest time tracking, priced for actual users</h1>
-<p><strong>Tagline:</strong> See what your team logged against what they were expected to log, straight from native Jira worklogs. No proxy accounts, no per-seat gouging.</p>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Honest Timesheets for Jira documentation</title><link rel="stylesheet" href="/style.css"></head><body><nav><a href="/">Apps</a><a href="/privacy.html">Privacy policy</a><a href="/terms.html">Terms of service</a><a href="/support.html">Support</a></nav><h1>Timesheets for Jira — the whole timesheet, at the price of the cut-down ones</h1>
+<p><strong>Tagline:</strong> Grid, calendar, list, timers, multi-stage approvals, planning, cost and reports — on native Jira worklogs, authored by the person who did the work. Free to 10 users, then $0.40.</p>
 <h2>Summary</h2>
-<p>Timesheets turns Jira's own worklogs into a weekly grid per person: hours by issue by day, daily and weekly totals, expected hours from a working pattern, and the variance. It reads worklogs exactly as Jira stores them, so <code>worklogAuthor = currentUser()</code> and every native report keep working.</p>
-<h2>Highlights</h2>
+<p>Timesheets turns Jira's own worklogs into a timesheet people will actually fill in:
+hours by issue by day, expected hours from a working pattern, the variance, and a
+sign-off that holds. Every worklog it creates is a real Jira worklog authored by the
+real person, so <code>worklogAuthor = currentUser()</code>, Jira's own reports and anything else
+reading Jira all keep telling the truth.</p>
+<p>It runs entirely on Atlassian's infrastructure. No data leaves.</p>
+<h2>What you get</h2>
+<p><strong>Logging time</strong>
+- Log, edit and delete straight from the grid: click any issue-day cell.
+- Start/stop/pause timers on an issue, held server-side — close the tab, change laptop,
+  the timer is still running. Stopping it writes a worklog stamped with the moment the
+  work <em>began</em>, so a session that crosses midnight lands on the right day.
+- Worklog comments, a first-class billable flag with a per-project default, and your own
+  worklog attributes (account, activity, category) — text, list or flag, optional or
+  required, stored on the Jira worklog itself so anything else can read them.
+- Copy the previous period forward. It previews first, shifts by whole days, and skips
+  anything that would collide, so running it twice does not double your week.
+- Move a worklog to another issue or day; split one in two down to the minute.</p>
+<p><strong>Seeing it</strong>
+- Grid, calendar and list views of the same period, always in agreement.
+- Weekly, fortnightly, monthly and semi-monthly periods, with a configurable week start.
+- Every worklog is bucketed on the day its <strong>author</strong> was working, in that author's own
+  timezone — a manager in London sees the days a Sydney engineer actually entered.</p>
+<p><strong>Working patterns</strong>
+- Expected hours per weekday at project level, overridable per person, and public
+  holidays that really do zero out the day's expectation.
+- Rounding for billing: any increment, nearest/up/down, applied per entry, per day or
+  per period — and you choose which, because twelve five-minute entries rounded to 15
+  minutes each is three hours while their one-hour sum is one hour.</p>
+<p><strong>Approvals that hold</strong>
+- Multi-stage chains: named stages, each with its own approvers by user or project role.
+  Approved only when every stage has signed off; any stage can send it back.
+- Nobody signs off their own hours — refused even for administrators, unless the project
+  explicitly opts in.
+- A submitted or approved period is frozen, including against dragging entries out of it.
+- The chain is snapshotted at submission, so changing approvers cannot strand or hijack a
+  sheet already in the queue. Full history with actor, time and comment.</p>
+<p><strong>For managers</strong>
+- Team view: totals per person for the period, missing-time flags, status, cost, and bulk
+  approve that reports each sheet individually rather than failing the batch.
+- Reminders for anyone under their expected hours, as an in-app notice plus — at your
+  option — a Jira notification through your own notification scheme.</p>
+<p><strong>Reporting</strong>
+- Group by project, issue, epic, user, day, month, billable or any attribute, up to three
+  levels, over any range to 400 days.
+- CSV export, summary or per-worklog, RFC 4180 and Excel-safe (a cell starting with <code>=</code>
+  cannot execute when the file is opened).
+- Nine JQL search aliases — <code>timesheetStatus</code>, <code>timesheetLogged</code>, <code>timesheetBillable</code>,
+  <code>timesheetApproved</code>, <code>timesheetPending</code>, <code>timesheetDraft</code>, <code>timesheetContributors</code>,
+  <code>timesheetAuthor</code>, <code>timesheetLastLogged</code> — so <code>timesheetStatus = DRAFT AND
+  timesheetLogged &gt; 3600</code> is a filter you can save and share.
+- A dashboard gadget with this period at a glance.</p>
+<p><strong>Planning and cost, included</strong>
+- Plan time ahead on an issue and compare planned against actual. Plans are intentions
+  held in app storage and are <strong>never</strong> written to Jira as worklogs, so your reported
+  hours stay a record of work actually done.
+- Charge-out rates per person, in whole cents, shown on the timesheet, the team view and
+  reports.</p>
+<h2>Pricing</h2>
+<table>
+<thead>
+<tr>
+<th>Users</th>
+<th>Per user / month</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 – 10</td>
+<td><strong>Free</strong></td>
+</tr>
+<tr>
+<td>11 – 100</td>
+<td><strong>US$0.40</strong></td>
+</tr>
+<tr>
+<td>101 – 500</td>
+<td><strong>US$0.30</strong></td>
+</tr>
+<tr>
+<td>501 – 2,500</td>
+<td><strong>US$0.20</strong></td>
+</tr>
+<tr>
+<td>2,501+</td>
+<td><strong>US$0.12</strong></td>
+</tr>
+</tbody>
+</table>
+<p>At 100 users that is US$40/month. The comparable apps are US$85 (and that edition has no
+approvals) and US$521. We can price here because the app has no servers: it runs on
+Atlassian's compute and storage, so there is no hosting bill for the price to carry.</p>
+<h2>Permissions, and why each one</h2>
+<p>Four scopes, no external egress.</p>
 <ul>
-<li><strong>Native worklogs, real authors.</strong> The app never writes on your behalf and never attributes time to a service account.</li>
-<li><strong>Expected vs logged, every day.</strong> Working patterns and holidays drive an expected-hours row; the variance row shows where the week drifted.</li>
-<li><strong>Timezone-correct.</strong> Work is bucketed in the author's own timezone, so a manager in London sees the same days an engineer in Sydney entered.</li>
-<li><strong>Runs on Atlassian.</strong> No data leaves Atlassian infrastructure. Read-only scopes: <code>read:jira-work</code>, <code>read:jira-user</code>.</li>
-<li><strong>Clear pricing.</strong> Free for up to 10 users. Then a flat, low per-user price — no surprise tiers.</li>
+<li><strong><code>read:jira-work</code></strong> — read issues, worklogs, projects, project roles and issue and
+  worklog properties, and run the JQL search that finds which issues you logged against.</li>
+<li><strong><code>write:jira-work</code></strong> — create, edit and delete <strong>worklogs as you</strong>, store worklog
+  attributes as worklog properties, write the issue property that makes timesheets
+  JQL-searchable, and raise the optional reminder notification through Jira's own
+  notification scheme. The app never creates, edits, transitions or deletes an issue.</li>
+<li><strong><code>read:jira-user</code></strong> — resolve display names, timezones and group membership, so a
+  worklog is filed on the day its author was working rather than the day you happen to be
+  looking at it, and so a role named as an approver resolves to actual people.</li>
+<li><strong><code>storage:app</code></strong> — project settings, approval state and history, running timers,
+  in-app notices, workplans, saved report definitions, and a fast-read mirror of worklog
+  attributes. No issue content and no worklog text is kept here.</li>
 </ul>
-<h2>Roadmap (v1.1)</h2>
-<p>Multi-stage approvals with project-level approvers, bulk approve, and CSV export — the engine is built and tested; the UI ships next.</p><footer>Chloe Jane Patricia Johnson, ABN 49 732 400 198, Australia. Support: ethanjohnson2000@gmail.com</footer></body></html>
+<p>Every Jira call is made <strong>as the signed-in user</strong>, never as the app. That is not a
+convention in this codebase, it is enforced: the module that talks to Jira does not
+import the app-authentication API at all, so there is no way to write a worklog that is
+not authored by the person who asked for it.</p>
+<h2>Runs on Atlassian</h2>
+<p>No external fetch of any kind is declared or possible. All compute and storage stay on
+Atlassian, data residency follows the host product, and uninstalling the app removes
+everything it stored. Your worklogs stay, because they were always Jira's.</p><footer>Chloe Jane Patricia Johnson, ABN 49 732 400 198, Australia. Support: ethanjohnson2000@gmail.com</footer></body></html>
