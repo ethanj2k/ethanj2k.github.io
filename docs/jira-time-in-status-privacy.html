@@ -1,0 +1,124 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Status Clock — privacy policy</title><link rel="stylesheet" href="/style.css"></head><body><nav><a href="/">Apps</a><a href="/privacy.html">Privacy policy</a><a href="/terms.html">Terms of service</a><a href="/support.html">Support</a></nav>
+<h1>Privacy Policy — Status Clock: Time in Status &amp; SLA for Jira</h1>
+<p><em>Effective: 6 September 2026</em></p>
+<p>Status Clock (&ldquo;the app&rdquo;) is published by Chloe Jane Patricia Johnson (ABN 49 732 400
+198), a sole trader in Penrith, NSW, Australia (&ldquo;we&rdquo;, &ldquo;us&rdquo;), on the Atlassian
+Marketplace. This policy explains exactly what the app does with data.</p>
+<h2>Where the app runs</h2>
+<p>The app is built on Atlassian Forge and runs <strong>entirely on Atlassian&rsquo;s own
+infrastructure</strong>, inside your site&rsquo;s installation. Its manifest declares <strong>no external
+fetch permission of any kind</strong> — there is no server of ours for data to reach, and no
+third party receives anything. We have no analytics, no error-reporting service and no
+sub-processors.</p>
+<p>We cannot read your Jira data. Nothing in the app sends it anywhere, and we have no
+access to your installation&rsquo;s storage.</p>
+<h2>Data the app reads from Jira</h2>
+<p>Always <strong>on your behalf and with your own Jira permissions</strong>, never with elevated
+rights, except where noted under &ldquo;Data the app writes&rdquo; below:</p>
+<ul>
+<li><strong>Issues matching the query you run</strong>: key, summary, project, issue type, priority,
+  status, assignee, reporter, parent, labels, components, fix versions, resolution,
+  creation and resolution dates, and sprint membership.</li>
+<li><strong>Each issue&rsquo;s changelog</strong> — the history of what changed and when. This is the raw
+  material for every duration the app reports.</li>
+<li><strong>The site&rsquo;s status catalogue</strong>, field catalogue and project list.</li>
+<li><strong>Sprint names and dates</strong>, for reports that measure time in a sprint.</li>
+<li><strong>Your own Atlassian account id, timezone and Jira group memberships</strong>, to identify
+  you and to apply the access rules an administrator configured.</li>
+<li><strong>Whether you may administer Jira</strong>, to decide whether you may change settings.</li>
+<li><strong>Display names</strong> of people appearing in a report you are entitled to read.</li>
+</ul>
+<p>An issue you cannot open in Jira can never appear in a report you run. Every read is
+performed as you.</p>
+<h2>Data the app writes to Jira</h2>
+<p>Three things, and only these. They are written with the app&rsquo;s own authority because
+they happen in the background, when nobody is present to act on behalf of.</p>
+<ol>
+<li><strong>One issue property</strong> (<code>tis-standing</code>) on issues covered by an SLA, holding that
+   issue&rsquo;s SLA standing: a state (<code>met</code>, <code>breached</code>, <code>at-risk</code>, <code>running</code>, <code>paused</code>),
+   a breach count, a count of clocks still running, minutes remaining, a due date, and
+   the issue&rsquo;s age in its current status, cycle time and lead time in hours. It holds
+   no issue content. It exists so that ordinary Jira search can find breached issues.
+   It creates no custom field and appears on no screen. It is written only when the
+   value has actually changed.</li>
+<li><strong>A label</strong>, only if an administrator has named one, added once when an SLA moves
+   into breach — never on every re-check. It exists to give Jira Automation a native
+   trigger.</li>
+<li><strong>A comment</strong>, only when that label is added, naming the SLAs that breached.</li>
+</ol>
+<p>The app never creates, transitions or deletes an issue, never edits any other field,
+and never sends a Jira notification of its own.</p>
+<h2>Data the app stores in Forge storage</h2>
+<p>All of the following is held in <strong>Atlassian&rsquo;s own Forge storage, inside your site&rsquo;s
+installation</strong>. None of it is issue content.</p>
+<table>
+<thead>
+<tr>
+<th>What</th>
+<th>Why</th>
+<th>Keyed by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Site settings: working calendars (including your holiday dates), status phases, tracked transitions, teams, SLA definitions, access rules, and the integration switches</td>
+<td>So everyone in your site sees the same configuration</td>
+<td>One record per installation</td>
+</tr>
+<tr>
+<td>Saved views: a name, and the report configuration — a JQL query, a date window, a grouping, a chart choice</td>
+<td>So you do not have to rebuild a report you use every week</td>
+<td>The account id of the person who saved it</td>
+</tr>
+<tr>
+<td>The last SLA standing published for an issue: the same handful of numbers as the issue property</td>
+<td>So a repeated Jira event can be recognised and skipped instead of rewriting the same value</td>
+<td>Jira issue id</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Teams</strong> hold the Atlassian account ids of the people you put in them. <strong>Access rules</strong>
+hold Jira group names and project keys. <strong>Saved views</strong> hold whatever JQL their author
+typed, which may name projects and people.</p>
+<p>A saved view stores a <em>question</em>, never an answer. Opening one re-runs it as you, so
+two people opening the same view see different issues if they have different Jira
+permissions. A view shared with everybody has its query readable by everybody who can
+use the app — exactly as a shared Jira filter does — which is why <strong>only a Jira
+administrator can publish one</strong>.</p>
+<p>Storage is per installation. No data is shared between sites.</p>
+<h2>Data we collect about you</h2>
+<p>None. We operate no server, no analytics and no telemetry. We do not know how many
+reports you run, what you search for, or who uses the app.</p>
+<p>Atlassian, as the platform operator, holds the licensing and billing relationship and
+its own logs; see Atlassian&rsquo;s privacy policy. The app&rsquo;s own runtime logs are held by
+Atlassian for a short period and are readable by us in the Forge developer console. The
+app deliberately writes almost nothing to them: three log statements exist, and they
+record only an error&rsquo;s type and message and two integers. Nothing in the app ever puts
+a Jira response body, a JQL query, a project key, an account id or an email address
+into a log.</p>
+<h2>Retention and deletion</h2>
+<p>Everything the app stores lives in your site&rsquo;s installation. <strong>Uninstalling the app
+removes it</strong>, under Atlassian&rsquo;s own data-retention timelines for Forge storage. Issue
+properties written by the app are removed by Atlassian when the app is uninstalled.</p>
+<p>You can also clear the app&rsquo;s configuration at any time from the settings page, and
+export it as text beforehand.</p>
+<h2>Data residency</h2>
+<p>The app stores data only in Forge storage and processes it only in Forge functions, so
+it follows Atlassian&rsquo;s own data-residency arrangements for your site. Nothing is held
+anywhere else.</p>
+<h2>Security</h2>
+<ul>
+<li>No external network egress is declared or possible.</li>
+<li>All reads run with the reader&rsquo;s own Jira permissions.</li>
+<li>Configuration can only be changed by a Jira administrator, enforced on the server and
+  not merely hidden in the interface.</li>
+<li>Every value that reaches Jira or a storage key is validated against a narrow pattern
+  first, and exported CSV is hardened against spreadsheet formula injection.</li>
+</ul>
+<h2>Contact</h2>
+<p>Questions, or a request about data: <strong>ethanjohnson2000@gmail.com</strong>.
+Support: https://ethanj2k.github.io/support.html</p>
+<h2>Changes</h2>
+<p>We will update this page if the app&rsquo;s data handling changes, and the effective date
+above will change with it.</p>
+<footer>Published by Chloe Jane Patricia Johnson (ABN 49 732 400 198), Australia. Contact: ethanjohnson2000@gmail.com</footer></body></html>

@@ -1,0 +1,20 @@
+{
+ "name": "Status Clock: Time in Status & SLA for Jira",
+ "tagline": "Time in every status on a working calendar that is right about weekends, holidays and daylight saving \u2014 plus a real SLA engine with pause, breach and JQL search. Free for 10 users, then US$0.55 per user.",
+ "highlights": [
+  [
+   "Every status, on your own clock",
+   "Replayed from each issue's own Jira history: time in every status, how many times it came back, the first visit and the last. Elapsed time or a working calendar with several shifts a day, different hours per weekday, holidays, half days \u2014 and a different calendar per project."
+  ],
+  [
+   "A real SLA engine, for Jira Software",
+   "Start, pause and stop on statuses, categories, assignee, resolution, priority or any field change. Targets that differ by issue type and priority inside one SLA. Breach and at-risk detection, a due date worked out on the calendar, and JQL that finds the breaches."
+  ],
+  [
+   "Numbers you can check",
+   "Every issue's per-status durations add up to its own age, and the issue panel shows the arithmetic segment by segment. Change the grouping, metric, unit or chart and it redraws instantly, without reading Jira again."
+  ]
+ ],
+ "docs": "https://ethanj2k.github.io/docs/jira-time-in-status.html",
+ "privacy": "https://ethanj2k.github.io/docs/jira-time-in-status-privacy.html"
+}

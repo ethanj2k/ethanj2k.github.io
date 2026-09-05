@@ -1,0 +1,110 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Status Clock — Time in Status &amp; SLA for Jira — documentation</title><link rel="stylesheet" href="/style.css"></head><body><nav><a href="/">Apps</a><a href="/privacy.html">Privacy policy</a><a href="/terms.html">Terms of service</a><a href="/support.html">Support</a></nav>
+<h1>Status Clock — time in status and SLA for Jira Software, in one app</h1>
+<p><strong>Tagline:</strong> Time in every status, on a working calendar that is right about weekends, holidays and daylight saving — plus a real SLA engine with pause and breach. Free to 10 users, then $0.55.</p>
+<h2>Summary</h2>
+<p>Status Clock replays each issue&rsquo;s own Jira history to work out how long it spent in
+every status, in every person&rsquo;s hands and in every sprint, and measures it on a working
+calendar your team defines — several shifts a day, different hours per weekday,
+holidays and half days, per project. Then it does the thing the time-in-status apps do
+not do: it runs your SLAs on the same clock, with start, pause and stop conditions,
+targets by issue type and priority, and breach and at-risk detection.</p>
+<p>It runs entirely on Atlassian&rsquo;s infrastructure. No data leaves.</p>
+<h2>What you get</h2>
+<p><strong>Time in status, told honestly</strong>
+- Time in every status, per issue and aggregated, as elapsed time or as working time.
+- Count, total, average, <strong>median, P85 and P95</strong> on every row — because a mean of six
+  days over a sample where one issue sat in Blocked for a year is not a fact about your
+  team.
+- How many times each issue re-entered each status, and how long the first visit, the
+  last visit and the average visit took.
+- When each issue first reached, and last left, each status.
+- Transition counts per status pair, with backwards moves marked: that is where your
+  rework is.
+- Lead time and cycle time, and any pair of statuses you want timed.
+- Time per assignee, per team, and per sprint — clipped to the sprint&rsquo;s own life, so an
+  issue dragged into next month&rsquo;s sprint has not been in it for a month.</p>
+<p><strong>Working calendars that are actually right</strong>
+- A week is seven days of intervals, so a lunch break is a gap and Friday can end at
+  one o&rsquo;clock.
+- Public holidays, and named dates with their own hours for a half day.
+- <strong>A calendar per project.</strong> Two teams in two countries, measured on their own clocks,
+  in one report. Nobody else in this category does this.
+- Daylight saving handled by construction: a working day is eight hours whichever
+  Sunday it follows, and calendar time reports the elapsed reality. Pinned by tests
+  against a minute-by-minute reference implementation.
+- &ldquo;1 day&rdquo; means one of <em>your</em> days. Nine working hours on an eight-hour calendar reads
+  &ldquo;1d 1h&rdquo;, not &ldquo;9h&rdquo;.</p>
+<p><strong>SLA for Jira Software, not just Service Management</strong>
+- Start, pause and stop on: created, entered a status, is in a status, status category,
+  resolution set or cleared, assignee set or cleared, priority, or any field changing.
+- Targets that differ by issue type and priority <strong>inside one SLA</strong>, so a tier ladder
+  does not need one SLA per tier.
+- Each SLA measures on its own calendar. Critical on 24/7 and the rest on business
+  hours does not mean two SLAs.
+- Breach, at risk, running, paused, met — with the elapsed time, the time left, and a
+  due date worked out on the calendar, so an SLA started at four on Friday afternoon is
+  due on Monday morning and not at eight on Friday evening.
+- Restart on re-entry, or measure once. Your choice, per SLA.</p>
+<p><strong>Find it in ordinary Jira search</strong>
+No custom fields. No screens to configure. No thousands of update notifications. The
+app writes one issue property, and Jira indexes and sorts it:</p>
+<pre><code>tisSlaState = &quot;breached&quot;
+tisSlaBreaches &gt; 0
+tisSlaDueAt &lt; endOfDay()
+tisStatusAge &gt; 48
+tisCycleTime &gt; 40 ORDER BY tisCycleTime DESC
+</code></pre>
+<p>Add a label on breach and Jira Automation has a native trigger to hang a rule on —
+notify Slack, escalate the priority, page someone. It is added once, on the transition
+into breach, never on every re-check.</p>
+<p><strong>Reports you can actually move around</strong>
+- By status, grouped, two-dimensional pivot, per issue, over time, transitions, entry
+  and exit dates, and SLA compliance.
+- Group by assignee, team, issue type, priority, project, epic, sprint, status, label,
+  component, fix version or resolution.
+- Bar, stacked bar, pie, line and a histogram, on any report.
+- Conditional highlighting, multi-column sorting, and a summary row on every table.
+- CSV export with a configurable field separator and decimal mark, at full precision,
+  carrying every measured value — so it opens correctly in a German or Brazilian Excel
+  and you can do arithmetic on it.</p>
+<p><strong>Fast, and honest about it</strong>
+Issues are read once and aggregated many times. Changing the report, the grouping, the
+metric, the statistic, the unit, the sort or the chart redraws immediately without
+reading Jira again. Reading is paged with a progress count, so the numbers fill in as
+they arrive instead of hiding behind a spinner, and there is no hidden ceiling that
+turns into a timeout.</p>
+<p><strong>Show your work</strong>
+The issue panel lists every segment of that issue&rsquo;s life — the status, when it started,
+when it ended, and what it came to on the calendar — and the segments add up to the
+total in front of you. If you ever wonder where a number came from, it is one click
+away.</p>
+<p><strong>Where it lives</strong>
+A global page, a project page, an issue panel, and two dashboard gadgets.</p>
+<h2>Getting started</h2>
+<ol>
+<li>Install. Nothing else is required: reports work immediately on the default
+   nine-to-five calendar in your own timezone.</li>
+<li>Open <strong>Apps → Time in Status &amp; SLA</strong>, type a JQL query, press Run.</li>
+<li>Optional: in <strong>Jira settings → Apps → Time in Status &amp; SLA settings</strong>, define your
+   working calendar, group statuses into phases, and add an SLA. Two templates are one
+   click away.</li>
+</ol>
+<h2>Security and data</h2>
+<ul>
+<li><strong>Runs on Atlassian.</strong> No external fetch permission of any kind is declared. Nothing
+  the app reads leaves Atlassian&rsquo;s infrastructure.</li>
+<li>Every report runs <strong>as you</strong>. You never see an issue you could not open in Jira.</li>
+<li>The app stores no issue content. Forge storage holds your settings, each person&rsquo;s
+  saved views, and one small record per issue so the SLA trigger can tell whether
+  anything changed.</li>
+<li>The only things ever written to Jira are the issue property, and — if you switch them
+  on — a breach label and a breach comment.</li>
+<li>Settings export and import as text, so a migration cannot lose them.</li>
+</ul>
+<h2>Pricing</h2>
+<p><strong>Free for up to 10 users. $0.55 per user per month after that</strong>, falling with size.
+One edition; everything on this page is in it.</p>
+<p>At 100 users that is $55 a month against $115 for SaaSJet Time in Status, $120 for OBSS
+Timepiece and $182 for Time to SLA — and those are three apps where this is one. A team
+that wants time-in-status <em>and</em> SLA today buys two of them.</p>
+<footer>Published by Chloe Jane Patricia Johnson (ABN 49 732 400 198), Australia. Contact: ethanjohnson2000@gmail.com</footer></body></html>
