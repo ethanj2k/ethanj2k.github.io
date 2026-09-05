@@ -1,0 +1,13 @@
+{
+ "name": "Stencil Issue Templates for Jira",
+ "tagline": "Issue templates that fire wherever work items are actually created — backlog, board, epic, mobile, JSM portal — with whole epic-to-sub-task trees, placeholders and prompted variables. Free for 10 users, then US$0.79 per user",
+ "highlights": [
+  ["It fires where you actually create work items",
+   "Live on the global create dialog, and a few seconds after the fact on every other surface: backlog inline create, board quick-add, create-child-from-an-epic, mobile, the JSM portal, CSV import, REST and Automation."],
+  ["Whole trees, and you see them before anything is created",
+   "Epic to story to sub-task, up to 300 work items and four levels. Applying twice creates nothing extra, and a run interrupted halfway resumes instead of leaving orphans."],
+  ["Everything the category leader charges two editions for, on one plan",
+   "Default template per issue type and per JSM request type, JQL conditions, usage reports and an audit log — all included, at US$0.79 per user per month."]
+ ],
+ "docs": "https://ethanj2k.github.io/docs/jira-issue-templates.html"
+}
