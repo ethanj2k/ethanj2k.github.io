@@ -1,18 +1,18 @@
 {
  "name": "Agile Gadgets for Jira",
- "tagline": "Burndown, velocity, cumulative flow, cycle time, pivots, release burndown, epic progress and WIP, rebuilt from issue history. Free for 10 users, then US$0.60 per user.",
+ "tagline": "Twenty dashboard gadgets — burndown, velocity, cumulative flow, cycle time, time in status, aging WIP, throughput, pivots, KPI gauges, a team board and a TV wallboard — rebuilt from issue history. Free for 10 users, then US$0.60 per user.",
  "highlights": [
   [
-   "Eight gadgets, one price",
-   "Sprint burndown and burnup, velocity, cumulative flow, cycle and lead time, issue statistics pivot, release burndown, epic progress and WIP by status."
+   "Twenty gadgets, one price",
+   "Sprint, epic and release burndown, velocity, sprint health, cumulative flow, cycle and lead time, time in status, aging WIP, throughput, pivot tables, KPI gauges, work breakdown, a team board, worklog reports, a countdown and a world clock — with no Advanced edition to buy."
   ],
   [
    "Built from history, not snapshots",
-   "Charts replay status and sprint changes from the changelog, with scope-change markers that name the issues and a commitment baseline at the sprint start instant."
+   "Charts replay status, sprint and fix-version changes from the changelog: scope-change markers name the issues, the commitment baseline is the sprint's start instant, throughput counts the day work crossed into done, and days are bucketed in the viewer's own timezone."
   ],
   [
    "Numbers you can check",
-   "Velocity always reconciles committed, added and removed; CFD bands never go negative; every gadget exports its series as CSV."
+   "Velocity reconciles committed, added and removed; CFD bands never go negative; each issue's time-in-status rows sum to its own age; a work breakdown rolls up at every level. Every gadget exports its series as CSV and its picture as PNG."
   ]
  ],
  "docs": "https://ethanj2k.github.io/docs/jira-gadgets.html"
