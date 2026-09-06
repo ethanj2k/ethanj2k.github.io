@@ -1,0 +1,62 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Security</title><link rel="stylesheet" href="style.css"></head><body>
+<nav><a href="/">Apps</a><a href="/privacy.html">Privacy policy</a><a href="/security.html">Security</a><a href="/terms.html">Terms of service</a><a href="/support.html">Support</a></nav>
+<h1>Security</h1>
+<p><em>Effective 6 September 2026.</em> This page describes how the Atlassian Marketplace apps published by Chloe Jane Patricia Johnson (ABN 49 732 400 198, Australia) are built, hosted and operated: Honest Timesheets for Jira, Pivot Reports for Jira, Tickbox Checklists for Jira, Mailpost for Jira, Agile Gadgets for Jira, Git Links for Jira, Stencil Issue Templates for Jira, Status Clock: Time in Status &amp; SLA for Jira, and Countersign: Approvals &amp; Sign-off for Jira.</p>
+
+<h2>What you can rely on</h2>
+<p>Everything below is a fact about how the apps are built, and each is verifiable — by Atlassian's own badge, by the app manifest a site administrator can read, or by the consent dialog Atlassian shows you. Nothing on this page is a claim you have to take on trust.</p>
+<ul>
+<li><strong>Seven of the nine apps carry Atlassian's "Runs on Atlassian" designation.</strong> They declare no permission to contact any host outside Atlassian, so they cannot, even by mistake.</li>
+<li><strong>We run no servers and hold no copy of your data.</strong> There is no system of ours to breach.</li>
+<li><strong>Apps act as you, with your Jira permissions.</strong> An app cannot show a person something Jira would not.</li>
+<li><strong>No analytics, telemetry, tracking or advertising code</strong> ships in any app.</li>
+<li><strong>Every release passes two independent code reviews and a dedicated security review</strong> before it is deployed.</li>
+<li><strong>Administrator-supplied credentials live in Forge secret storage</strong> — never displayed after entry, never logged.</li>
+<li><strong>The two apps that connect outward do so only where you configure them to</strong>, and a self-managed destination requires an explicit, audit-logged, revocable approval by your administrator.</li>
+</ul>
+
+<h2>Where the apps run</h2>
+<p>Every app runs entirely on <strong>Atlassian Forge</strong>, inside Atlassian's own infrastructure. We operate no servers, no databases and no hosting of any kind. There is no environment we could log into that holds your data, because no copy of your data ever leaves Atlassian's platform for a system of ours.</p>
+<p>This is the single most important fact about the security of these apps, and it is a property of the architecture rather than a promise about our conduct. Data residency follows your Atlassian site.</p>
+
+<h2>Authentication and authorisation</h2>
+<p>Apps call Jira <strong>as the person using them</strong>, so your own Jira permissions apply to everything they read and write. Where an app must act on its own authority — a scheduled sweep, a background trigger, a workflow validator that has no signed-in user — it re-checks the acting person's permission before doing anything on their behalf, and the privileged path is kept as narrow as the feature allows.</p>
+<p>Apps request the smallest set of Atlassian scopes their features need. Each app's scopes and the reason for each are stated on its Marketplace listing.</p>
+
+<h2>Data at rest</h2>
+<p>Where an app stores state, it uses <strong>Forge hosted storage</strong>, which Atlassian encrypts and isolates per installation, or Jira entity properties on the issue itself so the values are searchable with JQL. What each app stores is itemised in the <a href="/privacy.html">privacy policy</a>. Uninstalling an app deletes its Forge storage.</p>
+<p>Credentials that an administrator supplies — an email provider key, a Git host token — are held in <strong>Forge secret storage</strong>. They are never displayed after entry, never written to logs, and never sent anywhere other than the service they authenticate to.</p>
+
+<h2>Data in transit and outbound connections</h2>
+<p>Seven of the nine apps make <strong>no network calls outside Atlassian at all</strong> and are eligible for Atlassian's <em>Runs on Atlassian</em> designation. They cannot contact an external host, because they declare no permission to do so.</p>
+<p>Two apps connect outward, in both cases only to a service the customer chooses and configures:</p>
+<ul>
+<li><strong>Mailpost for Jira</strong> — sends and receives mail through Postmark (<code>api.postmarkapp.com</code>) using a key the site administrator supplies. Off by default; with it off the app makes no outbound request.</li>
+<li><strong>Git Links for Jira</strong> — connects to the Git host you configure (GitHub, GitHub Enterprise, GitLab, Bitbucket Cloud or Azure DevOps). Cloud providers are declared in the app manifest. A self-managed host is requested one origin at a time through Atlassian's <strong>customer-managed egress</strong> consent flow, so a site administrator explicitly approves each destination, the approval is recorded in Atlassian's audit log, and it can be revoked.</li>
+</ul>
+<p>All connections use TLS. No app contacts any analytics, telemetry or advertising service.</p>
+
+<h2>How the apps are built</h2>
+<p>Each app is developed against automated tests that assert behaviour rather than implementation, and every release passes, before deployment: a unit-test suite covering the logic that produces user-visible numbers, browser-level end-to-end tests, at least two independent code reviews, and a dedicated security review looking specifically for authorisation defects, cross-tenant data exposure and unsafe handling of user-controlled input. Findings are fixed before release and pinned by a regression test.</p>
+<p>Dependencies are kept few and current. The apps ship no third-party analytics, tracking or advertising code.</p>
+
+<h2>Access to your data by us</h2>
+<p>The apps are published by a sole trader; a single person maintains them. That person has <strong>no standing access to any customer's Jira data</strong> — there is no administrative console, no support impersonation and no database to query, because the apps hold nothing outside your own Atlassian installation. Forge invocation logs, which contain timestamps, HTTP status codes and error messages rather than issue content, are visible to us only if your site administrator chooses to share them.</p>
+
+<h2>Reporting a vulnerability</h2>
+<p>Email <a href="mailto:ethanjohnson2000@gmail.com">ethanjohnson2000@gmail.com</a> with "Security" in the subject. Please include enough detail to reproduce the issue. We aim to acknowledge within 3 business days and to keep you informed until it is resolved. We will not pursue or support legal action against anyone who reports a genuine vulnerability in good faith, gives us reasonable time to fix it, and does not access, modify or destroy data belonging to others while investigating.</p>
+<p>If an incident affects customer data, we will notify affected site administrators and Atlassian promptly, with what happened, what was affected and what to do about it.</p>
+
+<h2>What we do not claim</h2>
+<p>We would rather be useful than impressive, so these are stated plainly:</p>
+<ul>
+<li>We hold <strong>no SOC 2, ISO 27001 or comparable certification</strong>, and have not commissioned an independent penetration test. The apps inherit the certifications of the Atlassian platform they run on, which is not the same thing as holding them ourselves.</li>
+<li>We are not currently a party to <strong>Standard Contractual Clauses</strong> and do not offer a bespoke data processing agreement. Seven of the nine apps transfer no data outside Atlassian at all; for the two that connect outward, the destination is a service you already have a relationship with.</li>
+<li><strong>Countersign</strong> records who approved, when, and what they were approving, as a tamper-<em>evident</em> hash-chained trail. It is not a qualified electronic signature: Atlassian does not expose re-authentication at the moment of signing to any app, so we make <strong>no eIDAS, ESIGN Act or 21 CFR Part 11 claim</strong>.</li>
+</ul>
+<p>If your procurement process needs something listed here that we do not have, tell us — it is better to know than to have you assume either way.</p>
+
+<h2>Changes</h2>
+<p>We will update this page and its effective date when any of the above changes. A new outbound connection, or a new category of stored data, is announced in the app's release notes before it ships.</p>
+<footer>Chloe Jane Patricia Johnson, ABN 49 732 400 198, Australia.</footer>
+</body></html>
