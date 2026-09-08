@@ -1,0 +1,138 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Ditto — bulk and deep clone for Jira Cloud</title><link rel="stylesheet" href="/style.css"></head><body><nav><a href="/">Apps</a><a href="/privacy.html">Privacy policy</a><a href="/security.html">Security</a><a href="/dpa.html">DPA</a><a href="/terms.html">Terms of service</a><a href="/support.html">Support</a></nav>
+<h1>Ditto — bulk and deep clone for Jira Cloud</h1>
+<p><strong>The cloner that works between team-managed and company-managed projects — the one
+thing every other app in this category refuses to do.</strong> Deep clone a work item with
+everything under it, bulk clone a whole search, copy attachments and links, and see
+exactly what will <em>not</em> come across before anything is written. One edition,
+everything included, <strong>US$0.55 per user per month, free for ten users or fewer.</strong></p>
+<p>Deep Clone for Jira charges <strong>$1.33</strong>.</p>
+<hr />
+<h2>Team-managed ↔ company-managed, which nothing else does</h2>
+<p>If you have tried to clone between the two, you have met this:</p>
+<blockquote>
+<p>"This app does <strong>not</strong> work for this use case. It will only work from Team → Team or
+Company → Company."</p>
+</blockquote>
+<p>They are not being lazy. A team-managed project's custom fields and issue types belong
+to <em>that project</em>: "Acceptance criteria" is <code>customfield_10234</code> on one side and
+<code>customfield_10891</code> on the other, and they share no identifier at all. Send the
+source's field ids to the other project and Jira rejects every one of them.</p>
+<p>Ditto stops treating a field id as the field's identity. It matches fields on <strong>name
+and type</strong>, against the target project's own create screen, and re-resolves dropdown,
+version, component and priority <strong>values</strong> by name too — because an option id is just
+as project-scoped as a field id. Issue types are matched by name, then by spelling
+(“Sub-task” and “Subtask” are the same type to everyone except a string comparison),
+then by hierarchy level.</p>
+<p>Where it cannot place something, it says so — by name, before you run it.</p>
+<h2>What you get</h2>
+<p><strong>Deep clone one work item.</strong> From the ⋯ menu on any work item: it, its sub-tasks, an
+epic's children, as deep as you ask. The hierarchy is rebuilt <strong>against the copies</strong> —
+a copied sub-task hangs off the copied parent, not the original.</p>
+<p><strong>Bulk clone a search.</strong> From the work item navigator: tick some rows and clone those,
+or clone everything your JQL matched. Up to 2,000 work items in a job.</p>
+<p><strong>Attachments, actually copied.</strong> Streamed from the original to the copy inside
+Atlassian's network. Anything over the per-file limit is named, sized and reported —
+never silently missing.</p>
+<p><strong>Links kept straight.</strong> Links between two work items in the same job are re-pointed at
+the <em>copies</em>, so you get an independent tree rather than two tangled ones. Links to
+work items outside the job keep pointing at the originals. Each link is created once,
+not once per end. Web links come across too, and every copy can be linked back to the
+work item it came from.</p>
+<p><strong>Rename as you copy.</strong> <code>CLONE: {{summary}}</code>, <code>{{key}} — {{summary}}</code>, or anything
+else.</p>
+<p><strong>Field overrides.</strong> Set a value on every copy — a fix version, a label, a component —
+at clone time.</p>
+<p><strong>Sprint placement, best-effort.</strong> A sprint id means nothing on another board, so Ditto
+matches by <strong>name</strong>, prefers an open sprint, and will not put work into a finished one.
+See the limits below: this one is not always available, and the app tells you when it
+is not.</p>
+<p><strong>A job log that explains itself.</strong> Every clone is a job you can open: how far it got,
+what it created, every field with no home in the target, every attachment over the
+limit, and every value the target project refused. Find everything one job made with
+<code>dittoJob = "&lt;id&gt;"</code> in JQL.</p>
+<p><strong>No setup. None.</strong> There is no project settings page, no per-project enablement,
+nothing for an admin to repeat for every project. Ditto is available everywhere the
+moment it is installed.</p>
+<h2>Built for real Jira sites, not demos</h2>
+<ul>
+<li><strong>A rate limit is a pause, not a lost job.</strong> Jira Cloud's API budget is shared across
+  every site using an app. Ditto estimates a job before it runs, takes at most a
+  quarter of the hourly budget per pass, backs off when Jira asks, and <strong>checkpoints</strong>,
+  so a paused job carries on by itself from where it stopped.</li>
+<li><strong>Running twice never makes two copies.</strong> Every work item Ditto creates carries a
+  marker keyed to the job and the original, so a retried or re-delivered job is a
+  no-op — and an interrupted one adopts what it already made instead of duplicating it.</li>
+<li><strong>One awkward value does not lose the tree.</strong> If the target project refuses a field —
+  an assignee who is not assignable there is the usual one — Ditto drops that field,
+  retries, and records what it left empty, rather than failing the work item and
+  everything under it.</li>
+</ul>
+<h2>Runs on Atlassian</h2>
+<p>Ditto declares <strong>no external permissions at all</strong>: no fetch, no egress, no remote
+backend, no third-party service. Your work items, attachments and job records never
+leave Atlassian's infrastructure. Attachments are moved Jira-to-Jira and are never
+stored by us.</p>
+<h2>What Ditto does not do</h2>
+<p>We would rather you read this here than find out afterwards.</p>
+<ul>
+<li><strong>It does not copy a project.</strong> There is no copy-project API on Jira Cloud
+  (<a href="https://jira.atlassian.com/browse/JRACLOUD-83539">JRACLOUD-83539</a>) — not for us and
+  not for anyone. Ditto clones <strong>work items</strong>, in bulk and across project types. It
+  does not copy schemes, workflows, screens, permissions, board configuration or
+  automation rules.</li>
+<li><strong>Status, resolution and history are not copied.</strong> Copies start at the beginning of
+  the target project's workflow. Jira does not let an app set a status at creation, and
+  a copy that claimed to be "Done" would be worse than one that did not try.</li>
+<li><strong>Sprint placement is not available on every site.</strong> The Jira Software board API is
+  not reliably reachable by Forge apps; where it is refused, your clone still runs, the
+  copies land in the backlog, and the job says so explicitly.</li>
+<li><strong>Attachments have a per-file limit</strong> (10 MB by default, and a whole-job budget).
+  Files over it are listed, with their sizes, in the preview and the job log.</li>
+<li><strong>Comments and watchers are off by default.</strong> Jira gives an app no way to attribute a
+  copied comment to its original author, so copied comments would appear under the name
+  of whoever ran the clone. It is offered; it is not on unless you ask.</li>
+<li><strong>2,000 work items per job.</strong> A larger selection is refused with the number in the
+  message, rather than half-copied.</li>
+</ul>
+<h2>Pricing</h2>
+<p>Free for up to 10 users. <strong>US$0.55 per user per month</strong> from 11, and less in every band
+above 100. One edition — everything on this page is included.</p>
+<table>
+<thead>
+<tr>
+<th>Users</th>
+<th>Deep Clone</th>
+<th>Elements Copy &amp; Sync</th>
+<th>Clone Plus</th>
+<th><strong>Ditto</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1–10</td>
+<td>free</td>
+<td>free</td>
+<td>free</td>
+<td><strong>free</strong></td>
+</tr>
+<tr>
+<td>11–100</td>
+<td>$1.33</td>
+<td>$1.19</td>
+<td>$1.16</td>
+<td><strong>$0.55</strong></td>
+</tr>
+<tr>
+<td>~1,000</td>
+<td>—</td>
+<td>$0.64</td>
+<td>$0.49</td>
+<td><strong>$0.28</strong></td>
+</tr>
+</tbody>
+</table>
+<h2>Support</h2>
+<p>Documentation, privacy policy, security statement and support:
+<a href="https://ethanj2k.github.io/docs/jira-bulk-clone.html">https://ethanj2k.github.io/docs/jira-bulk-clone.html</a></p>
+<p>Email: ethanjohnson2000@gmail.com</p>
+</body></html>

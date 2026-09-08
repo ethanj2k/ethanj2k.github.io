@@ -1,0 +1,106 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Privacy Policy — Ditto: Bulk &amp; Deep Clone for Jira</title><link rel="stylesheet" href="/style.css"></head><body><nav><a href="/">Apps</a><a href="/privacy.html">Privacy policy</a><a href="/security.html">Security</a><a href="/dpa.html">DPA</a><a href="/terms.html">Terms of service</a><a href="/support.html">Support</a></nav>
+<h1>Privacy Policy — Ditto: Bulk &amp; Deep Clone for Jira</h1>
+<p><em>Effective: 8 September 2026</em></p>
+<p>Ditto: Bulk &amp; Deep Clone for Jira ("the app") is published on the Atlassian Marketplace
+by <strong>Chloe Jane Patricia Johnson</strong>, sole trader, ABN 49 732 400 198, Penrith, NSW 2750,
+Australia ("we", "us"). Contact: ethanjohnson2000@gmail.com.</p>
+<p>This policy is specific on purpose: every category of data the app touches is itemised
+below.</p>
+<h2>What the app does</h2>
+<p>The app copies Jira work items — one with everything under it, or many at once from a
+search — into the same or another project, including across the boundary between
+team-managed and company-managed projects. It runs entirely on Atlassian's Forge
+platform and <strong>sends data to no server outside Atlassian</strong>.</p>
+<h2>Data the app reads from Jira</h2>
+<p>When you preview or run a clone, these reads happen <strong>as you</strong>, with your own Jira
+permissions and never with elevated rights:</p>
+<ul>
+<li>the work items you selected and, if you asked for them, the work items beneath them:
+  key, id, summary, description, issue type, project, parent, priority, labels,
+  components, versions, due date, assignee and reporter account ids, sprint membership,
+  and the values of every other field on them;</li>
+<li>the names and types of those fields, which is what makes matching them to a different
+  project possible;</li>
+<li>the list of attachments on those work items — filename, size and content type — and,
+  while a job is running, the <strong>content</strong> of the attachments being copied;</li>
+<li>the links and web links on those work items;</li>
+<li>the target project: its issue types, the fields on its create screens, the values
+  those fields allow, and its board and sprints where the app is permitted to read them;</li>
+<li>the projects you may create work items in, to populate the target picker;</li>
+<li>your own account id and display name (<code>/myself</code>), recorded on the job as who ran it;</li>
+<li>your permissions in the projects involved (<code>/mypermissions</code>), to decide whether to
+  allow the clone at all.</li>
+</ul>
+<h2>Data the app writes to Jira</h2>
+<ul>
+<li>the <strong>copies</strong>: new work items in the target project, with the field values, links,
+  web links and attachments described above;</li>
+<li>an entity property called <code>ditto-clone</code> on each work item the app creates, holding the
+  job id, the key and id of the work item it was copied from, a timestamp, and a short
+  non-reversible digest of the pair. This is what makes a repeated or interrupted job
+  safe to re-run, and it is what <code>dittoJob = "…"</code> searches in JQL. It contains no
+  personal data.</li>
+</ul>
+<h2>Data the app stores</h2>
+<p>In <strong>Atlassian Forge storage</strong>, inside your own Atlassian site, and nowhere else:</p>
+<ul>
+<li><strong>job records</strong>: the job's id, when it was created and last updated, the account id and
+  display name of the person who ran it, the work item keys it started from, the target
+  project, the options chosen, counts and progress, the notes and failures described
+  above, and a short history of its runs;</li>
+<li><strong>job plans</strong>: for each work item to be copied, the field values that will be written.
+  Because a plan holds field values taken from your work items, it may contain any data
+  those fields contain, including personal data you have put in them.</li>
+</ul>
+<p>Both are deleted when you delete the job from the app's job list, and both are destroyed
+by Atlassian when the app is uninstalled.</p>
+<h2>Data the app does not do</h2>
+<ul>
+<li>It does <strong>not</strong> send anything to any server outside Atlassian. The app declares no
+  external permissions of any kind: no fetch, no egress, no remote backend, no
+  analytics, no third-party service.</li>
+<li>It does <strong>not</strong> store attachment content. Attachment bytes pass through the app's
+  Forge function from the original work item to the copy and are not retained.</li>
+<li>It does <strong>not</strong> use your data to train anything, and it contains no AI or machine
+  learning component.</li>
+<li>It does <strong>not</strong> read work items you cannot read. Every read is made with your own
+  permissions.</li>
+</ul>
+<h2>The one thing the app does with its own privileges</h2>
+<p>A clone runs in the background so that a large job is not tied to a browser tab. Forge's
+background workers have no signed-in user, so that part runs as the app rather than as
+you. It is confined:</p>
+<ul>
+<li>the job is authorised <strong>before</strong> it is created, in a screen that does have you signed
+  in: your permission to create work items in the target project is checked, and the
+  work items to be copied are read <strong>as you</strong>, so anything you cannot see never enters
+  the job at all;</li>
+<li>the background worker executes only that stored plan. It takes no instruction from
+  anywhere else, and it cannot be pointed at a different project;</li>
+<li>field overrides are restricted to fields the target project's create screen actually
+  offers, and a fixed list of privileged fields — reporter, issue security level, project,
+  issue type, parent — can never be set this way.</li>
+</ul>
+<h2>Data residency</h2>
+<p>The app stores end-user data exclusively within Atlassian apps and services, in the
+Forge storage of your own site. It therefore follows whatever data residency your
+Atlassian site is configured for. We operate no storage or processing of our own.</p>
+<h2>Retention and deletion</h2>
+<ul>
+<li>Job records and plans live in your site's Forge storage until you delete the job, or
+  until the app is uninstalled, at which point Atlassian destroys them.</li>
+<li>The <code>ditto-clone</code> property lives on the work items the app created, and is yours: it is
+  removed if you delete those work items.</li>
+<li>We hold no copy of any of it, so there is nothing for us to delete on request. A
+  request to erase data should be made to the administrator of your Atlassian site.</li>
+</ul>
+<h2>Roles</h2>
+<p>Under GDPR we act as a <strong>processor</strong>; you are the controller. Under the CCPA we act as a
+<strong>service provider</strong>. We engage no sub-processors: the app has no infrastructure beyond
+Atlassian's.</p>
+<h2>Security</h2>
+<p>Reports: ethanjohnson2000@gmail.com. Our security statement is at
+<a href="https://ethanj2k.github.io/security.html">https://ethanj2k.github.io/security.html</a>.</p>
+<h2>Changes</h2>
+<p>Material changes will be published on this page with a new effective date.</p>
+</body></html>
