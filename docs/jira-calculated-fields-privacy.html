@@ -1,0 +1,86 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Privacy Policy — Slide Rule: Calculated Fields for Jira</title><link rel="stylesheet" href="/style.css"></head><body><nav><a href="/">Apps</a><a href="/privacy.html">Privacy policy</a><a href="/security.html">Security</a><a href="/dpa.html">DPA</a><a href="/terms.html">Terms of service</a><a href="/support.html">Support</a></nav>
+<h1>Privacy Policy — Slide Rule: Calculated Fields for Jira</h1>
+<p><em>Effective: 9 September 2026</em></p>
+<p>Slide Rule: Calculated Fields for Jira ("the app") is published on the Atlassian
+Marketplace by <strong>Chloe Jane Patricia Johnson</strong>, sole trader, ABN 49 732 400 198,
+Penrith, NSW 2750, Australia ("we", "us"). Contact: ethanjohnson2000@gmail.com.</p>
+<p>This policy is specific on purpose: every category of data the app touches is itemised
+below.</p>
+<h2>What the app does</h2>
+<p>The app computes the value of a custom field from a formula a Jira administrator
+writes — from other fields on the same work item, and optionally from its children,
+its parent or the work items linked to it — and writes that value back into Jira so
+it appears on boards, in JQL and in exports. It runs entirely on Atlassian's Forge
+platform and <strong>sends data to no server outside Atlassian</strong>.</p>
+<h2>Data the app reads from Jira</h2>
+<p>When a work item is created or changed, and when a newly saved formula is applied to
+existing work items, the app reads:</p>
+<ul>
+<li>the work item being computed: its key, id, project, work item type, parent, and the
+  values and names of <strong>every field on it</strong>, because a formula may refer to any of
+  them by name;</li>
+<li>where the formula asks for them, the same for that work item's <strong>direct children</strong>,
+  its <strong>parent</strong>, and the work items it is <strong>linked</strong> to, together with the names of
+  the link types;</li>
+<li>the list of custom fields on the site, to find the ids of this app's own fields;</li>
+<li>the account id and display name of the administrator saving a formula (<code>/myself</code>),
+  recorded on the definition as who last changed it;</li>
+<li>that administrator's permissions (<code>/mypermissions</code>), to check they may administer
+  the site before their change is accepted.</li>
+</ul>
+<p>Reads that serve a page a person is looking at are made <strong>as that person</strong>, with their
+own Jira permissions. The background recompute runs <strong>as the app</strong>, because it runs on
+work items nobody is looking at; see "Data visibility" below for what that means and
+what the app refuses to do because of it.</p>
+<h2>Data the app writes to Jira</h2>
+<ul>
+<li>the <strong>computed value</strong>, into the app's own read-only custom field on the work item.
+  The app can write no other field — a Forge app may only write the values of fields
+  it owns.</li>
+</ul>
+<h2>Data the app stores</h2>
+<p>In Forge storage, inside your own Atlassian site:</p>
+<ul>
+<li><strong>field definitions</strong>: the name, type, formula, project and work-item-type scope, on
+  or off, when it was last changed and the account id that changed it;</li>
+<li>an <strong>explanation record per work item</strong>: the formula, the value it produced or the
+  reason nothing was written, the timestamp, and the field values the formula read on
+  that work item — which is what the panel on the work item shows;</li>
+<li>a <strong>backfill cursor</strong> per definition: an opaque page token and a count.</li>
+</ul>
+<p>Nothing else is stored. There is no copy of your work items, and no history beyond the
+most recent result per work item.</p>
+<h2>Data visibility</h2>
+<p>A computed value is an ordinary Jira field value, so <strong>anyone who can see the work
+item can see it</strong>, exactly as they can see its other fields. Because the recompute has
+no reader to check against, the app <strong>refuses to compute</strong> a rollup when a contributing
+work item carries an issue-level security level, or when a child is in a different
+project from its parent — rather than turn a restricted work item into an aggregate
+everyone can read. The work item says when this has happened, and how many were
+involved.</p>
+<h2>Data leaving Atlassian</h2>
+<p><strong>None.</strong> The app declares no <code>permissions.external</code> of any kind: no fetch, no egress,
+no remote host, no analytics and no runtime AI call. It is not technically capable of
+contacting any host other than Atlassian's own APIs.</p>
+<h2>Logging</h2>
+<p>The app writes operational log lines to Atlassian's Forge logging: work item keys and
+ids, field ids, counts, and the status of a failed Jira request. It does <strong>not</strong> log
+field values, computed values, formulas, or the bodies of Jira's responses.</p>
+<h2>Retention and deletion</h2>
+<p>All data is held in Forge storage inside your Atlassian site and is destroyed when the
+app is uninstalled. Deleting a field definition deletes the definition; the values it
+has already written remain on your work items until they are cleared, and can be
+removed by deleting the field itself in Jira's custom field administration.</p>
+<h2>Your rights</h2>
+<p>Because the app stores everything inside your own Atlassian site and sends nothing
+elsewhere, requests about personal data — access, correction, erasure — are answered
+by your own Atlassian administration. Write to ethanjohnson2000@gmail.com if you need
+help identifying what the app holds.</p>
+<h2>GDPR and CCPA</h2>
+<p>We are a <strong>data processor</strong>, not a data controller, and a <strong>service provider</strong>, not a
+business. We process End-User Data only inside Atlassian apps and services, on your
+instructions, and we share it with no third party.</p>
+<h2>Changes</h2>
+<p>Material changes to this policy will be published on this page with a new effective
+date before they take effect.</p>
+</body></html>

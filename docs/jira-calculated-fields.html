@@ -1,0 +1,98 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Slide Rule — calculated custom fields for Jira Cloud</title><link rel="stylesheet" href="/style.css"></head><body><nav><a href="/">Apps</a><a href="/privacy.html">Privacy policy</a><a href="/security.html">Security</a><a href="/dpa.html">DPA</a><a href="/terms.html">Terms of service</a><a href="/support.html">Support</a></nav>
+<h1>Slide Rule: Calculated Fields for Jira</h1>
+<p><strong>Fields that compute themselves — and stay right on the board, in JQL and in your
+export, not just on the work item.</strong> Write a formula once, and every work item it
+applies to carries the answer. One edition, everything included, <strong>US$0.45 per user
+per month, free for ten users or fewer.</strong></p>
+<p>Jira Misc Custom Fields charges <strong>$1.00</strong>. Awesome Custom Fields charges <strong>$1.06</strong>.
+Abacus charges <strong>$1.44</strong>.</p>
+<hr />
+<h2>The number is in Jira, not just on the screen</h2>
+<p>This is the part most calculated-field apps on Cloud get wrong, and it is not their
+fault: Forge invokes a custom field's value function <strong>only on the issue view</strong>. An
+app built that way shows you the right number on the work item and a stale one — or
+nothing at all — on the board, in the backlog, in a JQL search and in a CSV export.</p>
+<p>Slide Rule does not compute on read. It recomputes when something changes and
+<strong>writes the value into Jira's own index</strong>, so:</p>
+<ul>
+<li>board cards show it, because it is a field value like any other;</li>
+<li><code>"Total story points" &gt;= 100</code> is an ordinary JQL clause;</li>
+<li>CSV and Excel exports carry it, without a plugin or a workaround;</li>
+<li>dashboards, filters and Automation rules read it the way they read <code>Story Points</code>.</li>
+</ul>
+<p>Nothing in Jira has to know this app exists for the number to be there.</p>
+<h2>A formula language that is actually a language</h2>
+<p>The loudest complaint in this category is aimed at the market leader, by its own
+customers:</p>
+<blockquote>
+<p>"Has EXTREMELY limited scripting capabilities in Jira Cloud."</p>
+</blockquote>
+<p>So the language is the product:</p>
+<pre><code>{Story Points} + SUM(CHILDREN({Story Points}))
+IF({Time Spent} &gt; {Original estimate}, &quot;over&quot;, &quot;on track&quot;)
+WORKDAYS_BETWEEN(NOW(), {Due date})
+SUM(LINKED({Story Points}, &quot;is blocked by&quot;))
+ROUND(100 * COUNT(CHILDREN({Resolution})) / COUNT(CHILDREN({Summary})), 1)
+</code></pre>
+<p>Real precedence. Short-circuiting <code>and</code> / <code>or</code>, so <code>{Divisor} != 0 and 10 / {Divisor} &gt; 1</code>
+is safe to write. <code>IF</code>, <code>COALESCE</code>, <code>ISBLANK</code>, <code>IFERROR</code>. Rollups over children, the
+parent and links — narrowed to one link type when you want it. <code>SUM</code>, <code>AVG</code>, <code>MIN</code>,
+<code>MAX</code>, <code>COUNT</code>. <code>ROUND</code>, <code>FLOOR</code>, <code>CEIL</code>, <code>ABS</code>. <code>CONCAT</code>, <code>UPPER</code>, <code>LOWER</code>, <code>TRIM</code>,
+<code>LEN</code>, <code>LEFT</code>, <code>RIGHT</code>, <code>CONTAINS</code>, <code>REPLACE</code>. <code>NOW</code>, <code>TODAY</code>, <code>DAYS_BETWEEN</code>,
+<code>WORKDAYS_BETWEEN</code>, <code>DATE_ADD</code>, and date arithmetic that knows the difference between
+a calendar day and Jira's eight-hour working one.</p>
+<p>Field names go in braces, exactly as Jira spells them: <code>{Story Points}</code>, <code>{Due date}</code>.</p>
+<h2>When a number is wrong, the work item tells you why</h2>
+<p>Every work item carries a <strong>Slide Rule</strong> panel showing the formula, the values it
+actually read on <em>this</em> work item, what it produced, and when. The support question
+in this category is always "why does it say that", and the answer is on the screen
+instead of in a ticket.</p>
+<h2>It refuses rather than guessing</h2>
+<p>A wrong number that looks reasonable is worse than a blank one, so Slide Rule writes
+nothing — and says so on the work item — when:</p>
+<ul>
+<li>the work item has <strong>more than 1,000 children</strong>, or more than 50 links, so the rollup
+  could only ever be partial;</li>
+<li>a contributing work item carries an <strong>issue-level security level</strong>, or a child sits
+  in a <strong>different project</strong> from its parent. The value is readable by anyone who can
+  open the work item it lands on, and we will not turn a restricted child into an
+  aggregate that everybody can read;</li>
+<li>the formula returns something the field cannot hold — text into a number field is
+  refused, not silently written as zero.</li>
+</ul>
+<p>It also treats an <strong>unknown field name as an error</strong>, not as blank. A typo that reads
+as zero is how a wrong total reaches a board and nobody notices for a month.</p>
+<h2>No per-project setup</h2>
+<p>There is no per-project configuration screen, because there is nothing to configure
+per project. A field defined with no scope applies to every project and every work
+item type the moment you save it, and scoping it to certain projects is one field on
+the same form.</p>
+<p>The one Jira step that remains is the one every custom field needs: <strong>add the field
+to a screen</strong> if you want it visible on the work item itself. Board cards, JQL,
+filters and exports do not need it — the value is in Jira's index either way — and
+the Slide Rule panel on each work item shows the value and the formula whether the
+field is on a screen or not.</p>
+<h2>Runs on Atlassian</h2>
+<p>The manifest declares <strong>no external permissions of any kind</strong> — no fetch, no egress,
+no remote backend, no analytics, no runtime AI call. The app is not technically
+capable of contacting any host other than Atlassian's own APIs, and every value is
+computed inside your own site. Two of the five apps in this category cannot say that.</p>
+<h2>What it does not do, said before you buy</h2>
+<ul>
+<li><strong>Convergence is quick, not instant.</strong> A value is recomputed on an event, so it
+  lands moments after the change, not in the same keystroke.</li>
+<li><strong>A rollup stops at 1,000 children and 50 links</strong>, and refuses past that rather than
+  publishing a partial sum.</li>
+<li><strong>Calculated fields are read-only</strong>, deliberately: the app owns the value, and a
+  typed-over one would be overwritten on the next recompute.</li>
+<li><strong>No cascading-select or dynamic create-screen behaviour.</strong> Atlassian's
+  <code>jira:uiModifications</code> explicitly does not support Forge custom fields, so an app
+  that sells both is selling two features that cannot meet. This one calculates.</li>
+<li><strong>Not Cloud Fortified.</strong> That is a Marketplace programme a vendor applies to once an
+  app has install volume and a support history. The technical bar underneath it —
+  Runs on Atlassian — is met from day one.</li>
+</ul>
+<h2>Pricing</h2>
+<p>Free for up to 10 users. Then <strong>US$0.45 per user per month</strong>, falling in every band
+above 100. One edition; everything on this page is in it.</p>
+</body></html>
