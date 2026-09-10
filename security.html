@@ -1,12 +1,12 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Security</title><link rel="stylesheet" href="style.css"></head><body>
 <nav><a href="/">Apps</a><a href="/privacy.html">Privacy policy</a><a href="/security.html">Security</a><a href="/dpa.html">DPA</a><a href="/terms.html">Terms of service</a><a href="/support.html">Support</a></nav>
 <h1>Security</h1>
-<p><em>Effective 6 September 2026.</em> This page describes how the Atlassian Marketplace apps published by Chloe Jane Patricia Johnson (ABN 49 732 400 198, Australia) are built, hosted and operated: Honest Timesheets for Jira, Pivot Reports for Jira, Tickbox Checklists for Jira, Mailpost for Jira, Agile Gadgets for Jira, Git Links for Jira, Stencil Issue Templates for Jira, Status Clock: Time in Status &amp; SLA for Jira, and Countersign: Approvals &amp; Sign-off for Jira.</p>
+<p><em>Effective 10 September 2026.</em> This page describes how the Atlassian Marketplace apps published by Chloe Jane Patricia Johnson (ABN 49 732 400 198, Australia) are built, hosted and operated: Honest Timesheets for Jira, Pivot Reports for Jira, Tickbox Checklists for Jira, Mailpost for Jira, Agile Gadgets for Jira, Git Links for Jira, Stencil Issue Templates for Jira, Status Clock: Time in Status &amp; SLA for Jira, Countersign: Approvals &amp; Sign-off for Jira, Ditto: Bulk &amp; Deep Clone for Jira, and Slide Rule: Calculated Fields for Jira.</p>
 
 <h2>What you can rely on</h2>
 <p>Everything below is a fact about how the apps are built, and each is verifiable — by Atlassian's own badge, by the app manifest a site administrator can read, or by the consent dialog Atlassian shows you. Nothing on this page is a claim you have to take on trust.</p>
 <ul>
-<li><strong>Seven of the nine apps carry Atlassian's "Runs on Atlassian" designation.</strong> They declare no permission to contact any host outside Atlassian, so they cannot, even by mistake.</li>
+<li><strong>Nine of the eleven apps carry Atlassian's "Runs on Atlassian" designation.</strong> They declare no permission to contact any host outside Atlassian, so they cannot, even by mistake.</li>
 <li><strong>We run no servers and hold no copy of your data.</strong> There is no system of ours to breach.</li>
 <li><strong>Apps act as you, with your Jira permissions.</strong> An app cannot show a person something Jira would not.</li>
 <li><strong>No analytics, telemetry, tracking or advertising code</strong> ships in any app.</li>
@@ -28,7 +28,7 @@
 <p>Credentials that an administrator supplies — an email provider key, a Git host token — are held in <strong>Forge secret storage</strong>. They are never displayed after entry, never written to logs, and never sent anywhere other than the service they authenticate to.</p>
 
 <h2>Data in transit and outbound connections</h2>
-<p>Seven of the nine apps make <strong>no network calls outside Atlassian at all</strong> and are eligible for Atlassian's <em>Runs on Atlassian</em> designation. They cannot contact an external host, because they declare no permission to do so.</p>
+<p>Nine of the eleven apps make <strong>no network calls outside Atlassian at all</strong> and are eligible for Atlassian's <em>Runs on Atlassian</em> designation. They cannot contact an external host, because they declare no permission to do so.</p>
 <p>Two apps connect outward, in both cases only to a service the customer chooses and configures:</p>
 <ul>
 <li><strong>Mailpost for Jira</strong> — sends and receives mail through Postmark (<code>api.postmarkapp.com</code>) using a key the site administrator supplies. Off by default; with it off the app makes no outbound request.</li>
@@ -51,7 +51,7 @@
 <p>We would rather be useful than impressive, so these are stated plainly:</p>
 <ul>
 <li>We hold <strong>no SOC 2, ISO 27001 or comparable certification</strong>, and have not commissioned an independent penetration test. The apps inherit the certifications of the Atlassian platform they run on, which is not the same thing as holding them ourselves.</li>
-<li>We are not currently a party to <strong>Standard Contractual Clauses</strong> and do not offer a bespoke data processing agreement. Seven of the nine apps transfer no data outside Atlassian at all; for the two that connect outward, the destination is a service you already have a relationship with.</li>
+<li>We are not currently a party to <strong>Standard Contractual Clauses</strong> and do not offer a bespoke data processing agreement. Nine of the eleven apps transfer no data outside Atlassian at all; for the two that connect outward, the destination is a service you already have a relationship with.</li>
 <li><strong>Countersign</strong> records who approved, when, and what they were approving, as a tamper-<em>evident</em> hash-chained trail. It is not a qualified electronic signature: Atlassian does not expose re-authentication at the moment of signing to any app, so we make <strong>no eIDAS, ESIGN Act or 21 CFR Part 11 claim</strong>.</li>
 </ul>
 <p>If your procurement process needs something listed here that we do not have, tell us — it is better to know than to have you assume either way.</p>
