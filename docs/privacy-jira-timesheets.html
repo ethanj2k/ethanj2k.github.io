@@ -1,0 +1,117 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Privacy Policy — Honest Timesheets for Jira</title><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/style.css"></head><body><nav><a href="/">Apps</a><a href="/docs/privacy-jira-timesheets.html">Privacy policy</a><a href="/security.html">Security</a><a href="/dpa.html">DPA</a><a href="/terms.html">Terms of service</a><a href="/support.html">Support</a></nav><h1>Privacy Policy — Honest Timesheets for Jira</h1>
+<p><em>Effective: 15 September 2026</em></p>
+<p>Honest Timesheets for Jira ("the app") is published on the Atlassian Marketplace by
+Chloe Jane Patricia Johnson, sole trader, ABN 49 732 400 198, Penrith, NSW 2750,
+Australia ("we", "us"). Contact: ethanjohnson2000@gmail.com.</p>
+<p>This policy explains what the app does with data.</p>
+<h2>What the app does</h2>
+<p>The app reads and writes Jira worklogs and presents them as a per-person timesheet
+inside Jira, with approvals, reporting and planning. It runs entirely on Atlassian's
+Forge platform and sends data to no server outside Atlassian.</p>
+<h2>Data the app reads from Jira</h2>
+<p>Always on your behalf and with your own Jira permissions — never with elevated rights:</p>
+<ul>
+<li>worklogs (issue, project, author account id, start time, seconds, comment) on issues
+  you can already see;</li>
+<li>issue key, summary and parent, for labelling and for grouping reports by epic;</li>
+<li>your Atlassian account id, and the display name and timezone of people whose
+  timesheets you are entitled to view;</li>
+<li>project roles and their members, when a role is named as a timesheet approver;</li>
+<li>your permissions on a project, to decide what you may do.</li>
+</ul>
+<h2>Data the app writes to Jira</h2>
+<ul>
+<li><strong>Worklogs</strong>, created, edited and deleted <strong>as you</strong>. The app cannot write a worklog
+  authored by anybody else, including itself: the module that calls Jira does not have
+  access to app-level authentication at all.</li>
+<li><strong>A worklog property</strong> (<code>timesheets-attributes</code>) on each worklog the app creates or
+  edits, holding its billable flag and any worklog attributes your project configured.
+  It lives on the Jira worklog so any other tool can read it.</li>
+<li><strong>An issue property</strong> (<code>timesheets</code>) holding per-issue totals and approval status, so
+  timesheet facts are searchable in JQL. It is written only when the value changes.</li>
+<li><strong>A Jira notification</strong>, only if a project administrator switches reminders on and
+  enables the notification option. It is delivered by Jira's own notification scheme to
+  the person concerned.</li>
+</ul>
+<p>The app never creates, edits, transitions or deletes an issue, and never posts comments.</p>
+<h2>Data the app stores in Forge app storage</h2>
+<p>This section changed in version 4. Earlier versions stored nothing.</p>
+<p>All of the following is held in Atlassian's own Forge storage, inside your site's
+installation. None of it is issue content and none of it is worklog text.</p>
+<table>
+<thead>
+<tr>
+<th>What</th>
+<th>Why</th>
+<th>Keyed by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Project settings — period shape, working pattern, public holidays, approval stages and approver account ids or role ids, worklog attribute definitions, rounding policy, reminder settings, charge-out rates, team and manager account ids</td>
+<td>So the timesheet behaves the way the project decided</td>
+<td>project</td>
+</tr>
+<tr>
+<td>Personal working pattern</td>
+<td>So somebody working part time is measured against their own hours</td>
+<td>project + account</td>
+</tr>
+<tr>
+<td>Approval state and history — status, current stage, and each transition's actor, timestamp and comment</td>
+<td>So a sign-off is auditable and cannot silently change</td>
+<td>project + account + period</td>
+</tr>
+<tr>
+<td>The running timer — the issue and the start/stop instants of each segment</td>
+<td>So a timer survives closing the tab or changing machine</td>
+<td>account</td>
+</tr>
+<tr>
+<td>In-app notices — the text of a reminder or approval notice</td>
+<td>Forge apps cannot send email; this is how you are told</td>
+<td>account</td>
+</tr>
+<tr>
+<td>Workplans — an issue, a date and an intended number of hours</td>
+<td>So planned time can be compared with actual without being written to Jira as fake worklogs</td>
+<td>project + account + month</td>
+</tr>
+<tr>
+<td>Saved report definitions — a name, the groupings and the range length</td>
+<td>So a report can be re-run</td>
+<td>project</td>
+</tr>
+<tr>
+<td>A mirror of worklog attributes — billable flag and attribute values, by worklog id</td>
+<td>Jira holds the authoritative copy on the worklog; this mirror exists only so a grid of eighty entries costs one read instead of eighty</td>
+<td>account + month</td>
+</tr>
+</tbody>
+</table>
+<p>Charge-out rates are figures an administrator types in; the app does not connect to any
+payroll or finance system and holds no salary data.</p>
+<h3>Removal</h3>
+<p>Uninstalling the app deletes everything in the table above, because Forge app storage
+belongs to the installation. Your <strong>worklogs are not deleted</strong> — they are ordinary Jira
+worklogs and always were, which is the point of the design. The worklog and issue
+properties the app wrote remain on the worklogs and issues; a Jira administrator can
+delete them through Jira's own REST API if you want them gone.</p>
+<h2>Data leaving Atlassian</h2>
+<p>None. The app declares no external fetch permissions, so it is not technically capable of
+contacting any host other than Jira's own REST API through Forge. It qualifies for
+Atlassian's "Runs on Atlassian" designation, and data residency follows your Jira site.</p>
+<h2>Logging</h2>
+<p>Forge keeps invocation logs for troubleshooting. They contain timestamps, the Jira REST
+path called, HTTP status codes, Jira's own error messages, and counts. They do not
+contain worklog text, timesheet figures, display names or email addresses; account ids
+are not written to them. Site administrators control whether log access is shared with
+us.</p>
+<h2>Your rights</h2>
+<p>To export or delete what the app has stored, uninstall it — that removes all of it at
+once. For anything more specific, or any question about this policy, email
+ethanjohnson2000@gmail.com and we will respond within 30 days.</p>
+<h2>Changes</h2>
+<p>We will update this page and the effective date if the app's data handling changes.
+Adding an external service, or any new category of stored data, would be announced in the
+app's release notes before it ships.</p><footer>Chloe Jane Patricia Johnson, ABN 49 732 400 198, Penrith, NSW 2750, Australia.</footer></body></html>
