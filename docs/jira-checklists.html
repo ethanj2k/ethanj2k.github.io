@@ -2,6 +2,43 @@
 <div class="video"><iframe width="720" height="405" src="https://www.youtube-nocookie.com/embed/ChbGYnjkwzM" title="Tickbox Checklists for Jira — demo" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
 
 <p><strong>Tagline:</strong> Definition of Done, acceptance criteria and release steps as real checklists on the work item — required items, project statuses, linked templates, workflow gates, automation and board-card progress. Free for 10 users, then US$0.60 per user per month.</p>
+<h2 id="getting-started">Getting started</h2>
+<h3>1. Install</h3>
+<p>Install from the Atlassian Marketplace listing, or in Jira go to <strong>Apps &rarr; Explore more apps</strong>, search for <em>Tickbox Checklists for Jira</em> and choose <strong>Get app</strong>. You need to be a Jira administrator. Nothing else has to be switched on: the app works as soon as it is installed, and every feature is available on the free tier.</p>
+<h3>2. Where it appears</h3>
+<table><thead><tr><th>What</th><th>Where to find it</th></tr></thead><tbody>
+<tr><td>Checklists on a work item</td><td>Open any work item. The <strong>Tickbox Checklists</strong> panel is in the right-hand context column; click its heading to expand it.</td></tr>
+<tr><td>Project templates</td><td><strong>Project settings &rarr; Apps &rarr; Tickbox Checklist Templates</strong></td></tr>
+<tr><td>Site-wide templates</td><td><strong>Settings (cog) &rarr; Apps &rarr; Tickbox Global Templates</strong></td></tr>
+<tr><td>Your own items</td><td><strong>Apps &rarr; Tickbox Checklists</strong> in the top navigation</td></tr>
+<tr><td>Dashboard gadgets</td><td>Edit a dashboard &rarr; <strong>Add gadget</strong> &rarr; search <em>Tickbox</em></td></tr>
+</tbody></table>
+<h3>3. Add your first checklist</h3>
+<ol>
+<li>Open any work item and expand the <strong>Tickbox Checklists</strong> panel.</li>
+<li>Choose <strong>Add checklist</strong> and give it a name, for example <em>Definition of Done</em>.</li>
+<li>Type an item and press Enter. Repeat. Use <strong>Tab</strong> to indent an item into a section heading.</li>
+<li>Click the circle beside any item to tick it. Use the item's menu to mark it <strong>required</strong>, assign it, or give it a due date.</li>
+</ol>
+<h3>4. Make it repeatable with a template</h3>
+<ol>
+<li>Go to <strong>Project settings &rarr; Apps &rarr; Tickbox Checklist Templates</strong>.</li>
+<li>Choose <strong>New template</strong>, name it, and add the items you want every work item to get.</li>
+<li>Under <strong>Apply automatically</strong>, pick the work item types it should apply to, and whether it applies on create, on a transition, or on update.</li>
+<li>Save. Create a new work item of that type and the checklist is already there.</li>
+</ol>
+<h3>5. Optional: gate a workflow on it</h3>
+<ol>
+<li>Go to <strong>Project settings &rarr; Workflows</strong> and edit the workflow you want to gate.</li>
+<li>Select the transition, choose <strong>Validators &rarr; Add validator</strong>, and pick one of the Tickbox validators, for example <em>Required Checklist Items Complete</em>.</li>
+<li>Publish the workflow. The transition is now blocked until the checklist allows it.</li>
+</ol>
+<h3>If something looks wrong</h3>
+<ul>
+<li><strong>The panel is not on the work item.</strong> It is in the right-hand context column and starts collapsed. If it is still missing, the app may be restricted for that project under <strong>Project settings &rarr; Apps</strong>.</li>
+<li><strong>A template did not apply.</strong> Templates apply to the work item types and trigger you chose in step 4; check both on the template.</li>
+<li><strong>You cannot tick an item.</strong> By default Tickbox follows Jira permissions exactly, so you need permission to edit the work item. A project admin can loosen this in the project template settings.</li>
+</ul>
 <h2>Summary</h2>
 <p>Tickbox adds a Checklists panel to every Jira work item. Add as many named checklists as you need; mark items required; give them owners, due dates, priorities and detail; and let templates create them automatically. Progress shows in the panel, per section, on board cards through the "Checklist progress" field, in ten JQL fields, on three dashboard gadgets and on your own "My checklist items" page. Five workflow validators can gate a transition; one configurable post-function can change the checklist as part of one.</p>
 <p>Everything runs on Atlassian infrastructure. Checklist data is stored on the work item itself as an issue property, so it travels with the item, is indexed for JQL, and is readable and writable by Jira Automation, ScriptRunner or your own tooling through the standard REST API — no custom-field encoding to reverse-engineer.</p>

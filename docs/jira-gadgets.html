@@ -2,6 +2,37 @@
 <div class="video"><iframe width="720" height="405" src="https://www.youtube-nocookie.com/embed/VS6_EwmrJ2U" title="Agile Gadgets for Jira — demo" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
 
 <p><strong>Tagline:</strong> Burndown, velocity, cumulative flow, cycle time, time in status, aging WIP, throughput, epic and release burndown, pivot tables, KPI gauges, a team board, a work breakdown tree, worklog reports, a countdown, a world clock and a TV wallboard — native Jira dashboard gadgets that run entirely on Atlassian. Free for 10 users, then US$0.60 per user per month.</p>
+<h2 id="getting-started">Getting started</h2>
+<h3>1. Install</h3>
+<p>Install from the Marketplace listing, or in Jira go to <strong>Apps &rarr; Explore more apps</strong> and search for <em>Agile Gadgets for Jira</em>. You need to be a Jira administrator. No configuration is required before first use.</p>
+<h3>2. Add your first gadget</h3>
+<ol>
+<li>Go to <strong>Dashboards</strong> and open or create a dashboard.</li>
+<li>Choose <strong>Add gadget</strong>.</li>
+<li>Search for <em>Agile Gadgets</em>. Every gadget in this app is suffixed <strong>(Agile Gadgets)</strong>, for example <em>Sprint Burndown / Burnup (Agile Gadgets)</em>.</li>
+<li>Add it, then choose <strong>Edit</strong> on the gadget to pick the board, sprint or JQL it should read, and the chart style.</li>
+<li>Save. The gadget draws immediately, reading Jira as you, so you only ever see work you already have permission to see.</li>
+</ol>
+<h3>3. The app page</h3>
+<p>Open <strong>Apps &rarr; Agile Gadgets for Jira</strong> in the top navigation. It has three tabs:</p>
+<ul>
+<li><strong>Shared Filters</strong> &mdash; the tab it opens on. Define a JQL filter once here and point many gadgets at it, so changing the filter redraws all of them. Start here on a fresh install.</li>
+<li><strong>Wallboard</strong> &mdash; a full-screen rotation of saved panels, for a screen on the wall. Panels are added from the Export tab.</li>
+<li><strong>Export</strong> &mdash; downloads a PNG or CSV of a chart. <strong>This tab is empty until you send it a chart</strong>: open any Agile Gadgets gadget on a dashboard, choose <strong>Export PNG / CSV</strong> on the gadget, and it opens here with the chart ready. That is the only way to populate it, and it is the prerequisite for the Wallboard tab too.</li>
+</ul>
+<h3>4. Build a wallboard</h3>
+<ol>
+<li>On a dashboard gadget, choose <strong>Export PNG / CSV</strong>.</li>
+<li>On the Export tab that opens, choose <strong>Save as a wallboard panel</strong>.</li>
+<li>Repeat for each chart you want in the rotation.</li>
+<li>Go to the <strong>Wallboard</strong> tab and press play. Escape stops it.</li>
+</ol>
+<h3>If something looks wrong</h3>
+<ul>
+<li><strong>The Export tab's buttons are hidden.</strong> That is expected on a fresh visit &mdash; there is nothing to export until you send a chart from a gadget, as described above.</li>
+<li><strong>A gadget is empty.</strong> Check its board, sprint or JQL under <strong>Edit</strong>. Gadgets read as the signed-in person, so an empty chart usually means that person cannot see the work.</li>
+<li><strong>A sprint gadget shows nothing.</strong> Sprint-based gadgets need a board with an active or closed sprint; a Kanban board with no sprints has nothing to draw.</li>
+</ul>
 <h2>Summary</h2>
 <p>Agile Gadgets adds twenty dashboard gadgets to Jira. Point each one at a board, a project, a saved filter or any JQL query, and it draws the chart a delivery team actually argues over in a stand-up: what is left in the sprint, how much the team really finishes, where work piles up, how long things take, which items have been in flight too long, and whether the release date is credible.</p>
 <p>Every chart is rebuilt from Jira&rsquo;s own issue history rather than from a snapshot, so a burndown knows what the scope was <em>on the day</em>, a velocity chart knows what was committed at the sprint&rsquo;s start instant, a cumulative flow diagram knows which column each issue sat in three weeks ago, and throughput counts the day an issue crossed into done rather than the day someone set a resolution date. Days are bucketed in the viewer&rsquo;s own Jira timezone using calendar arithmetic, so a chart does not shift by a day for a colleague in another country or across a daylight-saving boundary.</p>

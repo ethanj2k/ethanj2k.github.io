@@ -2,6 +2,38 @@
 <div class="video"><iframe width="720" height="405" src="https://www.youtube-nocookie.com/embed/Fc4z_uT4-Kw" title="Pivot Reports for Jira — demo" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
 
 <p><strong>Tagline:</strong> Pivot tables, charts and time-in-status over any JQL — live, timezone-correct, and a third of the price.</p>
+<h2 id="getting-started">Getting started</h2>
+<h3>1. Install</h3>
+<p>Install from the Marketplace listing, or in Jira go to <strong>Apps &rarr; Explore more apps</strong> and search for <em>Pivot Reports for Jira</em>. You need to be a Jira administrator. There is nothing to configure before first use.</p>
+<h3>2. Build your first report</h3>
+<ol>
+<li>Open a project and go to <strong>Project menu &rarr; Apps &rarr; Pivot Reports for Jira</strong>.</li>
+<li>Under <strong>Source</strong>, choose the project or paste a JQL query.</li>
+<li>Under <strong>Rows</strong>, pick the field to group by &mdash; assignee, status, issue type, a label, any custom field.</li>
+<li>Under <strong>Columns</strong>, optionally pick a second field, or a date field with a bucket (day, ISO week, month, quarter, year).</li>
+<li>Under <strong>Measures</strong>, choose what to count: <em>Issue count</em>, or a sum, average, minimum or maximum of any numeric field, cycle time, or age.</li>
+<li>The table draws as you go, with subtotals and a grand total. Click any number to drill through to the work items behind it.</li>
+</ol>
+<h3>3. Chart it, export it, save it</h3>
+<ul>
+<li><strong>Chart</strong> &mdash; under <strong>Display</strong>, switch <em>Show as</em> from Value to Chart and pick a chart type.</li>
+<li><strong>Export</strong> &mdash; choose <strong>Export</strong> for a CSV, or a picture of the report. CSV values are escaped so a spreadsheet cannot execute them.</li>
+<li><strong>Save</strong> &mdash; choose <strong>Save report</strong> to keep the definition. Saved reports are private to you unless you share them with the project.</li>
+</ul>
+<h3>4. Report on history</h3>
+<p>Under <strong>Issue history</strong>, set an <strong>As of date</strong> to rebuild every work item's fields as they were at the end of that day, leaving out items created later. For a time-in-status report, choose <em>Status (time in status)</em> as the rows field and <em>Days in status</em> as the measure. History reports read a changelog per work item, so they are limited to 1,500 items.</p>
+<h3>5. Put a report on a dashboard</h3>
+<ol>
+<li>Save the report first.</li>
+<li>Go to <strong>Dashboards</strong>, edit a dashboard, choose <strong>Add gadget</strong> and search for <em>Pivot Report</em>.</li>
+<li>Edit the gadget and pick the saved report.</li>
+</ol>
+<h3>If something looks wrong</h3>
+<ul>
+<li><strong>Numbers look lower than expected.</strong> Reports run as the signed-in person, so each viewer only sees work they already have permission to see. Two people can legitimately see different totals.</li>
+<li><strong>A custom field is missing from the list.</strong> Only fields available to the projects in your source query appear. Widen the source, or check the field's context in Jira.</li>
+<li><strong>A history report is truncated.</strong> That is the 1,500-item limit above; narrow the JQL.</li>
+</ul>
 <h2>Summary</h2>
 <p>Pivot Reports turns a JQL query, a board, a sprint or a saved filter into a pivot
 table and a chart in three clicks: pick a row field, an optional column field, and one

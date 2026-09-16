@@ -2,6 +2,37 @@
 <div class="video"><iframe width="720" height="405" src="https://www.youtube-nocookie.com/embed/40XoO_6SVz8" title="Mailpost for Jira — demo" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
 
 <p><strong>Tagline:</strong> Send, schedule and receive email from Jira. Templates with logic, per-project rules, scheduled digests, replies that land back on the issue, and an audit trail on the work item. Free for 10 users, then from US$0.60 per user per month.</p>
+<h2 id="getting-started">Getting started</h2>
+<h3>1. Install</h3>
+<p>Install from the Marketplace listing, or in Jira go to <strong>Apps &rarr; Explore more apps</strong> and search for <em>Mailpost for Jira</em>. You need to be a Jira administrator.</p>
+<h3>2. Send your first email &mdash; no configuration needed</h3>
+<p>Out of the box Mailpost sends through Jira's own notification service. Nothing has to be set up, and no data leaves Atlassian.</p>
+<ol>
+<li>Open any work item.</li>
+<li>Choose <strong>Mailpost &mdash; Email This Work Item</strong> from the work item's action menu (the <strong>&hellip;</strong> button).</li>
+<li>Pick recipients, choose a template or write the message, and send.</li>
+<li>The record of what was sent appears in the <strong>Mailpost Email History</strong> panel on that work item.</li>
+</ol>
+<h3>3. Templates and rules</h3>
+<ol>
+<li>Go to <strong>Project settings &rarr; Apps &rarr; Mailpost Templates and Rules</strong>.</li>
+<li>Create a template with a subject and body; insert work item fields as placeholders.</li>
+<li>Add a rule if you want a template sent automatically on a create, transition or update, with conditions.</li>
+</ol>
+<h3>4. Optional: bring your own email provider</h3>
+<p>This step is entirely optional and <strong>off by default</strong>. Turning it on lets mail leave from your own domain and enables inbound replies.</p>
+<ol>
+<li>Go to <strong>Settings (cog) &rarr; Apps &rarr; Mailpost for Jira</strong>.</li>
+<li>Set the delivery provider to <strong>Postmark</strong>.</li>
+<li>Paste the <strong>Postmark server token</strong> from your own Postmark account. This is a third-party email provider credential that you own and can revoke at any time. Mailpost never asks for, stores or transmits an Atlassian password, API token or personal access token of any kind.</li>
+<li>Optionally copy the inbound webhook URL into Postmark so replies come back onto the work item.</li>
+</ol>
+<h3>If something looks wrong</h3>
+<ul>
+<li><strong>The action is not on the work item.</strong> It is under the <strong>&hellip;</strong> menu rather than a button on the toolbar.</li>
+<li><strong>Mail is not arriving.</strong> With the default Jira provider, Jira will not deliver to anyone who cannot already see the work item. With Postmark, check the server token and that the sender signature is verified in Postmark.</li>
+<li><strong>Replies are not coming back.</strong> Inbound replies require the Postmark provider and the inbound webhook from step 4.</li>
+</ul>
 <h2>Summary</h2>
 <p>Mailpost puts "Email this issue" in the issue actions menu and an "Email history" panel on the issue. Pick a template, choose who gets it — reporter, assignee, watchers, voters, named users, groups, project roles, the people in any user-picker field, or a typed address — and send. Every send is recorded on the issue, searchable across the site, and optionally posted back as a comment.</p>
 <p>Beyond the manual send, Mailpost does the three things a team usually reaches for a second tool to get: <strong>rules</strong> that email automatically when something happens on a project, <strong>scheduled digests</strong> that mail a JQL filter's results on a cadence, and <strong>inbound mail</strong> that turns a reply into a comment on the issue it names.</p>
