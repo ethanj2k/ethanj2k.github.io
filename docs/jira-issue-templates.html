@@ -7,6 +7,30 @@ button.</strong> Fields, descriptions, whole epic → story → sub-task trees, 
 prompted variables. One edition, everything included, US$0.79 per user per month and free
 for teams of ten or fewer.</p>
 <hr />
+<h2 id="getting-started">Getting started</h2>
+<h3>1. Install</h3>
+<p>Install from the Marketplace listing, or in Jira go to <strong>Apps &rarr; Explore more apps</strong> and search for <em>Stencil Issue Templates for Jira</em>. You need to be a Jira administrator.</p>
+<h3>2. Create your first template</h3>
+<ol>
+<li>Go to <strong>Project settings &rarr; Apps &rarr; Stencil Work Item Templates</strong>.</li>
+<li>Choose <strong>New template</strong> and give it a name.</li>
+<li>Fill in the fields you want pre-filled &mdash; summary, description, labels, components, assignee, and any custom field.</li>
+<li>Use <strong>variables</strong> like <code>{{customer}}</code> in the summary or description for values you want to be asked for each time.</li>
+<li>Save.</li>
+</ol>
+<h3>3. Apply it</h3>
+<ol>
+<li>Open a work item and choose <strong>Apply a Stencil Template</strong> from the <strong>&hellip;</strong> menu, or</li>
+<li>Set the template to apply automatically on create for chosen work item types, in the template's own settings.</li>
+<li>If the template uses variables you are prompted for them, and you choose what happens <strong>when a field already has a value</strong>.</li>
+</ol>
+<h3>4. Share across projects</h3>
+<p>Go to <strong>Settings (cog) &rarr; Apps &rarr; Stencil Site Template Library</strong> to keep templates every project can use.</p>
+<h3>If something looks wrong</h3>
+<ul>
+<li><strong>A field did not fill.</strong> The field must exist on that project and work item type's screen; Stencil cannot set a field Jira is not showing.</li>
+<li><strong>A variable was not asked for.</strong> Variables are only detected in fields that support them; check the spelling of the <code>{{name}}</code> marker.</li>
+</ul>
 <h2 id="the-problem-every-other-template-app-has">The problem every other template app has</h2>
 <p>Read the one- and two-star reviews of any issue-template app for Jira Cloud and the same
 sentence comes back for years:</p>

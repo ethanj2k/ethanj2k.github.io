@@ -9,6 +9,29 @@ per month, free for ten users or fewer.</strong></p>
 <p>Jira Misc Custom Fields charges <strong>$1.00</strong>. Awesome Custom Fields charges <strong>$1.06</strong>.
 Abacus charges <strong>$1.44</strong>.</p>
 <hr />
+<h2 id="getting-started">Getting started</h2>
+<h3>1. Install</h3>
+<p>Install from the Marketplace listing, or in Jira go to <strong>Apps &rarr; Explore more apps</strong> and search for <em>Slide Rule</em>. You need to be a Jira administrator.</p>
+<h3>2. Create your first calculated field</h3>
+<ol>
+<li>Go to <strong>Settings (cog) &rarr; Apps &rarr; Slide Rule</strong>.</li>
+<li>Choose <strong>New field</strong> and name it, for example <em>Remaining budget</em>.</li>
+<li>Write the formula using other Jira fields, for example <code>{budget} - {spent}</code>.</li>
+<li>Pick the result type &mdash; number, duration, date or text &mdash; and save.</li>
+</ol>
+<h3>3. Put it on the screen</h3>
+<ol>
+<li>Go to <strong>Settings (cog) &rarr; Issues &rarr; Screens</strong> and add the new field to the screens you want it on, exactly as you would any custom field.</li>
+<li>Open a work item: the value is calculated and shown.</li>
+</ol>
+<h3>4. Use it like a real field</h3>
+<p>The result is written back to Jira, so it works in JQL, on board cards, in dashboards, in filters and in exports &mdash; not just on the screen you are looking at.</p>
+<h3>If something looks wrong</h3>
+<ul>
+<li><strong>The field is blank.</strong> One of the fields in the formula has no value on that work item, or is not available on that project.</li>
+<li><strong>The value looks stale.</strong> Values recalculate when the work item changes; edit and save the item to force it.</li>
+<li><strong>The field is not in JQL.</strong> Give Jira a few minutes to index a newly created field.</li>
+</ul>
 <h2>The number is in Jira, not just on the screen</h2>
 <p>This is the part most calculated-field apps on Cloud get wrong, and it is not their
 fault: Forge invokes a custom field's value function <strong>only on the issue view</strong>. An

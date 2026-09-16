@@ -7,6 +7,32 @@ Multi-stage and parallel approvals, quorum rules, delegation, escalation, and a
 tamper-evident audit trail you can export and check for yourself. One edition,
 everything included, US$0.99 per user per month, free for teams of ten or fewer.</p>
 <hr />
+<h2 id="getting-started">Getting started</h2>
+<h3>1. Install</h3>
+<p>Install from the Marketplace listing, or in Jira go to <strong>Apps &rarr; Explore more apps</strong> and search for <em>Countersign</em>. You need to be a Jira administrator. Countersign works on Jira Standard &mdash; you do not need Jira Service Management.</p>
+<h3>2. Ask for your first approval</h3>
+<ol>
+<li>Open any work item.</li>
+<li>Expand the <strong>Countersign Approvals</strong> panel in the right-hand context column.</li>
+<li>Choose <strong>Request approval</strong>, pick the approvers, and send.</li>
+<li>Approvers see it in the panel and on their own <strong>Apps &rarr; My Approvals (Countersign)</strong> page.</li>
+</ol>
+<h3>3. Make it a rule</h3>
+<ol>
+<li>Go to <strong>Project settings &rarr; Apps &rarr; Countersign Approvals and Sign-off</strong>.</li>
+<li>Create an approval rule: which work item types it applies to, who approves, and how many approvals are needed.</li>
+</ol>
+<h3>4. Block a transition until it is approved</h3>
+<ol>
+<li>Go to <strong>Project settings &rarr; Workflows</strong> and edit the workflow.</li>
+<li>On the transition, choose <strong>Validators &rarr; Add validator</strong> and pick <em>Approval Has Been Granted</em> or <em>No Approval Is Still Waiting</em>.</li>
+<li>Publish. The transition is now genuinely blocked, not just advisory.</li>
+</ol>
+<h3>If something looks wrong</h3>
+<ul>
+<li><strong>An approver cannot see the request.</strong> They need permission to view the work item; Countersign follows Jira's permissions.</li>
+<li><strong>The transition is still allowed.</strong> The validator has to be on the transition you are actually using, and the workflow must be published.</li>
+</ul>
 <h2>Why this exists</h2>
 <p>Jira added a native approval step in October 2025. It is a genuine improvement and for
 some teams it is enough. Here is what it does not do, in Atlassian&rsquo;s own words and their

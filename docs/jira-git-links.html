@@ -2,6 +2,30 @@
 <div class="video"><iframe width="720" height="405" src="https://www.youtube-nocookie.com/embed/zuHHYykNKDA" title="Git Links for Jira — demo" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
 
 <p><strong>Tagline:</strong> Commits, branches, pull requests, builds and file browsing from GitHub, GitHub Enterprise, GitLab, Bitbucket and Azure DevOps — on the issue, searchable in JQL, with smart commits your project admin turns on. Free for 10 users, then US$0.90 per user per month.</p>
+<h2 id="getting-started">Getting started</h2>
+<h3>1. Install</h3>
+<p>Install from the Marketplace listing, or in Jira go to <strong>Apps &rarr; Explore more apps</strong> and search for <em>Git Links for Jira</em>. You need to be a Jira administrator.</p>
+<h3>2. Connect a repository</h3>
+<ol>
+<li>Go to <strong>Settings (cog) &rarr; Apps &rarr; Git Links for Jira</strong>.</li>
+<li>Choose <strong>Connect repository</strong> and pick your host: GitHub, GitLab, Bitbucket or Azure DevOps.</li>
+<li>Paste a read-only access token for that host and the repository to watch, then choose <strong>Connect</strong>.</li>
+<li>The token is your Git host's credential, not an Atlassian one. Read-only scope is enough.</li>
+</ol>
+<h3>3. See commits on work items</h3>
+<ol>
+<li>Reference a work item key in a commit message, branch name or pull request title, for example <code>PLAT-42 fix the parser</code>.</li>
+<li>Open that work item in Jira. The <strong>Git Links</strong> panel lists the commits, branches and pull requests that mention it.</li>
+</ol>
+<h3>4. Search on it</h3>
+<p>Git Links adds JQL fields, so you can ask things like <code>gitCommits &gt; 0</code> or <code>gitPullRequestStatus = open</code> in any Jira search or board filter.</p>
+<h3>5. Self-hosted Git</h3>
+<p>For GitHub Enterprise, GitLab self-managed or Azure DevOps Server, add your own host under <strong>Customer-managed egress</strong> on the same settings page. You approve each host explicitly, one at a time, and can revoke it later.</p>
+<h3>If something looks wrong</h3>
+<ul>
+<li><strong>No commits appear.</strong> The work item key must be in the commit message, branch name or PR title, and the repository must be connected in step 2.</li>
+<li><strong>Connecting fails.</strong> Check the token has read access to that repository and has not expired.</li>
+</ul>
 <h2>Summary</h2>
 <p>Git Links for Jira puts the code behind a piece of work where the work is. Connect a repository once and every commit, branch and pull request that mentions the issue key shows up on the issue, with the files changed, the diff, the build status and how far the branch is ahead of main. Create a branch and open a pull request without leaving Jira. Browse any connected repository, at any branch, from a Git Viewer page inside Jira. Search all of it with JQL.</p>
 <p>Five hosts, one app: <strong>GitHub</strong>, <strong>GitHub Enterprise Server</strong>, <strong>GitLab</strong> (SaaS and self-managed), <strong>Bitbucket Cloud</strong> and <strong>Azure DevOps</strong> (Services and Server). Webhooks index a push the second it lands; an hourly sync catches anything a webhook missed.</p>

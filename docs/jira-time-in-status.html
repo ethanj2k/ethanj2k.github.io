@@ -3,6 +3,29 @@
 <div class="video"><iframe width="720" height="405" src="https://www.youtube-nocookie.com/embed/cAPSTVeEhPg" title="Status Clock: Time in Status & SLA for Jira — demo" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
 
 <p><strong>Tagline:</strong> Time in every status, on a working calendar that is right about weekends, holidays and daylight saving — plus a real SLA engine with pause and breach. Free to 10 users, then $0.62.</p>
+<h2 id="getting-started">Getting started</h2>
+<h3>1. Install</h3>
+<p>Install from the Marketplace listing, or in Jira go to <strong>Apps &rarr; Explore more apps</strong> and search for <em>Status Clock</em>. You need to be a Jira administrator. It starts working immediately &mdash; it reads history Jira already keeps, so there is no waiting period before numbers appear.</p>
+<h3>2. See time in status on a work item</h3>
+<ol>
+<li>Open any work item.</li>
+<li>Expand the <strong>Status Clock &mdash; Time in Status &amp; SLA</strong> panel in the right-hand context column.</li>
+<li>It lists how long the item has spent in each status, and where it is against any SLA that applies.</li>
+</ol>
+<h3>3. Define an SLA</h3>
+<ol>
+<li>Go to <strong>Project settings &rarr; Apps &rarr; Status Clock Settings</strong>.</li>
+<li>Choose <strong>New SLA</strong>, name it, and set the statuses that start, pause and stop the clock.</li>
+<li>Set the target, and a working calendar if the clock should only run in business hours.</li>
+<li>Save. It applies to matching work items straight away, including ones created before today.</li>
+</ol>
+<h3>4. Report on it</h3>
+<p>Add the <strong>Time in Status (Status Clock)</strong> or <strong>SLA Compliance (Status Clock)</strong> gadgets to a dashboard: <strong>Dashboards &rarr; Add gadget &rarr;</strong> search <em>Status Clock</em>.</p>
+<h3>If something looks wrong</h3>
+<ul>
+<li><strong>A status shows no time.</strong> The item has not entered that status yet, or entered and left within the same second.</li>
+<li><strong>SLA numbers look generous.</strong> Check whether the SLA uses a working calendar; nights and weekends are excluded if it does.</li>
+</ul>
 <h2>Summary</h2>
 <p>Status Clock replays each issue&rsquo;s own Jira history to work out how long it spent in
 every status, in every person&rsquo;s hands and in every sprint, and measures it on a working
