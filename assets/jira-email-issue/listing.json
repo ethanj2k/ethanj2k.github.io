@@ -1,6 +1,6 @@
 {
  "name": "Mailpost for Jira",
- "tagline": "Email an issue from Jira with templates, recipients from the issue and a send log, through Jira's own mail. Free for 10 users, then US$0.60 per user.",
+ "tagline": "Email an issue from Jira with templates, recipients from the issue and a send log, through Jira's own mail. US$3 a month for up to 10 users, then US$0.60 per user.",
  "highlights": [
   [
    "Email this issue, from the issue",
