@@ -27,13 +27,13 @@
 <li><strong>Connecting fails.</strong> Check the token has read access to that repository and has not expired.</li>
 </ul>
 <h2>Summary</h2>
-<p>Git Links for Jira puts the code behind a piece of work where the work is. Connect a repository once and every commit, branch and pull request that mentions the issue key shows up on the issue, with the files changed, the diff, the build status and how far the branch is ahead of main. Create a branch and open a pull request without leaving Jira. Browse any connected repository, at any branch, from a Git Viewer page inside Jira. Search all of it with JQL.</p>
+<p>Git Links for Jira puts the code behind a piece of work where the work is. Connect a repository once and every commit, branch and pull request that mentions the issue key shows up on the issue, with the files changed, the diff, the build status and how far the branch is ahead of main. Create a branch and open a pull request without leaving Jira. Browse any connected repository, at any branch, from a Repository Browser page inside Jira. Search all of it with JQL.</p>
 <p>Five hosts, one app: <strong>GitHub</strong>, <strong>GitHub Enterprise Server</strong>, <strong>GitLab</strong> (SaaS and self-managed), <strong>Bitbucket Cloud</strong> and <strong>Azure DevOps</strong> (Services and Server). Webhooks index a push the second it lands; an hourly sync catches anything a webhook missed.</p>
 <h2>Highlights</h2>
 <ul>
 <li><strong>The issue panel, in full.</strong> Commits with author, time, message and files changed; branches with ahead/behind against the default branch; pull requests with open / draft / merged / declined; CI builds and deployments per branch; inline diffs rendered in Jira; a one-click <code>git switch</code> command; and manual linking for the commit whose message forgot the key.</li>
 <li><strong>Create a branch, open a pull request.</strong> Both from the issue, both through the provider's API. Branch names come from a template you control (<code>{prefix}{key}-{summary}</code>, plus <code>{type}</code> and <code>{user}</code>), are always valid per <code>git check-ref-format</code>, and never collide with an existing branch.</li>
-<li><strong>Git Viewer.</strong> Browse the file tree of any connected repository at any branch and read files inside Jira, with syntax highlighting. No context switch to answer "what does that file look like on the release branch?".</li>
+<li><strong>Repository Browser.</strong> Browse the file tree of any connected repository at any branch and read files inside Jira, with syntax highlighting. No context switch to answer "what does that file look like on the release branch?".</li>
 <li><strong>Smart commits that are opt-in, per project, by an administrator.</strong> <code>#comment</code>, <code>#time</code>, <code>#transition</code> and <code>#label</code> are always <em>parsed and shown</em> on the issue. They are only ever <em>executed</em> if a Jira or project administrator turns execution on for that project and allow-lists each command family. Every write carries an audit line naming the commit, the repository and the author the commit claims. Replays and retries cannot double-apply anything.</li>
 <li><strong>Repository permissions.</strong> Every repository is scoped to the Jira projects that may see it — enforced on reads <em>and</em> on the way in, so a repository scoped to one project cannot index, comment on, or transition anything in another. "Every project" is a deliberate tick, not what happens if you leave the picker alone.</li>
 <li><strong>JQL, dashboards and filters.</strong> Each issue's git activity is written to an indexed issue property with twelve search fields: <code>gitCommits</code>, <code>gitBranches</code>, <code>gitPullRequests</code>, <code>gitOpenPullRequests</code>, <code>gitMergedPullRequests</code>, <code>gitDeclinedPullRequests</code>, <code>gitHasCommits</code>, <code>gitHasPullRequests</code>, <code>gitMerged</code>, <code>gitLastActivity</code>, <code>gitRepository</code>, <code>gitBranch</code>. Example: <code>project = PLAT AND status = Done AND gitHasCommits = "no"</code> finds work marked done with no code behind it.</li>
@@ -49,7 +49,7 @@
 <th>Read</th>
 <th>Create branch</th>
 <th>Create pull request</th>
-<th>Git Viewer</th>
+<th>Repository Browser</th>
 <th>Builds</th>
 <th>Webhook auth</th>
 </tr>
@@ -150,7 +150,7 @@
 <td><strong>Yes</strong>, via the provider API, with draft support</td>
 </tr>
 <tr>
-<td>Git Viewer / repository browser</td>
+<td>Repository Browser / repository browser</td>
 <td>Yes</td>
 <td><strong>Yes</strong> — tree, branch switching, file contents with syntax highlighting</td>
 </tr>
