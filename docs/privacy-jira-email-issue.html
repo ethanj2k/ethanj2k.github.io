@@ -1,0 +1,55 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Privacy Policy — Mailpost for Jira</title><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/style.css"></head><body><nav><a href="/">Apps</a><a href="/docs/privacy-jira-email-issue.html">Privacy policy</a><a href="/security.html">Security</a><a href="/dpa.html">DPA</a><a href="/terms.html">Terms of service</a><a href="/support.html">Support</a></nav><h1>Privacy Policy — Mailpost for Jira</h1>
+<p><em>Effective: 18 September 2026</em></p>
+<p>Mailpost ("the app") is published by Two Little Moons Consulting (ABN 49 732 400 198), based in Penrith, NSW, Australia ("we", "us"), on the Atlassian Marketplace. This policy explains exactly what the app does with data.</p>
+<p>One thing is stated plainly up front, because it is the whole point of the app: <strong>when a site chooses to connect an email provider, the app sends the email you asked it to send through that provider.</strong> Who that provider is, what reaches it and who decides are set out below. A site that never connects one has <strong>no egress at all</strong>.</p>
+<h2>Where the app runs</h2>
+<p>The app is built on Atlassian Forge and its own code runs on Atlassian's infrastructure inside your site's installation. <strong>We operate no server.</strong> There is no backend of ours for your data to reach, no analytics, no error-reporting service and no sub-processor of ours in the path.</p>
+<p>We cannot read your Jira data, and we never see the mail you send.</p>
+<h2>Data that leaves Atlassian, and where it goes</h2>
+<p>The app's manifest declares exactly <strong>one</strong> external host: <code>api.postmarkapp.com</code>. There is no user-supplied URL anywhere in the app, the delivery code re-checks the scheme, host and port immediately before every call, and redirects are never followed — so a 30x response cannot carry your API key anywhere else.</p>
+<p>The provider is <strong>off by default</strong>. Until a Jira administrator connects one:</p>
+<ul>
+<li>nothing leaves Atlassian;</li>
+<li>the app sends through Jira's own notification service instead.</li>
+</ul>
+<p>When a provider is connected, what reaches it is the message you composed: the recipients you addressed it to, the subject and body produced from the work item and the template chosen, and any attachment you explicitly chose to include. That is what sending an email means. Your provider's own terms and privacy policy then govern that message.</p>
+<p>Declaring this host is why the app is not badged "Runs on Atlassian". We would rather say so here than bury it.</p>
+<h2>Data the app reads from Jira</h2>
+<p>Read <strong>on your behalf and with your own Jira permissions</strong>:</p>
+<ul>
+<li><strong>The work item you are emailing</strong>: key, summary, description, issue type, project, status, priority, assignee, reporter, fields referenced by your template, and its comments where a template includes them.</li>
+<li><strong>Attachments</strong>, only when you choose to attach them.</li>
+<li><strong>Users, groups, project roles and fields</strong>, to resolve recipients and template placeholders and to apply the access rules an administrator configured.</li>
+<li><strong>Your Atlassian account id and display name</strong>, to identify you and attribute the send.</li>
+</ul>
+<p>A work item you cannot open in Jira can never be emailed by you through this app.</p>
+<h2>Data the app writes to Jira</h2>
+<ul>
+<li><strong>A send log entry</strong> on the work item, so a team can see what was sent, to whom and when.</li>
+<li><strong>A comment</strong>, and only where you or a rule explicitly chose "post as comment".</li>
+<li><strong>Notifications</strong>, via Jira's own notification service when no provider is connected.</li>
+</ul>
+<h2>Data the app stores in Forge storage</h2>
+<p>All of it inside <strong>your</strong> Atlassian installation, never ours:</p>
+<ul>
+<li><strong>Templates and rules</strong> an administrator has configured, including their text.</li>
+<li><strong>Per-site settings</strong>, such as which provider is enabled and the default sender.</li>
+<li><strong>A send log</strong> — recipients, subject, timestamp and outcome for each send, so a send can be audited and a failure diagnosed.</li>
+<li><strong>The provider API key and the inbound secret</strong>, in <strong>Forge secret storage</strong>. Neither is displayed after entry, neither is logged, and the API key is transmitted only to the single declared host as its authentication.</li>
+<li><strong>Small operational records</strong>: a site identifier, recently active account ids used to attribute app-authored actions, and cached avatars and content ids used to render a message.</li>
+</ul>
+<h2>Data we collect about you</h2>
+<p><strong>None.</strong> We run no analytics and receive no telemetry. We do not know who installs the app, who sends mail with it, or to whom. What we see is what Atlassian shows any Marketplace partner: aggregate install and licence counts for billing, and whatever you choose to tell us if you contact support.</p>
+<h2>Retention and deletion</h2>
+<p>Templates, rules, settings and the send log live in your installation and are removed when you uninstall the app. Disconnecting a provider deletes its stored key. You can revoke that key at the provider at any time, which takes effect immediately regardless of anything stored here.</p>
+<p>Mail already delivered is held by your provider and your recipients under their own retention, not ours.</p>
+<h2>Data residency</h2>
+<p>The app stores End-User Data only within Atlassian apps and services, so it inherits your site's own data residency. The app itself offers no separate residency option. Mail sent through a connected provider is subject to <strong>that provider's</strong> residency, not ours.</p>
+<h2>Security</h2>
+<p>The provider key and inbound secret are held in Forge secret storage. Every read is performed with the permissions of the person asking, so the app cannot show or send anything Jira would not let that person see. Exactly one external host is declared, it is re-validated before every call, and redirects are refused.</p>
+<p>Report a security issue to <strong>support@twolittlemoons.com</strong>. Our security statement is at <a href="https://ethanj2k.github.io/security.html.">https://ethanj2k.github.io/security.html.</a></p>
+<h2>Contact</h2>
+<p>Questions, or a request about data: <strong>support@twolittlemoons.com</strong>.</p>
+<p>Two Little Moons Consulting, ABN 49 732 400 198, Penrith, NSW 2750, Australia.</p>
+<h2>Changes</h2>
+<p>Material changes will be published on this page with a new effective date, and noted in the app's release notes before they take effect. Adding an external service, or any new category of stored data, would be announced before it ships.</p><footer>Two Little Moons Consulting, ABN 49 732 400 198, Penrith, NSW 2750, Australia.</footer></body></html>

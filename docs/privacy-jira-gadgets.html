@@ -1,0 +1,38 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Privacy Policy — Agile Gadgets for Jira</title><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/style.css"></head><body><nav><a href="/">Apps</a><a href="/docs/privacy-jira-gadgets.html">Privacy policy</a><a href="/security.html">Security</a><a href="/dpa.html">DPA</a><a href="/terms.html">Terms of service</a><a href="/support.html">Support</a></nav><h1>Privacy Policy — Agile Gadgets for Jira</h1>
+<p><em>Effective: 18 September 2026</em></p>
+<p>Agile Gadgets ("the app") is published by Two Little Moons Consulting (ABN 49 732 400 198), based in Penrith, NSW, Australia ("we", "us"), on the Atlassian Marketplace. This policy explains exactly what the app does with data.</p>
+<h2>Where the app runs</h2>
+<p>The app is built on Atlassian Forge and runs <strong>entirely on Atlassian's own infrastructure</strong>, inside your site's installation. Its manifest declares <strong>no external fetch permission of any kind</strong> — there is no server of ours for data to reach, and no third party receives anything. We have no analytics, no error-reporting service and no sub-processors.</p>
+<p>We cannot read your Jira data. Nothing in the app sends it anywhere, and we have no access to your installation's storage.</p>
+<h2>Data the app reads from Jira</h2>
+<p>Always <strong>on your behalf and with your own Jira permissions</strong>, never with elevated rights:</p>
+<ul>
+<li><strong>Work items on the board or matching the query a gadget is configured with</strong>: key, summary, project, issue type, status, priority, assignee, story points or the estimate field chosen, resolution, and creation and resolution dates.</li>
+<li><strong>Each work item's changelog</strong>, which is what lets a gadget draw history rather than a snapshot — cumulative flow, cycle time and aging all come from it.</li>
+<li><strong>Boards and sprints</strong>: names, dates, state and which work items belong to them.</li>
+<li><strong>The site's project, field and status catalogues</strong>, to offer something to configure.</li>
+<li><strong>Your own Atlassian account id and display name</strong>, to identify you.</li>
+</ul>
+<p>A work item you cannot open in Jira can never appear in a gadget you view. Every read is performed as you, so two people looking at the same dashboard may legitimately see different totals.</p>
+<h2>Data the app writes to Jira</h2>
+<p><strong>Nothing.</strong> The app holds no Jira write scope at all. It cannot change a work item, a board, a sprint or any configuration.</p>
+<h2>Data the app stores in Forge storage</h2>
+<p>All of it inside <strong>your</strong> Atlassian installation, never ours:</p>
+<ul>
+<li><strong>Historical series</strong> computed for a gadget — the daily points a burndown, velocity or cumulative flow chart is drawn from, so a chart does not have to replay every changelog on every view.</li>
+</ul>
+<p>Gadget configuration itself — which board, which query, which measure — is held by Jira as part of the dashboard, not by the app.</p>
+<h2>Data we collect about you</h2>
+<p><strong>None.</strong> We run no analytics and receive no telemetry. We do not know who installs the app, who views a dashboard or what it shows. What we see is what Atlassian shows any Marketplace partner: aggregate install and licence counts for billing, and whatever you choose to tell us if you contact support.</p>
+<h2>Retention and deletion</h2>
+<p>Historical series live in your installation and are removed when you uninstall the app. Removing a gadget from a dashboard removes its configuration with the dashboard.</p>
+<h2>Data residency</h2>
+<p>The app stores End-User Data only within Atlassian apps and services, so it inherits your site's own data residency. The app itself offers no separate residency option.</p>
+<h2>Security</h2>
+<p>Every read is performed with the permissions of the person asking, so the app cannot show anyone something Jira would not. The app can write nothing back to Jira, and there is no external egress to secure, because there is none.</p>
+<p>Report a security issue to <strong>support@twolittlemoons.com</strong>. Our security statement is at <a href="https://ethanj2k.github.io/security.html.">https://ethanj2k.github.io/security.html.</a></p>
+<h2>Contact</h2>
+<p>Questions, or a request about data: <strong>support@twolittlemoons.com</strong>.</p>
+<p>Two Little Moons Consulting, ABN 49 732 400 198, Penrith, NSW 2750, Australia.</p>
+<h2>Changes</h2>
+<p>Material changes will be published on this page with a new effective date, and noted in the app's release notes before they take effect. Adding an external service, or any new category of stored data, would be announced before it ships.</p><footer>Two Little Moons Consulting, ABN 49 732 400 198, Penrith, NSW 2750, Australia.</footer></body></html>

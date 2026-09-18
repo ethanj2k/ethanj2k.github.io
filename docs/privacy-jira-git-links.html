@@ -1,0 +1,56 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Privacy Policy — Git Links for Jira</title><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/style.css"></head><body><nav><a href="/">Apps</a><a href="/docs/privacy-jira-git-links.html">Privacy policy</a><a href="/security.html">Security</a><a href="/dpa.html">DPA</a><a href="/terms.html">Terms of service</a><a href="/support.html">Support</a></nav><h1>Privacy Policy — Git Links for Jira</h1>
+<p><em>Effective: 18 September 2026</em></p>
+<p>Git Links ("the app") is published by Two Little Moons Consulting (ABN 49 732 400 198), based in Penrith, NSW, Australia ("we", "us"), on the Atlassian Marketplace. This policy explains exactly what the app does with data.</p>
+<p>It is deliberately specific about one thing: unlike most of our apps, <strong>this one does send data outside Atlassian</strong>, because connecting Jira to a Git host is what it is for. What leaves, where it goes and who decides are set out below.</p>
+<h2>Where the app runs</h2>
+<p>The app is built on Atlassian Forge and its own code runs on Atlassian's infrastructure inside your site's installation. <strong>We operate no server.</strong> There is no backend of ours for your data to reach, no analytics, no error-reporting service and no sub-processor of ours anywhere in the path.</p>
+<p>We cannot read your Jira data. Nothing in the app sends it to us, and we have no access to your installation's storage.</p>
+<h2>Data that leaves Atlassian, and where it goes</h2>
+<p>The app calls the API of the Git host a <strong>Jira administrator</strong> has connected. Nothing is reachable until an administrator connects it, and nothing is sent to anyone else.</p>
+<p>Declared hosts, named in the app's manifest: <code>api.github.com</code>, <code>gitlab.com</code>, <code>api.bitbucket.org</code> and <code>dev.azure.com</code>.</p>
+<p>A self-managed GitHub Enterprise Server, a self-managed GitLab, an Azure DevOps Server, or an optional sync-failure alert webhook live on hostnames that cannot be known in advance. Rather than request a wildcard, the app asks for each one <strong>at the moment an administrator connects it</strong>. Atlassian shows that administrator a consent modal naming the exact domain; nothing is reachable unless they approve it, the grant is scoped to their installation, it is written to the Atlassian Guard audit log, and they can review or revoke it in Atlassian Administration → Connected Apps → Data management.</p>
+<p>What is actually transmitted:</p>
+<ul>
+<li><strong>Work item keys</strong>, to find the commits, branches and pull requests that mention them.</li>
+<li><strong>A work item's summary</strong>, and only when a user explicitly asks the app to create a branch or a pull request for it — because the summary becomes the branch or PR name. It then persists in that customer's own Git repository.</li>
+<li><strong>The credentials</strong> described below, as the authentication on those API calls.</li>
+</ul>
+<p>Nothing else. The app does not send issue descriptions, comments, attachments, custom field values or any person's details to a Git host.</p>
+<h2>Data the app reads from Jira</h2>
+<p>Read <strong>on your behalf and with your own Jira permissions</strong>, except where noted:</p>
+<ul>
+<li><strong>Work items you are entitled to see</strong>: key, summary, project and issue type.</li>
+<li><strong>Your Atlassian account id and display name</strong>, to identify you and attribute actions.</li>
+<li><strong>Whether you may administer Jira or the project</strong>, to decide who may change settings.</li>
+</ul>
+<p>A work item you cannot open in Jira can never appear in the app's panel.</p>
+<h2>Data the app writes to Jira</h2>
+<ul>
+<li><strong>Its own work item property</strong> (<code>git-links</code>), a small summary — counts of commits, branches and pull requests — so that git activity is searchable in ordinary JQL.</li>
+<li><strong>Smart-commit results</strong>, and only where enabled. The app declares <code>write:jira-work</code> because Forge cannot request a scope conditionally, but <strong>every</strong> Jira write is gated server-side on a per-project toggle that <strong>defaults to off</strong> and can only be turned on by a Jira or project administrator. With it off the app writes nothing to a work item beyond its own property.</li>
+</ul>
+<h2>Data the app stores in Forge storage</h2>
+<p>All of it inside <strong>your</strong> Atlassian installation, never ours:</p>
+<ul>
+<li><strong>Connection configuration</strong> — provider, repository, display name and which projects a repository is visible to.</li>
+<li><strong>A cached index per work item</strong> — commit shas and messages, branch and pull-request titles, and the author name and email <strong>as recorded by the Git host</strong>. This is a cache of what the provider returned; it is what makes the panel fast.</li>
+<li><strong>Provider access tokens</strong>, in <strong>Forge secret storage</strong>. An administrator's connection token and, where a user has supplied their own, that user's personal token. Secrets are never displayed after entry, never logged, and never sent anywhere except as authentication to the provider they belong to.</li>
+<li><strong>Webhook secrets</strong>, also in Forge secret storage.</li>
+<li><strong>Per-project settings</strong>, smart-commit bookkeeping, webhook delivery records used to discard duplicates, and tombstones for deleted connections.</li>
+</ul>
+<h2>Data we collect about you</h2>
+<p><strong>None.</strong> We run no analytics and receive no telemetry. We do not know who installs the app, who uses it or what they do with it. What we see is what Atlassian shows any Marketplace partner: aggregate install and licence counts for billing, and whatever you choose to tell us if you contact support.</p>
+<h2>Retention and deletion</h2>
+<p>Cached indexes and connection records live in your installation and are removed when you delete the connection or uninstall the app. Deleting a connection deletes its token and its webhook secret at the same time. Uninstalling removes the app's storage.</p>
+<p>Tokens can be revoked by you at any time, either in the app or at the Git host. Revoking at the host takes effect immediately regardless of anything stored here.</p>
+<h2>Data residency</h2>
+<p>The app stores End-User Data only within Atlassian apps and services, so it inherits your site's own data residency. The app itself offers no separate residency option.</p>
+<p>Data sent to a Git host is governed by <strong>that host's</strong> terms and residency, not ours. If you connect a self-managed server, its location is yours to determine.</p>
+<h2>Security</h2>
+<p>Credentials are held in Forge secret storage. Every read is performed with the permissions of the person asking, so the app cannot show anyone something Jira would not. Writes to Jira are off by default and require an administrator to enable them. Egress to anything beyond the four declared SaaS hosts requires an administrator's explicit, audit-logged, revocable consent.</p>
+<p>Report a security issue to <strong>support@twolittlemoons.com</strong>. Our security statement is at <a href="https://ethanj2k.github.io/security.html.">https://ethanj2k.github.io/security.html.</a></p>
+<h2>Contact</h2>
+<p>Questions, or a request about data: <strong>support@twolittlemoons.com</strong>.</p>
+<p>Two Little Moons Consulting, ABN 49 732 400 198, Penrith, NSW 2750, Australia.</p>
+<h2>Changes</h2>
+<p>Material changes will be published on this page with a new effective date, and noted in the app's release notes before they take effect.</p><footer>Two Little Moons Consulting, ABN 49 732 400 198, Penrith, NSW 2750, Australia.</footer></body></html>

@@ -1,0 +1,43 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Privacy Policy — Tickbox Checklists for Jira</title><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/style.css"></head><body><nav><a href="/">Apps</a><a href="/docs/privacy-jira-checklists.html">Privacy policy</a><a href="/security.html">Security</a><a href="/dpa.html">DPA</a><a href="/terms.html">Terms of service</a><a href="/support.html">Support</a></nav><h1>Privacy Policy — Tickbox Checklists for Jira</h1>
+<p><em>Effective: 18 September 2026</em></p>
+<p>Tickbox ("the app") is published by Two Little Moons Consulting (ABN 49 732 400 198), based in Penrith, NSW, Australia ("we", "us"), on the Atlassian Marketplace. This policy explains exactly what the app does with data.</p>
+<h2>Where the app runs</h2>
+<p>The app is built on Atlassian Forge and runs <strong>entirely on Atlassian's own infrastructure</strong>, inside your site's installation. Its manifest declares <strong>no external fetch permission of any kind</strong> — there is no server of ours for data to reach, and no third party receives anything. We have no analytics, no error-reporting service and no sub-processors.</p>
+<p>We cannot read your Jira data. Nothing in the app sends it anywhere, and we have no access to your installation's storage.</p>
+<h2>Data the app reads from Jira</h2>
+<p>Always <strong>on your behalf and with your own Jira permissions</strong>:</p>
+<ul>
+<li><strong>The work item you are looking at</strong>: key, summary, project, issue type, status and the fields a template refers to.</li>
+<li><strong>Users and groups</strong>, to resolve who a checklist item is assigned to and who may edit it.</li>
+<li><strong>Your own Atlassian account id and display name</strong>, to identify you and to record who ticked what.</li>
+<li><strong>The site's status catalogue</strong>, so a template can react to a work item's status.</li>
+</ul>
+<p>A work item you cannot open in Jira can never show you its checklist.</p>
+<h2>Data the app writes to Jira</h2>
+<ul>
+<li><strong>A checklist progress field</strong> on the work item, so progress is visible on boards and searchable in JQL.</li>
+<li><strong>Field and screen configuration</strong>, and only when an administrator asks the app to set its own custom field up. This is what the <code>manage:jira-configuration</code> scope is for; it is used for the app's own field and nothing else.</li>
+</ul>
+<h2>Data the app stores in Forge storage</h2>
+<p>All of it inside <strong>your</strong> Atlassian installation, never ours:</p>
+<ul>
+<li><strong>Checklists</strong> — every item's text, its state, who it is assigned to and whether it is mandatory or blocking.</li>
+<li><strong>Templates</strong>, at project and site level, including their item text.</li>
+<li><strong>An audit trail</strong> of who ticked or changed an item and when, so a completed checklist can be trusted.</li>
+<li><strong>Notification records and permission caches</strong>, so the app can tell who may edit a checklist without re-reading Jira on every keystroke.</li>
+<li><strong>Status mappings</strong> an administrator has configured.</li>
+</ul>
+<h2>Data we collect about you</h2>
+<p><strong>None.</strong> We run no analytics and receive no telemetry. We do not know who installs the app, who uses it or what is on your checklists. What we see is what Atlassian shows any Marketplace partner: aggregate install and licence counts for billing, and whatever you choose to tell us if you contact support.</p>
+<h2>Retention and deletion</h2>
+<p>Checklists, templates and the audit trail live in your installation. Deleting a checklist removes it and its audit entries. Uninstalling the app removes the app's storage.</p>
+<h2>Data residency</h2>
+<p>The app stores End-User Data only within Atlassian apps and services, so it inherits your site's own data residency. The app itself offers no separate residency option.</p>
+<h2>Security</h2>
+<p>Every read is performed with the permissions of the person asking, so the app cannot show anyone something Jira would not. Configuration changes are limited to the app's own custom field. There is no external egress to secure, because there is none.</p>
+<p>Report a security issue to <strong>support@twolittlemoons.com</strong>. Our security statement is at <a href="https://ethanj2k.github.io/security.html.">https://ethanj2k.github.io/security.html.</a></p>
+<h2>Contact</h2>
+<p>Questions, or a request about data: <strong>support@twolittlemoons.com</strong>.</p>
+<p>Two Little Moons Consulting, ABN 49 732 400 198, Penrith, NSW 2750, Australia.</p>
+<h2>Changes</h2>
+<p>Material changes will be published on this page with a new effective date, and noted in the app's release notes before they take effect. Adding an external service, or any new category of stored data, would be announced before it ships.</p><footer>Two Little Moons Consulting, ABN 49 732 400 198, Penrith, NSW 2750, Australia.</footer></body></html>

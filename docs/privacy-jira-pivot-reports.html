@@ -1,0 +1,39 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Privacy Policy — Pivot Reports for Jira</title><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/style.css"></head><body><nav><a href="/">Apps</a><a href="/docs/privacy-jira-pivot-reports.html">Privacy policy</a><a href="/security.html">Security</a><a href="/dpa.html">DPA</a><a href="/terms.html">Terms of service</a><a href="/support.html">Support</a></nav><h1>Privacy Policy — Pivot Reports for Jira</h1>
+<p><em>Effective: 18 September 2026</em></p>
+<p>Pivot Reports ("the app") is published by Two Little Moons Consulting (ABN 49 732 400 198), based in Penrith, NSW, Australia ("we", "us"), on the Atlassian Marketplace. This policy explains exactly what the app does with data.</p>
+<h2>Where the app runs</h2>
+<p>The app is built on Atlassian Forge and runs <strong>entirely on Atlassian's own infrastructure</strong>, inside your site's installation. Its manifest declares <strong>no external fetch permission of any kind</strong> — there is no server of ours for data to reach, and no third party receives anything. We have no analytics, no error-reporting service and no sub-processors.</p>
+<p>We cannot read your Jira data. Nothing in the app sends it anywhere, and we have no access to your installation's storage.</p>
+<h2>Data the app reads from Jira</h2>
+<p>Always <strong>on your behalf and with your own Jira permissions</strong>, never with elevated rights:</p>
+<ul>
+<li><strong>Work items matching the query you run</strong>: key, summary, project, issue type, status, priority, assignee, reporter, parent, labels, components, fix versions, resolution, creation and resolution dates, sprint membership, and the custom fields you choose to group or measure by.</li>
+<li><strong>The site's field, status and project catalogues</strong>, to offer you something to group by.</li>
+<li><strong>Your own Atlassian account id and display name</strong>, to identify you and to save your reports against you.</li>
+<li><strong>Display names</strong> of people appearing in a report you are entitled to read.</li>
+</ul>
+<p>A work item you cannot open in Jira can never appear in a report you run. Every read is performed as you.</p>
+<h2>Data the app writes to Jira</h2>
+<p>Nothing about your work items. The app writes no fields, comments or properties to a work item. It declares <code>write:jira-work</code> only so that a saved report can be shared through Jira's own sharing model; no work item content is altered.</p>
+<h2>Data the app stores in Forge storage</h2>
+<p>All of it inside <strong>your</strong> Atlassian installation, never ours:</p>
+<ul>
+<li><strong>Saved reports</strong> — the definition you built: the query, the rows and columns, the measure, the filters and the chart type.</li>
+<li><strong>Saved filters</strong> you have named for reuse.</li>
+<li><strong>Export records</strong>, so a large CSV can be assembled across requests without exceeding Forge's execution limits.</li>
+<li><strong>Cached result snapshots</strong>, so reopening a report does not re-read Jira from scratch. A snapshot holds aggregate figures and the work item keys behind them, never content you would not already be entitled to read.</li>
+</ul>
+<h2>Data we collect about you</h2>
+<p><strong>None.</strong> We run no analytics and receive no telemetry. We do not know who installs the app, who uses it or what they report on. What we see is what Atlassian shows any Marketplace partner: aggregate install and licence counts for billing, and whatever you choose to tell us if you contact support.</p>
+<h2>Retention and deletion</h2>
+<p>Saved reports, filters and snapshots live in your installation. Deleting a report deletes its definition and any snapshot held for it. Uninstalling the app removes the app's storage.</p>
+<h2>Data residency</h2>
+<p>The app stores End-User Data only within Atlassian apps and services, so it inherits your site's own data residency. The app itself offers no separate residency option.</p>
+<h2>Security</h2>
+<p>Every read is performed with the permissions of the person asking, so the app cannot show anyone something Jira would not. There is no external egress to secure, because there is none.</p>
+<p>Report a security issue to <strong>support@twolittlemoons.com</strong>. Our security statement is at <a href="https://ethanj2k.github.io/security.html.">https://ethanj2k.github.io/security.html.</a></p>
+<h2>Contact</h2>
+<p>Questions, or a request about data: <strong>support@twolittlemoons.com</strong>.</p>
+<p>Two Little Moons Consulting, ABN 49 732 400 198, Penrith, NSW 2750, Australia.</p>
+<h2>Changes</h2>
+<p>Material changes will be published on this page with a new effective date, and noted in the app's release notes before they take effect. Adding an external service, or any new category of stored data, would be announced before it ships.</p><footer>Two Little Moons Consulting, ABN 49 732 400 198, Penrith, NSW 2750, Australia.</footer></body></html>
