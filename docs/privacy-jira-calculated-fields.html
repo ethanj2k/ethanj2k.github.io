@@ -13,7 +13,8 @@ it appears on boards, in JQL and in exports. It runs entirely on Atlassian's For
 platform and <strong>sends data to no server outside Atlassian</strong>.</p>
 <h2>Data the app reads from Jira</h2>
 <p>When a work item is created or changed, and when a newly saved formula is applied to
-existing work items, the app reads:</p>
+existing work items (by default those updated in the last 90 days; every one of them
+if an administrator ticks "Fill in all existing work items"), the app reads:</p>
 <ul>
 <li>the work item being computed: its key, id, project, work item type, parent, and the
   values and names of <strong>every field on it</strong>, because a formula may refer to any of
@@ -41,11 +42,16 @@ what the app refuses to do because of it.</p>
 <p>In Forge storage, inside your own Atlassian site:</p>
 <ul>
 <li><strong>field definitions</strong>: the name, type, formula, project and work-item-type scope, on
-  or off, when it was last changed and the account id that changed it;</li>
-<li>an <strong>explanation record per work item</strong>: the formula, the value it produced or the
-  reason nothing was written, the timestamp, and the field values the formula read on
-  that work item — which is what the panel on the work item shows;</li>
-<li>a <strong>backfill cursor</strong> per definition: an opaque page token and a count.</li>
+  or off, whether to fill in all existing work items, when it was last changed and the
+  account id that changed it;</li>
+<li>a <strong>summary of the definitions</strong> for the change trigger: each one's id, scope and
+  the names of the fields its formula reads;</li>
+<li>an <strong>explanation record per work item and definition</strong>: the formula, the value it
+  produced or the reason nothing was written, when that value last changed, and the
+  field values the formula read on that work item — which is what the panel on the
+  work item shows;</li>
+<li>a <strong>backfill cursor</strong> per definition while a backfill is running: an opaque page
+  token and a count. It is deleted when the backfill finishes.</li>
 </ul>
 <p>Nothing else is stored. There is no copy of your work items, and no history beyond the
 most recent result per work item.</p>

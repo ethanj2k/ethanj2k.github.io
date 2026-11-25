@@ -37,7 +37,7 @@ permissions and never with elevated rights:</p>
 <li>an entity property called <code>ditto-clone</code> on each work item the app creates, holding the
   job id, the key and id of the work item it was copied from, a timestamp, and a short
   non-reversible digest of the pair. This is what makes a repeated or interrupted job
-  safe to re-run, and it is what <code>dittoJob = "…"</code> searches in JQL. It contains no
+  safe to re-run, and it is what <code>dittoJob ~ "…"</code> searches in JQL. It contains no
   personal data.</li>
 </ul>
 <h2>Data the app stores</h2>
@@ -49,10 +49,14 @@ permissions and never with elevated rights:</p>
   above, and a short history of its runs;</li>
 <li><strong>job plans</strong>: for each work item to be copied, the field values that will be written.
   Because a plan holds field values taken from your work items, it may contain any data
-  those fields contain, including personal data you have put in them.</li>
+  those fields contain, including personal data you have put in them;</li>
+<li><strong>review prompt dismissals</strong>: if you dismiss the one-line request for a Marketplace
+  review on the job list, or follow its link, your account id and the time, so the
+  request is not shown to you again. Nothing else, and nothing is sent anywhere.</li>
 </ul>
-<p>Both are deleted when you delete the job from the app's job list, and both are destroyed
-by Atlassian when the app is uninstalled.</p>
+<p>Job records and plans are deleted when you delete the job from the app's job list, automatically 90 days
+after a finished job (done, partly done, failed or cancelled) was last updated, and by
+Atlassian when the app is uninstalled. The work items a job created are never deleted.</p>
 <h2>Data the app does not do</h2>
 <ul>
 <li>It does <strong>not</strong> send anything to any server outside Atlassian. The app declares no

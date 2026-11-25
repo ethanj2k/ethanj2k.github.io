@@ -36,10 +36,11 @@ they happen in the background, when nobody is present to act on behalf of.</p>
 <li><strong>One issue property</strong> (<code>tis-standing</code>) on issues covered by an SLA, holding that
    issue's SLA standing: a state (<code>met</code>, <code>breached</code>, <code>at-risk</code>, <code>running</code>, <code>paused</code>),
    a breach count, a count of clocks still running, minutes remaining, a due date, and
-   the issue's age in its current status, cycle time and lead time in hours. It holds
-   no issue content. It exists so that ordinary Jira search can find breached issues.
-   It creates no custom field and appears on no screen. It is written only when the
-   value has actually changed.</li>
+   the issue's age in its current status, cycle time and lead time in hours, plus
+   when it was last calculated and when it next needs re-checking. It holds no issue
+   content. It exists so that ordinary Jira search can find breached issues. It
+   creates no custom field and appears on no screen. It is written when the value has
+   changed, and refreshed at least once a day while an SLA clock is running.</li>
 <li><strong>A label</strong>, only if an administrator has named one, added once when an SLA moves
    into breach — never on every re-check. It exists to give Jira Automation a native
    trigger.</li>
