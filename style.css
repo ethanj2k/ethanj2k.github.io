@@ -6,3 +6,8 @@ table{border-collapse:collapse}td,th{border:1px solid #dfe1e6;padding:6px 10px;t
    on narrow screens without a padding-hack wrapper. */
 .video { margin: 1.5rem 0; max-width: 720px; }
 .video iframe { width: 100%; height: auto; aspect-ratio: 16 / 9; border: 1px solid #ddd; border-radius: 6px; }
+
+/* Comparison pages: wide tables scroll inside their own box on phones. */
+.scroll { overflow-x: auto; }
+.scroll td, .scroll th { vertical-align: top; }
+.note { color: #5e6c84; font-size: .9rem; }

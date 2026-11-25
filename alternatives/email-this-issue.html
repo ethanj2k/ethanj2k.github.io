@@ -1,0 +1,81 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Email This Issue alternative for Jira Cloud: Mailpost for Jira</title>
+<meta name="description" content="Mailpost is a cheaper alternative to Email This Issue for Jira Cloud: email from the work item, templates, rules, scheduled digests and replies back onto the issue, from US$0.60 per user. An honest comparison, gaps included.">
+<link rel="canonical" href="https://ethanj2k.github.io/alternatives/email-this-issue.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Two Little Moons Consulting">
+<meta property="og:title" content="A cheaper alternative to Email This Issue for Jira Cloud">
+<meta property="og:description" content="Mailpost for Jira compared with Email This Issue: price per user, what is included, where Mailpost is weaker, and how it handles the complaints in Email This Issue's reviews.">
+<meta property="og:url" content="https://ethanj2k.github.io/alternatives/email-this-issue.html">
+<meta property="og:image" content="https://ethanj2k.github.io/assets/jira-email-issue/banner-1120x548.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/style.css"></head><body>
+<nav><a href="/">Apps</a><a href="/privacy.html">Privacy policy</a><a href="/security.html">Security</a><a href="/dpa.html">DPA</a><a href="/terms.html">Terms of service</a><a href="/support.html">Support</a></nav>
+<h1>A cheaper alternative to Email This Issue for Jira Cloud</h1>
+<p><strong>Mailpost for Jira</strong> emails a work item from Jira, with templates, recipients taken from the issue, automatic emails on events, scheduled JQL digests and replies that come back as comments. It costs <strong>US$0.60 per user per month</strong> for 11&ndash;100 users, against US$2.00 on Email This Issue's Standard edition.</p>
+<p>This page sets out where the two differ, including where Email This Issue is the better choice. Email This Issue is a mature, well-rated app with around 5,700 installs; if you rely on the things listed under <a href="#weaker">where Mailpost is weaker</a>, keep it.</p>
+<p><a href="https://marketplace.atlassian.com/apps/1176056384/mailpost-for-jira"><strong>Mailpost for Jira on the Atlassian Marketplace &rarr;</strong></a></p>
+
+<h2>Price per user</h2>
+<p>Monthly prices in US dollars, per user, from each app's Marketplace pricing tab. Email This Issue's figures were checked in September 2026; check their listing for today's numbers.</p>
+<div class="scroll"><table>
+<tr><th>Users</th><th>Mailpost</th><th>Email This Issue Standard</th><th>Email This Issue Advanced</th></tr>
+<tr><td>1&ndash;10</td><td><strong>US$3 a month flat</strong></td><td>US$10 a month flat</td><td>US$40 a month flat</td></tr>
+<tr><td>11&ndash;100</td><td><strong>US$0.60</strong></td><td>US$2.00</td><td>US$4.00</td></tr>
+<tr><td>101&ndash;250</td><td><strong>US$0.45</strong></td><td>US$1.20</td><td>US$2.50</td></tr>
+<tr><td>251&ndash;1,000</td><td><strong>US$0.30</strong></td><td>US$0.40</td><td>US$0.70</td></tr>
+<tr><td>1,001+</td><td><strong>US$0.20</strong></td><td>tapers from US$0.40 down to US$0.03</td><td>tapers from US$0.48 down to US$0.04</td></tr>
+</table></div>
+<p>Above about 1,000 users Email This Issue's taper can come in below Mailpost's flat US$0.20, so a large site should price both. Mailpost has one edition: everything on this page is included at every size.</p>
+
+<h2>Side by side</h2>
+<div class="scroll"><table>
+<tr><th></th><th>Mailpost</th><th>Email This Issue</th></tr>
+<tr><td>Email a work item from the issue</td><td>Yes, from the action menu, with a send log panel on the issue</td><td>Yes</td></tr>
+<tr><td>Recipients from the issue</td><td>Reporter, assignee, watchers, voters, groups, project roles, any user-picker field, plus typed To/Cc/Bcc addresses when the email provider is on</td><td>Yes</td></tr>
+<tr><td>Templates</td><td>Placeholders, <code>{{#if}}</code>/<code>{{#each}}</code> logic, a visual and an HTML editor, per-project or site-wide</td><td>Velocity templates, visual editor</td></tr>
+<tr><td>Template version history and rollback</td><td>Yes</td><td>Not offered when we checked</td></tr>
+<tr><td>Per-user signatures on Cloud</td><td>Yes</td><td>Not offered on Cloud when we checked</td></tr>
+<tr><td>Automatic emails on create, update, transition, comment or field change</td><td>Yes, with JQL conditions and an optional minimum interval between sends per issue</td><td>Yes</td></tr>
+<tr><td>Scheduled digests of a JQL search</td><td>Yes: hourly, daily at an hour, or weekly on a day (UTC)</td><td>Not offered when we checked</td></tr>
+<tr><td>Replies become comments; new mail creates issues</td><td>Yes, through your own Postmark account</td><td>Yes</td></tr>
+<tr><td>Connect to an existing mailbox (POP3, IMAP, Gmail, Microsoft 365)</td><td><strong>No</strong></td><td>Yes</td></tr>
+<tr><td>Set fields or transition an issue from an incoming email</td><td><strong>No</strong>, by design</td><td>Yes</td></tr>
+<tr><td>S/MIME</td><td><strong>No</strong></td><td>Yes</td></tr>
+<tr><td>Admin log of configuration changes</td><td>Included</td><td>Advanced edition only</td></tr>
+<tr><td>Where your data goes</td><td>By default, nowhere outside Atlassian: mail goes through Jira's own notification service. If you switch on the optional Postmark provider, mail goes to <code>api.postmarkapp.com</code> and nowhere else</td><td>Their own mail service, as a Connect app</td></tr>
+<tr><td>Platform</td><td>Forge</td><td>Connect (Atlassian ends Connect support in December 2026; their published migration plan was still in progress when we checked)</td></tr>
+<tr><td>Cloud Fortified</td><td>No</td><td>Yes</td></tr>
+</table></div>
+
+<h2 id="weaker">Where Mailpost is weaker</h2>
+<ul>
+<li><strong>No mailbox connectors.</strong> Mailpost cannot read an existing Exchange, Microsoft 365, Gmail, IMAP or POP3 mailbox, and it has no S/MIME. Outbound mail to people without a Jira account, real file attachments and incoming mail all need a Postmark account of your own. If you need to read a mailbox you already have, Email This Issue does that and Mailpost does not.</li>
+<li><strong>Incoming mail adds a comment or creates an issue, and nothing more.</strong> It cannot set fields or run a transition. The sender of an email cannot be verified, so we have chosen not to let an email change an issue's state.</li>
+<li><strong>A daily sending limit.</strong> To stop the app being used for bulk mail, each site can send to 200 recipients a day by default (50 during an evaluation), counted across manual sends, rules and digests. Support can raise it for a site that needs more.</li>
+<li><strong>Coarse scheduling.</strong> Forge has no cron, so digests run hourly, daily at a chosen hour or weekly on a chosen day, in UTC.</li>
+<li><strong>Attachments are capped</strong> at 8 MB per file and 10 MB per message on the Postmark path; anything skipped is named to the sender. Without Postmark, emails link to attachments rather than carrying them.</li>
+<li><strong>You don't get a copy of your own manual send</strong> through Jira's notification service, because Jira never emails the person who triggered a notification.</li>
+<li><strong>Maturity.</strong> Email This Issue has around a decade of customers behind it. Mailpost is much newer.</li>
+</ul>
+
+<h2>Common complaints in Email This Issue's reviews, and how Mailpost handles them</h2>
+<p>From the 1&ndash;3 star reviews on Email This Issue's Marketplace listing and its own documentation, read in September 2026. Paraphrased unless quoted.</p>
+<div class="scroll"><table>
+<tr><th>What reviewers raised</th><th>What Mailpost does</th></tr>
+<tr><td>Incoming mail taking minutes to process. Their documentation puts the Standard edition's average at &ldquo;5-7 minutes, depending on the actual load of all customers&rdquo;, with faster processing sold in the Advanced edition.</td><td>Postmark posts each message straight to the app's Forge web trigger, so there is no shared queue in front of it. There is no faster tier to buy.</td></tr>
+<tr><td>Support response times, with faster support sold as part of the Advanced edition.</td><td>One response target for everyone: one business day, by email.</td></tr>
+<tr><td>Quoted history not stripped from replies, so threads pile up inside the issue.</td><td>Uses Postmark's stripped reply when it has one, and trims the quoted tail itself when it doesn't.</td></tr>
+<tr><td>Rules firing on every edit and flooding people with mail.</td><td>A field-change rule that names no field is refused when you save it. A rule can require a minimum interval between two sends about the same issue, and a rule that fires on comments and also posts a comment must set one.</td></tr>
+<tr><td>&ldquo;As an admin, you can't even control when an email is sent successfully.&rdquo;</td><td>Every send is logged on the issue and in a searchable site-wide history with its outcome, and if some addresses were not mailed the sender is told.</td></tr>
+<tr><td>Hard to configure across hundreds of projects.</td><td>Templates, rules and digests can belong to one project and be managed by that project's admins.</td></tr>
+<tr><td>Service Management customers' replies can't update fields unless customers are given agent licences.</td><td>Mailpost writes as the app, so nothing incoming needs an agent seat. Incoming comments on a service project are internal unless an admin opts in to making them public.</td></tr>
+<tr><td>Price for small teams, with no free tier.</td><td>US$3 a month for up to 10 users, and below their Standard price in every band up to 1,000 users.</td></tr>
+</table></div>
+
+<h2>Switching</h2>
+<p>There is no importer: Velocity templates have to be rewritten in Mailpost's template language, which is usually shorter because it has <code>{{#if}}</code> and <code>{{#each}}</code> but no scripting. Both apps can be installed side by side while you move rules across one project at a time. Mailpost sends through Jira's own notifications out of the box, so you can try it without setting up a mail provider.</p>
+<p><a href="https://marketplace.atlassian.com/apps/1176056384/mailpost-for-jira"><strong>Try Mailpost for Jira from the Marketplace &rarr;</strong></a> &middot; <a href="/docs/jira-email-issue.html">Documentation</a> &middot; <a href="/docs/privacy-jira-email-issue.html">Privacy policy</a></p>
+<p class="note">Email This Issue is a product of META-INF and a trademark of its owner. We are not affiliated with META-INF. Their prices, features and reviews are as published on their Marketplace listing and documentation when we checked in September 2026 and may have changed since; corrections are welcome at support@twolittlemoons.com.</p>
+<footer>Published by Two Little Moons Consulting (ABN 49 732 400 198), Australia. Contact: support@twolittlemoons.com</footer>
+</body></html>
