@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://ethanj2k.github.io/</loc><lastmod>2026-09-18</lastmod></url>
-  <url><loc>https://ethanj2k.github.io/dpa.html</loc><lastmod>2026-09-18</lastmod></url>
-  <url><loc>https://ethanj2k.github.io/privacy.html</loc><lastmod>2026-09-18</lastmod></url>
-  <url><loc>https://ethanj2k.github.io/security.html</loc><lastmod>2026-09-18</lastmod></url>
+  <url><loc>https://ethanj2k.github.io/dpa.html</loc><lastmod>2026-11-27</lastmod></url>
+  <url><loc>https://ethanj2k.github.io/privacy.html</loc><lastmod>2026-11-27</lastmod></url>
+  <url><loc>https://ethanj2k.github.io/security.html</loc><lastmod>2026-11-27</lastmod></url>
   <url><loc>https://ethanj2k.github.io/support.html</loc><lastmod>2026-09-18</lastmod></url>
   <url><loc>https://ethanj2k.github.io/terms.html</loc><lastmod>2026-09-18</lastmod></url>
   <url><loc>https://ethanj2k.github.io/docs/jira-approvals.html</loc><lastmod>2026-09-18</lastmod></url>
@@ -33,4 +33,6 @@
   <url><loc>https://ethanj2k.github.io/alternatives/email-this-issue.html</loc><lastmod>2026-11-26</lastmod></url>
   <url><loc>https://ethanj2k.github.io/alternatives/saasjet-time-in-status.html</loc><lastmod>2026-11-26</lastmod></url>
   <url><loc>https://ethanj2k.github.io/alternatives/timepiece-time-in-status.html</loc><lastmod>2026-11-26</lastmod></url>
+  <url><loc>https://ethanj2k.github.io/docs/jira-comment-fields.html</loc><lastmod>2026-11-27</lastmod></url>
+  <url><loc>https://ethanj2k.github.io/docs/privacy-jira-comment-fields.html</loc><lastmod>2026-11-27</lastmod></url>
 </urlset>

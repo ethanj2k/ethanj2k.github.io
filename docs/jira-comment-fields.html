@@ -1,0 +1,212 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Last Word — comment and participant fields for Jira Cloud</title><link rel="stylesheet" href="/style.css"></head><body><nav><a href="/">Apps</a><a href="/privacy.html">Privacy policy</a><a href="/docs/privacy-jira-comment-fields.html">This app's policy</a><a href="/security.html">Security</a><a href="/dpa.html">DPA</a><a href="/terms.html">Terms of service</a><a href="/support.html">Support</a></nav>
+<h1>Last Word: Comment &amp; Participant Fields for Jira</h1>
+<p><strong>The support-desk fields Data Center's Toolkit gave you — Participants of an issue,
+Last commented by, Days since last comment, Number of comments and the rest — on Jira
+Cloud, under the same names.</strong> Your migrated filters and dashboards read the same.
+One edition, everything included, <strong>US$0.65 per user per month, free for ten users or
+fewer.</strong></p>
+<p>Atlassian's Toolkit for Jira has no Cloud version and no migration path. The Cloud
+alternatives charge <strong>$0.72</strong> (Comment Custom Fields) and <strong>$1.00</strong> (Jira Misc Custom
+Fields) per user.</p>
+<hr />
+<h2>Getting started</h2>
+<h3>1. Install</h3>
+<p>Install from the Marketplace listing, or in Jira go to <strong>Apps → Explore more apps</strong> and
+search for <em>Last Word</em>. You need to be a Jira administrator.</p>
+<h3>2. Put the fields on your screens</h3>
+<p>The eight fields exist as soon as the app is installed. Go to <strong>Settings (cog) → Work
+items → Screens</strong> (or a team-managed project's own field settings) and add the ones you
+want, exactly as you would any custom field. They are read-only: the app keeps them up to
+date and nobody types into them.</p>
+<h3>3. Fill in the work items you already have</h3>
+<p>Go to <strong>Settings (cog) → Apps → Comment &amp; Participant Fields</strong>. Leave the scope empty for
+every work item, or narrow it with JQL such as <code>project = SUP</code>, choose <strong>Count work
+items</strong> to see how many that is, then <strong>Start</strong>. The page shows its progress as it goes.
+New comments, attachments and changes of reporter or assignee update the fields on their
+own from the moment the app is installed.</p>
+<h3>4. Add a message to a create screen (optional)</h3>
+<p>Go to <strong>Settings (cog) → Work items → Custom fields → Create custom field</strong>, choose
+<strong>Message Custom Field (for edit)</strong>, and add it to a create screen. Open the field's
+context and write the message there — a title, plain text and an appearance. A different
+message per project or work type is just another context.</p>
+<h3>Searching</h3>
+<pre><code>&quot;Participants of an issue&quot; = currentUser()
+&quot;Last commented by a User Flag&quot; = &quot;true&quot; AND statusCategory != Done
+&quot;Days since last comment&quot; &lt; -7d
+&quot;Number of comments&quot; &gt; 20
+</code></pre>
+<p><code>true</code> is a reserved word in JQL, so the User Flag is compared with <code>"true"</code> in quotes.</p>
+<h3>If something looks wrong</h3>
+<ul>
+<li><strong>A field is empty on an older work item.</strong> It predates the install; fill it in from the
+  admin page (step 3).</li>
+<li><strong>A value did not change straight away.</strong> Values land within seconds of the change, not in
+  the same keystroke. Reload the work item.</li>
+<li><strong>A comment did not count.</strong> Only public comments count. A comment restricted to a role or
+  group, or a Jira Service Management internal note, never does.</li>
+<li><strong>Still stuck?</strong> Write to support@twolittlemoons.com.</li>
+</ul>
+<h2>Same fields, same names</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>What it holds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Participants of an issue</strong></td>
+<td>The reporter, the assignee and everyone who has commented publicly, each once</td>
+</tr>
+<tr>
+<td><strong>Last commented by</strong></td>
+<td>Who wrote the most recent public comment</td>
+</tr>
+<tr>
+<td><strong>Last commented by a User Flag</strong></td>
+<td><code>true</code> when the most recent public comment came from the reporter or a portal customer — "waiting on us"</td>
+</tr>
+<tr>
+<td><strong>Last public comment date</strong></td>
+<td>When the most recent public comment was written</td>
+</tr>
+<tr>
+<td><strong>Days since last comment</strong></td>
+<td>Shown as "3 days" on the work item; searched as a date</td>
+</tr>
+<tr>
+<td><strong>Number of comments</strong></td>
+<td>Public comments on the work item</td>
+</tr>
+<tr>
+<td><strong>Number of attachments</strong></td>
+<td>Files attached to the work item</td>
+</tr>
+<tr>
+<td><strong>Date of First Response</strong></td>
+<td>When somebody other than the reporter first commented publicly</td>
+</tr>
+<tr>
+<td><strong>Message Custom Field (for edit)</strong></td>
+<td>Instructions you write, shown on the create screen</td>
+</tr>
+</tbody>
+</table>
+<p><code>"Number of comments" &gt; 20</code>, <code>"Participants of an issue" = currentUser()</code> and
+<code>"Last commented by a User Flag" = "true" AND statusCategory != Done</code> work exactly as
+written.</p>
+<h2>Right in JQL the moment it changes — no reindex</h2>
+<p>The Toolkit computed its values when Jira indexed a work item, which is why its own
+reviews say <em>"Participants Field is not returning correctly in JQL searches … after
+the project reindex it's showing the correct result."</em></p>
+<p>This app stores each value in Jira's index the moment a comment is added, edited or
+deleted, an attachment comes or goes, or the reporter or assignee changes. Boards,
+filters, dashboards, JQL and CSV exports all see it straight away, and nothing is
+worked out at search time.</p>
+<p><strong>Days since last comment</strong> was never searchable in Data Center. Here it is stored as
+the date of the last public comment and <em>displayed</em> as days, so it is right on screen
+every day and exact in search: <code>"Days since last comment" &lt; -7d</code> finds everything quiet
+for more than a week.</p>
+<h2>A Message field that does not break the create screen</h2>
+<p>The Toolkit's Message field is the subject of most of its bad reviews: HTML that is
+forgotten the next time you edit it, a field that breaks the page layout, a message
+that never appears. Here the message is <strong>plain text written in Jira's own field
+context screen</strong> — so a different message per project and work type is just another
+context — and it is shown as a standard Atlassian notice. The field holds no value and
+answers the create dialog immediately, so it never slows a create down.</p>
+<h2>Existing work items filled in, on your terms</h2>
+<p>New activity updates the fields on its own. For work items created before the app was
+installed, the admin page counts any JQL scope you give it and fills those work items
+in — every work item if you leave it empty — and shows its progress as it goes.</p>
+<h2>Quiet by design</h2>
+<ul>
+<li><strong>No history noise.</strong> These values are derived, so writing them adds nothing to a
+  work item's history — no "Number of comments 4 → 5" burying the real changes.</li>
+<li><strong>Nothing runs for events that cannot change a value.</strong> Editing a summary, a label
+  or a status never invokes the app at all; only comments, attachments, new work items
+  and changes of reporter or assignee do.</li>
+<li><strong>Runs on Atlassian.</strong> No egress, no remote backend, no analytics. The app cannot
+  contact any host other than Atlassian's own APIs, and everything stays in your site.</li>
+</ul>
+<h2>What it does not do, said before you buy</h2>
+<ul>
+<li><strong>Public comments only.</strong> A comment restricted to a role or group, or a Jira Service
+  Management internal note, never counts toward any field. These are ordinary field
+  values that anyone who can open the work item can read, so a restricted comment's
+  author and timing must not leak through them. (Data Center worked "Days since last
+  comment" out per viewer; a stored Cloud value cannot be.)</li>
+<li><strong>"Last commented by a User Flag" is defined for Cloud.</strong> Data Center meant "not in
+  the jira-developers group", which Cloud does not have. Here it is true when the last
+  public comment came from the reporter or a portal-only customer.</li>
+<li><strong>"Days since last comment" is searched as a date</strong> (<code>&lt; -7d</code>), not as a number
+  (<code>&gt; 7</code>). A saved filter that used the number form needs that one change.</li>
+<li><strong>Comments written by an app</strong> (Automation rules, bots) count in "Number of comments"
+  and the dates, but never become the last commenter, the first response or a
+  participant — an auto-reply is not somebody answering.</li>
+<li><strong>Participants holds up to 100 people</strong>, Jira's limit for a list field. The reporter
+  and assignee are never the ones dropped.</li>
+<li><strong>Values land within seconds of a change</strong>, not in the same keystroke.</li>
+<li><strong>Not included:</strong> "Domain of Reporter" and "Domain of Assignee" (Cloud hides email
+  addresses by default), "Username of last updater or commenter", "User Property
+  Field" and "Message Custom Field (for view)".</li>
+<li><strong>Not Cloud Fortified.</strong> That is a Marketplace programme a vendor applies to once an
+  app has install volume and a support history. Runs on Atlassian — the technical bar
+  underneath it — is met from day one.</li>
+</ul>
+<h2>Pricing</h2>
+<p>Free for up to 10 users. Then <strong>US$0.65 per user per month</strong> for 11–100 users, falling in
+every band after that to US$0.07 above 7,500 users. One edition; everything on this page
+is included.</p>
+<table>
+<thead>
+<tr>
+<th>Users (per user, per month)</th>
+<th>Jira Misc Custom Fields</th>
+<th>Comment Custom Fields</th>
+<th><strong>Last Word</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1–10</td>
+<td>free</td>
+<td>free</td>
+<td><strong>free</strong></td>
+</tr>
+<tr>
+<td>11–100</td>
+<td>$1.00</td>
+<td>$0.72</td>
+<td><strong>$0.65</strong></td>
+</tr>
+<tr>
+<td>101–250</td>
+<td>$0.67</td>
+<td>$0.53</td>
+<td><strong>$0.48</strong></td>
+</tr>
+<tr>
+<td>251–1,000</td>
+<td>$0.34</td>
+<td>$0.32</td>
+<td><strong>$0.29</strong></td>
+</tr>
+<tr>
+<td>1,001–2,500</td>
+<td>$0.21</td>
+<td>$0.25</td>
+<td><strong>$0.19</strong></td>
+</tr>
+<tr>
+<td>2,501–5,000</td>
+<td>$0.13</td>
+<td>$0.21</td>
+<td><strong>$0.12</strong></td>
+</tr>
+</tbody>
+</table>
+<h2>Support</h2>
+<p>Documentation, privacy policy, security statement and support:
+<a href="https://ethanj2k.github.io/docs/jira-comment-fields.html">https://ethanj2k.github.io/docs/jira-comment-fields.html</a></p>
+<footer>Two Little Moons Consulting, ABN 49 732 400 198, Penrith, NSW 2750, Australia.</footer></body></html>

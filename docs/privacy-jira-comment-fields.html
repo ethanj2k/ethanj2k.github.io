@@ -1,0 +1,85 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Privacy Policy — Last Word: Comment &amp; Participant Fields for Jira</title><link rel="stylesheet" href="/style.css"></head><body><nav><a href="/">Apps</a><a href="/privacy.html">Privacy policy</a><a href="/docs/privacy-jira-comment-fields.html">This app's policy</a><a href="/security.html">Security</a><a href="/dpa.html">DPA</a><a href="/terms.html">Terms of service</a><a href="/support.html">Support</a></nav>
+<h1>Privacy Policy — Last Word: Comment &amp; Participant Fields for Jira</h1>
+<p><em>Effective: 27 November 2026</em></p>
+<p>Last Word: Comment &amp; Participant Fields for Jira ("the app") is published on the
+Atlassian Marketplace by <strong>Two Little Moons Consulting</strong>, ABN 49 732 400 198,
+Penrith, NSW 2750, Australia ("we", "us"). Contact: support@twolittlemoons.com.</p>
+<p>This policy is specific on purpose: every category of data the app touches is itemised
+below.</p>
+<h2>What the app does</h2>
+<p>The app keeps eight read-only custom fields up to date on each work item — who has
+taken part, who commented last and when, how many comments and attachments it has,
+and when it was first answered — and shows a message an administrator writes on the
+create screen. It runs entirely on Atlassian's Forge platform and <strong>sends data to no
+server outside Atlassian</strong>.</p>
+<h2>Data the app reads from Jira</h2>
+<p>When a comment is added, edited or deleted, an attachment is added or removed, a work
+item is created, or its reporter or assignee changes — and when an administrator fills
+in existing work items from the admin page — the app reads, for that work item:</p>
+<ul>
+<li>its id and key;</li>
+<li>the account ids of its <strong>reporter</strong> and <strong>assignee</strong>;</li>
+<li>for each comment: the author's <strong>account id and account type</strong> (person, portal
+  customer or app), <strong>when it was written</strong>, whether it is <strong>restricted</strong> to a role or
+  group, and whether it is a Jira Service Management <strong>internal note</strong>. The app does
+  <strong>not</strong> read or keep what a comment says;</li>
+<li>the <strong>number</strong> of attachments (Jira returns the attachment list; the app counts it
+  and keeps nothing else from it);</li>
+<li>the values this app has already stored in its own fields, so it writes only what
+  changed;</li>
+<li>the list of custom fields, to find the ids of this app's own fields;</li>
+<li>for the Message field, the text an administrator saved in that field's context
+  configuration, for the project and work type of the form being shown.</li>
+</ul>
+<p>On the admin page the app also reads the administrator's permissions
+(<code>/mypermissions</code>) to check they administer the site, and asks Jira to count the work
+items in a scope they enter. Reads that run in the background are made <strong>as the app</strong>;
+their result is a field value Jira permission-checks on read like any other.</p>
+<h2>Data the app writes to Jira</h2>
+<ul>
+<li>the computed values, into the app's <strong>own read-only custom fields</strong> on the work item.
+  A Forge app may only write the values of fields it owns, so the app can change no
+  other field. These writes add nothing to the work item's history.</li>
+</ul>
+<h2>Data the app stores</h2>
+<p>In Forge storage, inside your own Atlassian site, <strong>one document</strong>: the progress of a
+fill-in run started from the admin page — the JQL scope the administrator entered, an
+opaque page token, counts of work items read and changed, its state and when it
+started and last progressed. Nothing is stored per work item and nothing about any
+person. The Message field's text is stored by Jira itself, in the field's context
+configuration.</p>
+<h2>Data visibility</h2>
+<p>A computed value is an ordinary Jira field value, so <strong>anyone who can see the work
+item can see it</strong>, exactly as they can see its other fields. For that reason the app
+counts <strong>only public comments</strong>: a restricted comment or an internal note never
+contributes to any value, so its author and timing cannot be learned from these
+fields.</p>
+<h2>Data leaving Atlassian</h2>
+<p><strong>None.</strong> The app declares no <code>permissions.external</code> of any kind: no fetch, no egress,
+no remote host and no analytics. It is not technically capable of contacting any host
+other than Atlassian's own APIs.</p>
+<h2>Logging</h2>
+<p>The app writes operational log lines to Atlassian's Forge logging: event types, work
+item ids and keys, counts, and the status of a failed Jira request. It does <strong>not</strong> log
+field values, account ids, comment content, the administrator's scope, or the bodies
+of Jira's responses.</p>
+<h2>Retention and deletion</h2>
+<p>The fill-in progress document lives in Forge storage inside your site and is destroyed
+when the app is uninstalled. The values already written remain on your work items as
+field values until the fields are removed in Jira's custom field administration.</p>
+<h2>Your rights</h2>
+<p>Because the app stores everything inside your own Atlassian site and sends nothing
+elsewhere, requests about personal data — access, correction, erasure — are answered
+by your own Atlassian administration. Write to support@twolittlemoons.com if you need
+help identifying what the app holds.</p>
+<h2>GDPR and CCPA</h2>
+<p>We are a <strong>data processor</strong>, not a data controller, and a <strong>service provider</strong>, not a
+business. We process End-User Data only inside Atlassian apps and services, on your
+instructions, and we share it with no third party.</p>
+<h2>Security</h2>
+<p>Reports: support@twolittlemoons.com. Our security statement is at
+<a href="https://ethanj2k.github.io/security.html">https://ethanj2k.github.io/security.html</a>.</p>
+<h2>Changes</h2>
+<p>Material changes to this policy will be published on this page with a new effective
+date before they take effect.</p>
+<footer>Two Little Moons Consulting, ABN 49 732 400 198, Penrith, NSW 2750, Australia.</footer></body></html>
